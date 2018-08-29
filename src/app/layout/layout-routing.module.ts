@@ -40,6 +40,10 @@ const routes: Routes = [
             {
                 path: 'blank-page',
                 loadChildren: './blank-page/blank-page.module#BlankPageModule'
+            },
+            {
+                path: 'modulo-tipo',
+                loadChildren: './tipo-material/tipo-material.module#TipoMaterialModule'
             }
         ]
     }
