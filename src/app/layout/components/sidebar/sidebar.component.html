@@ -23,6 +23,10 @@
             <mat-icon class="sidenav-icon">code</mat-icon> {{ 'Tipo de material' | translate }}
         </a>
 
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/modulo-material']">
+            <mat-icon class="sidenav-icon">code</mat-icon> {{ 'Materiales' | translate }}
+        </a>
+
         <!-- fin modulos del proyecto -->
 
         <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/blank-page']">

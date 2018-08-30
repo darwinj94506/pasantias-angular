@@ -44,7 +44,11 @@ const routes: Routes = [
             {
                 path: 'modulo-tipo',
                 loadChildren: './tipo-material/tipo-material.module#TipoMaterialModule'
-            }
+            }, 
+            {
+                path: 'modulo-material',
+                loadChildren: './material/material.module#MaterialModule'
+            },
         ]
     }
 ];
