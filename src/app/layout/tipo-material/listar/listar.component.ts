@@ -12,7 +12,6 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
-
   
     displayedColumns: string[] = ['nombre', 'idtipo', 'estado', 'fecha', 'star'];
     ELEMENT_DATA: any[] = [];
