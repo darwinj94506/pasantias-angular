@@ -5,7 +5,7 @@ import {PageEvent} from '@angular/material';
 import { Router } from '@angular/router';
 import{TipoMaterialService} from './../../../shared/services/tipo-material.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
+import{ModalCrearComponent} from './../modal-crear/modal-crear.component';
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',

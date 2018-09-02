@@ -15,6 +15,9 @@ import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { RouterModule, Routes } from '@angular/router';
+import{ComponentesPersonalizadosModule} from './../componentes-personalizados/componentes-personalizados.module';
+import { ModalCrearComponent } from './modal-crear/modal-crear.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,10 +26,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    ComponentesPersonalizadosModule
     // RouterModule
   ],
   entryComponents: [
-    Modal,ModalEliminar,ModalEditar
+    Modal,ModalEliminar,ModalEditar,ModalCrearComponent
   ],
   providers:[TipoMaterialService,{
     provide:LOCALE_ID, useValue: 'es'
@@ -35,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       ListarComponent,    
       Modal,ModalEditar,
       ModalEliminar,
-      EditarComponent]
+      EditarComponent,
+      ModalCrearComponent]
 })
 export class TipoMaterialModule { }
