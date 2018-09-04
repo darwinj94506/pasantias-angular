@@ -6,7 +6,7 @@ import{Observable} from 'rxjs';
 import{GLOBAL} from './global';
 
 @Injectable()
-export class TipoMaterialService{
+export class IngresoService{
   public url:string;
   public identity;
   public token;
@@ -19,28 +19,27 @@ export class TipoMaterialService{
       return this._http.get(this.url+'getTipo/'+id).pipe(map(res=>res.json()));
     }
 
-    getPaginarTipos(parametros){
+    getPaginarIngresos(parametros){
       let params=JSON.stringify(parametros);
       let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getTipos',params, {headers:headers})
+      return this._http.post(this.url+'getIngresos',params, {headers:headers})
       .pipe(map( res => res.json()));          
     }
 
-    crudTipo(tipo) {
-      console.log(tipo);
-       let params=JSON.stringify(tipo);
+    crudIngreso(ingreso) {
+      console.log(ingreso);
+       let params=JSON.stringify(ingreso);
        let headers=new Headers({'Content-Type':'application/json'});
-       return this._http.post(this.url+'crudTipo',params, {headers:headers})
-                         .pipe(map( res => res.json()));
-                         
+       return this._http.post(this.url+'crudIngreso',params, {headers:headers})
+                         .pipe(map( res => res.json()));               
        }
   
-       totalTipo() {
-        // router.post('/api/getTotalTipos', db.getTotalTipos); 
-         let headers=new Headers({'Content-Type':'application/json'});
-         return this._http.post(this.url+'getTotalTipos', {headers:headers})
-                           .pipe(map( res => res.json()));
-         }
+    totalIngreso() {
+    // router.post('/api/getTotalTipos', db.getTotalTipos); 
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getTotalIngresos', {headers:headers})
+                        .pipe(map( res => res.json()));
+    }
   }
 
 

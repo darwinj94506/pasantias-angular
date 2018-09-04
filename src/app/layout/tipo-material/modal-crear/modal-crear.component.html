@@ -1,25 +1,24 @@
-<!-- <div class="example-container">
-  <mat-form-field hintLabel="Max 10 characters">
-    <input matInput #input maxlength="10" placeholder="Enter some input">
-    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-  </mat-form-field>
+<form [formGroup]="myForm" autocomplete="off">
+  <h2 mat-dialog-title align="center">Crear nuevo tipo</h2>
+  <mat-dialog-content>
+  
+        <mat-form-field>
+          <input matInput placeholder="Ingrese el nombre del tipo"
+          formControlName="nombre">
+        </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Select me">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-  </mat-form-field>
-</div> -->
-<!-- este -->
-<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1> -->
-<div mat-dialog-content>
-    <p>What's your favorite animal?</p>
-    <!-- <mat-form-field>
-        <input matInput [(ngModel)]="data.animal">
-    </mat-form-field> -->
-</div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
-</div>
+  </mat-dialog-content>
+  <mat-dialog-actions  align="center">
+
+      <button (click)="crudTipo()" mat-raised-button color="primary" 
+       [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando && accion==1">  
+          Guardar</button>
+      <button (click)="crudTipo()" mat-raised-button color="primary" 
+       [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando && accion==2">  
+          Editar</button>
+      <button mat-raised-button color="primary"  *ngIf="cargando">  
+          <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
+  </mat-dialog-actions>
+</form>
+
+<!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
