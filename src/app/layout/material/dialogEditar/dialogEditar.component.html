@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="myForm" autocomplete="off"  #yourForm>
+    <p>What's your favorite animal?</p>
+
+    <mat-form-field>
+            <input matInput placeholder="Nombre del material" #material
+              formControlName="nombre" required> </mat-form-field>
+   
+    <mat-form-field>
+            <input matInput placeholder="Nombre del material" #material
+              formControlName="idtipo" required> </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button (click)="editarMaterial()" >Ok</button>
+</div>

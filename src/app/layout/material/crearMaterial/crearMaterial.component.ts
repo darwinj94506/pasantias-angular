@@ -2,12 +2,12 @@ import {Component,OnInit,Inject, ViewChild} from '@angular/core';
 import {FormControl, Validators,FormBuilder,FormGroup, NgForm} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
-import{TipoMaterialService} from './../../../shared/services/tipo-material.service';
+import{MaterialService} from './../../../shared/services/material.service';
 
 @Component({
-  selector: 'app-crear',
-  templateUrl: './crear.component.html',
-  styleUrls: ['./crear.component.scss']
+  selector: 'app-crearMaterial',
+  templateUrl: './crearMaterial.component.html',
+  styleUrls: ['./crearMaterial.component.scss']
 })
 export class CrearComponent implements OnInit {
   cargando=false;
@@ -15,11 +15,12 @@ export class CrearComponent implements OnInit {
 
   myForm: FormGroup; 
 
-  constructor(private _tipo:TipoMaterialService,private fb: FormBuilder,
+  constructor(private _tipo:MaterialService,private fb: FormBuilder,
     public dialog: MatDialog,private router: Router) { }
 
   ngOnInit() {
     this.myForm = this.fb.group({
+      idmaterial:'0',
       idtipo:'0',
       nombre:'',
       opcion:'1'
@@ -28,10 +29,10 @@ export class CrearComponent implements OnInit {
   }
 
 
-  crudTipo(){
+  crudMaterial(){
     this.cargando=true;
     console.log(this.myForm.value);
-    this._tipo.crudTipo(this.myForm.value).subscribe(data=>{
+    this._tipo.crudMaterial(this.myForm.value).subscribe(data=>{
       console.log(data)
       this.cargando=false;
       //modal
@@ -42,9 +43,9 @@ export class CrearComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         console.log(result);
-        // this.animal = result;
-        if(result=='lista-tipo'){
-          this.router.navigate(['modulo-tipo']); 
+      
+        if(result=='lista-material'){
+          this.router.navigate(['modulo-material']); 
         }else{
           this.myForm.reset(this.myForm.value);
           this.active = false;
@@ -54,42 +55,42 @@ export class CrearComponent implements OnInit {
       console.log(error);
     })
   })
-
 }
 
-eliminarTipo(){
-  console.log(this.myForm.value);
-  this._tipo.crudTipo(this.myForm.value).subscribe(data=>{
-    console.log(data)
-    this.cargando=false;
-    //modal
-    const dialogRef = this.dialog.open(Modal , {
-      width: '250px',
-      data: data
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-      // this.animal = result;
-      if(result=='lista-tipo'){
-        this.router.navigate(['modulo-tipo']); 
-      }else{
-        this.myForm.reset(this.myForm.value);
-        this.active = false;
-    }
-    //modal
-  },error=>{
-    console.log(error);
-  })
-})
-}
+// eliminarTipo(){
+//   console.log(this.myForm.value);
+//   this._tipo.crudMaterial(this.myForm.value).subscribe(data=>{
+//     console.log(data)
+//     this.cargando=false;
+//     //modal
+//     const dialogRef = this.dialog.open(Modal , {
+//       width: '250px',
+//       data: data
+//     });
+//     dialogRef.afterClosed().subscribe(result => {
+//       console.log('The dialog was closed');
+//       console.log(result);
+//       // this.animal = result;
+//       if(result=='lista-material'){
+        
+//         this.router.navigate(['modulo-material']); 
+//       }else{
+//         this.myForm.reset(this.myForm.value);
+//         this.active = false;
+//     }
+//     //modal
+//   },error=>{
+//     console.log(error);
+//   })
+// })
+// }
 
 
 
 }
 
 @Component({
-  selector: 'Modal ',
+  selector: 'Modal',
   template: `
   
   <h1 mat-dialog-title>{{titulo}} </h1>
@@ -101,7 +102,6 @@ eliminarTipo(){
 <mat-divider></mat-divider>
 <div mat-dialog-actions>
   <button mat-button (click)="clickAceptar()" tabindex="-1">Aceptar</button>
-  <button mat-button (click)="clickNuevo()" tabindex="2">Nuevo</button>
 </div>
 
 `
@@ -117,11 +117,8 @@ export class Modal  {
 
   clickAceptar(): void { 
     console.log(this.data);
-    this.dialogRef.close('lista-tipo');
+    this.dialogRef.close('lista-material');
   }
-  clickNuevo(): void { 
-    console.log(this.data);
-    this.dialogRef.close("nuevo");
-  }
+ 
 }
 

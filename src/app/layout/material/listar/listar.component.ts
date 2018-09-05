@@ -5,11 +5,15 @@ import {PageEvent} from '@angular/material';
 import { Router } from '@angular/router';
 import{MaterialService} from './../../../shared/services/material.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import{ActivatedRoute} from '@angular/router';
+
+//dialogo modificar
+import { DialogOverviewComponent } from '../dialogEditar/dialogEditar.component';
 
 @Component({
   selector: 'app-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.scss']
+  templateUrl: './listarMaterial.component.html',
+  styleUrls: ['./listarMaterial.component.scss']
 })
 export class ListarComponent implements OnInit {
 
@@ -18,9 +22,12 @@ export class ListarComponent implements OnInit {
     ELEMENT_DATA: any[] = [];
     length=0;
     pageEvent: PageEvent;
+  
+ 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    constructor(private _material:MaterialService,public router: Router,public dialog: MatDialog) {}
+    constructor(private _material:MaterialService,public router: Router,public dialog: MatDialog) {
+    }
     ngOnInit() {
       this.paginator.pageIndex=0;
       this._material.getTotalMateriales().
@@ -34,6 +41,7 @@ export class ListarComponent implements OnInit {
                                     this.ELEMENT_DATA=data.data;
                                     console.log(this.ELEMENT_DATA);
                                   })
+    
     }
     paginar(evento){
       this.pageEvent = evento;
@@ -46,26 +54,34 @@ export class ListarComponent implements OnInit {
                                     console.log(this.ELEMENT_DATA);                               
                                   })
       }
-      // eliminar(row){
-      //   console.log(row);
+      openDialog(row): void {
+        const dialogRef = this.dialog.open(DialogOverviewComponent, {
+            width: '350px',
+            data:row
+        });
 
-
-      //   this._material.getMateriales ({idtipo:row.idtipo,
-      //                       nombre:row.nombre,
-      //                       opcion:'3'}).subscribe(data=>{
-          
-      //     //modal
-      //     const dialogRef = this.dialog.open(ModalEliminar , {
-      //       width: '250px',
-      //       data: data
-      //     });
-      //     dialogRef.afterClosed().subscribe(result => {
-            
-      //     },error=>{
-      //     console.log(error);
-      //   })
-      // })
-      // }   
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+        });
+    }
+      eliminar(row){
+        console.log(row);
+        this._material.crudMaterial ({idmaterial:row.idmaterial,
+         nombre:row.nombre,opcion:'3'}).subscribe(data=>{
+          //modal
+          const dialogRef = this.dialog.open(ModalEliminar , {
+            width: '250px',
+            data: data
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            if(result=='listar'){
+              this.router.navigate(['modulo-material']); 
+            }
+          },error=>{
+          console.log(error);
+        })
+      })
+      }   
 }
 
 
@@ -97,7 +113,7 @@ export class ModalEliminar  {
 
   clickAceptar(): void { 
     console.log(this.data);
-    this.dialogRef.close('lista-tipo');
+    this.dialogRef.close('listar');
   }
   
 }

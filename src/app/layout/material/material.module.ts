@@ -1,10 +1,13 @@
 import { NgModule,LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import{ MaterialRoutingModule} from './material.routing.module'
+import{ MatDialogModule} from '@angular/material';
+import{ MaterialRoutingModule} from './material.routing.module' 
 import{ComponentesAngularMaterialModule} from './../componentes-angular-material/componentes-angular-material.module';
 import{ListarComponent,ModalEliminar} from './listar/listar.component'
+import{CrearComponent, Modal} from './crearMaterial/crearMaterial.component'
+import{MaterialComponent} from './material.component'
 import{MaterialService} from '../../shared/services/material.service'
-
+import{ DialogOverviewComponent} from './dialogEditar/dialogEditar.component'
 //
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import {HttpModule} from '@angular/http';
@@ -14,6 +17,7 @@ import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //
+
 
 @NgModule({
   imports: [
@@ -25,9 +29,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpModule,
   ], entryComponents: [
-    ModalEliminar
+    ModalEliminar, Modal,DialogOverviewComponent
   ],
-  declarations: [ListarComponent,ModalEliminar],
+  declarations: [ListarComponent,ModalEliminar,
+    CrearComponent, Modal,MaterialComponent,DialogOverviewComponent],
   providers:[MaterialService,{
     provide:LOCALE_ID, useValue: 'es'
   }]

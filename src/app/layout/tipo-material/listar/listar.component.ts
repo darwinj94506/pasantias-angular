@@ -48,8 +48,6 @@ export class ListarComponent implements OnInit {
       }
       eliminar(row){
         console.log(row);
-
-
         this._tipo.crudTipo({idtipo:row.idtipo,
                             nombre:row.nombre,
                             opcion:'3'}).subscribe(data=>{
