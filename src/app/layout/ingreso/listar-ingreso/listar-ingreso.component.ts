@@ -60,7 +60,7 @@ export class ListarIngresoComponent implements OnInit {
        const dialogRef = this.dialog.open(ModalCrudIngresoComponent , {
          hasBackdrop:true,
          width:"40%",
-         height:"35%",
+         height:"40%",
          data:data
        });
        dialogRef.afterClosed().subscribe(result => {

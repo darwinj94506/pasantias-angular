@@ -18,6 +18,22 @@ export class IngresoService{
     getTipo(id){
       return this._http.get(this.url+'getTipo/'+id).pipe(map(res=>res.json()));
     }
+    getMaterialesSelect(){
+      // let params=JSON.stringify(parametros);
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getMaterialesSelect', {headers:headers})
+      .pipe(map( res => res.json()));          
+    }
+    getIdentity(){
+      let identity=JSON.parse(localStorage.getItem('identity'));
+      if(identity!="undefined"){
+        this.identity=identity;
+      }else{
+        this.identity=null;
+      }
+      return this.identity;
+    }
+
 
     getPaginarIngresos(parametros){
       let params=JSON.stringify(parametros);

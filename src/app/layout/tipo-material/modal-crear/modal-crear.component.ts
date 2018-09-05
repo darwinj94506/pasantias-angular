@@ -44,7 +44,7 @@ export class ModalCrearComponent implements OnInit {
     console.log(this.data);
 
     if(this.data){
-      this.myForm.reset();
+      // this.myForm.reset();
       this.myForm = this.fb.group({
         idtipo:this.data.idtipo,
         nombre:this.data.nombre,

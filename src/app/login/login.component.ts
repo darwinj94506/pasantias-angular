@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute,Params } from '@angular/router';
 import{UserService} from '../shared/services/usuario.service';
 import {FormControl, Validators,FormBuilder,FormGroup, NgForm} from '@angular/forms';
-
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  cargando=false;
+  active = true; 
     // public user:any;
     public identity;
     public token;
@@ -24,8 +25,9 @@ export class LoginComponent implements OnInit {
       })}
 
     onLogin() {
+      this.cargando=true;
         //loguear al usurio y conseguir el objeto
-    this._userService.signup(this.user.value).subscribe(
+      this._userService.signup(this.user.value).subscribe(
         response=>{
           console.log(response);
           this.identity=response.user;
@@ -41,7 +43,11 @@ export class LoginComponent implements OnInit {
                 this.token=response.token;
                 if(this.token.length<=0 ){
                   console.log("el token no se a generado correctamente");
+                  this.cargando=false;
+
                 }else{//mostrar el token
+                  this.cargando=false;
+
                   localStorage.setItem('token',this.token);
                   this.status='success';
                   this.router.navigate(['/modulo-tipo']);
@@ -49,6 +55,7 @@ export class LoginComponent implements OnInit {
               },
               error=>{
                 console.log(<any>error);
+                this.cargando=false;
               }
             );
           }
@@ -59,6 +66,8 @@ export class LoginComponent implements OnInit {
             var body=JSON.parse(error._body);
             this.status='error';
           }
+          this.cargando=false;
+
         }
       );
     }

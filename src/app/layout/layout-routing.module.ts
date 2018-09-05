@@ -53,6 +53,10 @@ const routes: Routes = [
                 path: 'modulo-ingresos',
                 loadChildren: './ingreso/ingreso.module#IngresoModule'
             },
+             {
+                path: 'modulo-egresos',
+                loadChildren: './egreso/egreso.module#EgresoModule'
+            }
         ]
     }
 ];
