@@ -1,36 +1,28 @@
-<form [formGroup]="myForm" autocomplete="off" (ngSubmit)="crudMaterial()">
-    <mat-card>
-        <mat-card-content>
+<form [formGroup]="myForm" autocomplete="off" >
+    
+        <mat-dialog-content>
             <mat-card-title>Material</mat-card-title>
             <mat-card-subtitle>Registro de nuevo material.</mat-card-subtitle>
             <!-- <mat-form-field>
                 <input matInput value="Disco party!" placeholder="Message" #message> </mat-form-field> -->
-            <section>
+            
                 <mat-form-field class="example-margin">
                     <input matInput placeholder="Nombre del material" 
                       formControlName="nombre" required  >
                 </mat-form-field>
                 <mat-form-field class="example-margin">
-                        <input matInput placeholder="id tipo" 
-                          formControlName="idtipo" required   >
-                    </mat-form-field>
-                <mat-form-field>
-                        <mat-select placeholder="Tipo de material">
-                            <mat-option value="option">Seleccionar</mat-option>
-                        </mat-select>
-             </mat-form-field>
-             
-                <button  class="example-margin" mat-raised-button color="primary"  [disabled]="myForm.invalid" *ngIf="!cargando">  
+                    <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>
+                        <mat-option>Seleccione--</mat-option>
+                        <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+         </mat-dialog-content>
+         <mat-dialog-actions  >  
+                <button (click)="crudMaterial()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched"
+                 *ngIf="!cargando">  
                    Guardar</button>
                 <button mat-raised-button color="primary"  *ngIf="cargando">  
                     <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
-        
-            
-            </section>
-               
-           
-        </mat-card-content>
-    </mat-card>
-
+            </mat-dialog-actions>    
   </form>
   

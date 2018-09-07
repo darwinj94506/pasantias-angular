@@ -1,18 +1,25 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-    <form [formGroup]="myForm" autocomplete="off"  #yourForm>
-    <p>What's your favorite animal?</p>
+<form [formGroup]="myForm" autocomplete="off"  #yourForm>
+<h1 mat-dialog-title align="center">Editar Material</h1>
+    <mat-dialog-content>
+    
+        <mat-form-field>
+                <input matInput placeholder="Nombre del material" #material
+                formControlName="nombre" required> </mat-form-field>
+        <mat-form-field  >
+            <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>
+                    <mat-option>Seleccione--</mat-option>
+                    <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-dialog-content>
 
-    <mat-form-field>
-            <input matInput placeholder="Nombre del material" #material
-              formControlName="nombre" required> </mat-form-field>
-   
-    <mat-form-field>
-            <input matInput placeholder="Nombre del material" #material
-              formControlName="idtipo" required> </mat-form-field>
-    </form>
-</div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancelar</button>
-    <button mat-button (click)="editarMaterial()" >Ok</button>
-</div>
+     <mat-dialog-actions  >
+            <button (click)="editarMaterial()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando">  
+               Guardauuu</button>
+               <button mat-raised-button color="primary"  *ngIf="cargando">  
+                <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
+     </mat-dialog-actions>
+
+ </form>
+
+

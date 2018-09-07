@@ -49,6 +49,14 @@ const routes: Routes = [
                 path: 'modulo-material',
                 loadChildren: './material/material.module#MaterialModule'
             },
+            {
+                path: 'modulo-ingresos',
+                loadChildren: './ingreso/ingreso.module#IngresoModule'
+            },
+             {
+                path: 'modulo-egresos',
+                loadChildren: './egreso/egreso.module#EgresoModule'
+            }
         ]
     }
 ];

@@ -41,13 +41,6 @@ export class TipoMaterialService{
          return this._http.post(this.url+'getTotalTipos', {headers:headers})
                            .pipe(map( res => res.json()));
          }
-     
-    
-  
-  
-  
-   
-   
   }
 
 

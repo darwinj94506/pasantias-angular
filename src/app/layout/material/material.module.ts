@@ -4,7 +4,7 @@ import{ MatDialogModule} from '@angular/material';
 import{ MaterialRoutingModule} from './material.routing.module' 
 import{ComponentesAngularMaterialModule} from './../componentes-angular-material/componentes-angular-material.module';
 import{ListarComponent,ModalEliminar} from './listar/listar.component'
-import{CrearComponent, Modal} from './crearMaterial/crearMaterial.component'
+import{CrearComponent} from './crearMaterial/crearMaterial.component'
 import{MaterialComponent} from './material.component'
 import{MaterialService} from '../../shared/services/material.service'
 import{ DialogOverviewComponent} from './dialogEditar/dialogEditar.component'
@@ -29,10 +29,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpModule,
   ], entryComponents: [
-    ModalEliminar, Modal,DialogOverviewComponent
+    ModalEliminar,DialogOverviewComponent, CrearComponent
   ],
   declarations: [ListarComponent,ModalEliminar,
-    CrearComponent, Modal,MaterialComponent,DialogOverviewComponent],
+    CrearComponent,MaterialComponent,DialogOverviewComponent],
   providers:[MaterialService,{
     provide:LOCALE_ID, useValue: 'es'
   }]

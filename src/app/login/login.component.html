@@ -1,21 +1,22 @@
 <div class="login-page">
     <div class="content">
         <!-- <h1 class="app-name">Sb Admin Material</h1> -->
-        <form class="login-form">
+        <form class="login-form" [formGroup]="user" autocomplete="off" (ngSubmit)="onLogin()">
             <div class="text-center">
-                <h2 class="app-name">Sb Admin Material</h2>
+                <h2 class="app-name">Inventarios</h2>
             </div>
             <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Email">
+                        <input matInput type="text" formControlName="idusuario">
                     </mat-form-field>
                 </div>
+              
             </div>
             <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input matInput type="password" placeholder="Password">
+                        <input matInput type="password" formControlName="clave">
                     </mat-form-field>
                 </div>
             </div>
@@ -29,7 +30,9 @@
             </div>
             <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
-                    <button mat-raised-button color="primary" class="w-100" (click)="onLogin()">Login</button>
+                    <button mat-raised-button color="primary" class="w-100" *ngIf="!cargando">Login</button>
+                    <button mat-raised-button color="primary" class="w-100" *ngIf="cargando">  
+                        <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
                 </div>
             </div>
 

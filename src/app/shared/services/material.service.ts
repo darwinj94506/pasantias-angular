@@ -19,6 +19,13 @@ export class MaterialService{
       
       return this._http.get(this.url+'getIdMaterial/'+nombreM,).pipe(map(res=>res.json()));
     }
+   
+    getListaTipos(){
+      // let params=JSON.stringify(parametros);
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getListaTipos', {headers:headers})
+      .pipe(map( res => res.json()));          
+    }
 
     getMateriales(parametros){
       let params=JSON.stringify(parametros);

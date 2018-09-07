@@ -1,0 +1,35 @@
+<form [formGroup]="myForm" autocomplete="off">
+  <h2 mat-dialog-title align="center">Nuevo Ingreso</h2>
+  <mat-dialog-content>
+        <!-- <mat-form-field>
+          <input matInput placeholder="Ingrese Material"  [matAutocomplete]="auto"
+          formControlName="idmaterial">
+        </mat-form-field>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of materiales" [value]="option.nombre">{{option.nombre}}</mat-option>
+        </mat-autocomplete> -->
+        <mat-form-field>
+          <mat-select placeholder="Material" formControlName="idmaterial">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let option of materiales" [value]="option.idmaterial">{{option.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder="Ingrese la cantidad"
+      formControlName="cantidad">
+    </mat-form-field>
+</mat-dialog-content>
+  <mat-dialog-actions  align="center">
+
+      <button (click)="crudIngreso()" mat-raised-button color="primary" 
+       [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando && accion==1">  
+          Guardar</button>
+      <!-- <button (click)="crudTipo()" mat-raised-button color="primary" 
+       [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando && accion==2">  
+          Editar</button> -->
+      <button mat-raised-button color="primary"  *ngIf="cargando">  
+          <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
+  </mat-dialog-actions>
+</form>

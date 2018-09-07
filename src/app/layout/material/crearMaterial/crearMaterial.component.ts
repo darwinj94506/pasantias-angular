@@ -1,7 +1,6 @@
 import {Component,OnInit,Inject, ViewChild} from '@angular/core';
 import {FormControl, Validators,FormBuilder,FormGroup, NgForm} from '@angular/forms';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig,MatSnackBar} from '@angular/material';
 import{MaterialService} from './../../../shared/services/material.service';
 
 @Component({
@@ -12,11 +11,14 @@ import{MaterialService} from './../../../shared/services/material.service';
 export class CrearComponent implements OnInit {
   cargando=false;
   active = true; 
-
+  tiposMat:any;
   myForm: FormGroup; 
 
-  constructor(private _tipo:MaterialService,private fb: FormBuilder,
-    public dialog: MatDialog,private router: Router) { }
+  constructor(
+    private _material:MaterialService,private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<CrearComponent>,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.myForm = this.fb.group({
@@ -26,99 +28,40 @@ export class CrearComponent implements OnInit {
       opcion:'1'
      
     })
-  }
+    if(this.data){
+      // this.myForm.reset();
+      this.myForm = this.fb.group({
+        idmaterial:this.data.idmaterial,
+        idtipo:this.data.idtipo,
+        nombre:this.data.nombre,
+        opcion:'1' 
+      })
+    }
 
-
-  crudMaterial(){
-    this.cargando=true;
-    console.log(this.myForm.value);
-    this._tipo.crudMaterial(this.myForm.value).subscribe(data=>{
-      console.log(data)
-      this.cargando=false;
-      //modal
-      const dialogRef = this.dialog.open(Modal , {
-        width: '250px',
-        data: data
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        console.log(result);
-      
-        if(result=='lista-material'){
-          this.router.navigate(['modulo-material']); 
-        }else{
-          this.myForm.reset(this.myForm.value);
-          this.active = false;
-      }
-      //modal
+    this._material.getListaTipos().subscribe((data)=>{
+      console.log(data);
+      this.tiposMat=data.data; 
     },error=>{
       console.log(error);
     })
-  })
-}
-
-// eliminarTipo(){
-//   console.log(this.myForm.value);
-//   this._tipo.crudMaterial(this.myForm.value).subscribe(data=>{
-//     console.log(data)
-//     this.cargando=false;
-//     //modal
-//     const dialogRef = this.dialog.open(Modal , {
-//       width: '250px',
-//       data: data
-//     });
-//     dialogRef.afterClosed().subscribe(result => {
-//       console.log('The dialog was closed');
-//       console.log(result);
-//       // this.animal = result;
-//       if(result=='lista-material'){
-        
-//         this.router.navigate(['modulo-material']); 
-//       }else{
-//         this.myForm.reset(this.myForm.value);
-//         this.active = false;
-//     }
-//     //modal
-//   },error=>{
-//     console.log(error);
-//   })
-// })
-// }
-
-
-
-}
-
-@Component({
-  selector: 'Modal',
-  template: `
-  
-  <h1 mat-dialog-title>{{titulo}} </h1>
-  <mat-divider></mat-divider>
-<div mat-dialog-content>
-  <p>{{desc}}</p>
-  
-</div>
-<mat-divider></mat-divider>
-<div mat-dialog-actions>
-  <button mat-button (click)="clickAceptar()" tabindex="-1">Aceptar</button>
-</div>
-
-`
-})
-export class Modal  {
-  public desc=this.data[0]._info_desc;
-  public titulo=this.data[0]._info_titulo;
-  public estado=this.data[0]._info_id;
-
-
-  constructor(
-    public dialogRef: MatDialogRef<Modal>, @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  clickAceptar(): void { 
-    console.log(this.data);
-    this.dialogRef.close('lista-material');
   }
- 
+
+  crudMaterial(){
+    this.cargando=true;
+        console.log(this.myForm.value);
+        this._material.crudMaterial(this.myForm.value).subscribe(data=>{
+          console.log(data)
+          this.cargando=false;
+          this.close(data);
+        },error=>{
+            this.cargando=false;
+          })
+          this.dialogRef.close();   
 }
+close(data) {
+  this.dialogRef.close(data);
+}
+
+}
+
 
