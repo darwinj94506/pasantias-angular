@@ -19,6 +19,9 @@
             <mat-icon class="sidenav-icon">code</mat-icon> {{ 'Material Component' | translate }}
         </a> -->
         <!-- modulos del proyecto -->
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/components']">
+            <mat-icon class="sidenav-icon">code</mat-icon> {{ 'Material Component' | translate }}
+        </a>
         <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/modulo-tipo']">
             <mat-icon class="sidenav-icon">bar_chart</mat-icon> {{ 'Tipo de material' | translate }}
         </a>

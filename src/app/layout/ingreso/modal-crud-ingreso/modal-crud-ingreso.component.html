@@ -9,9 +9,11 @@
           <mat-option *ngFor="let option of materiales" [value]="option.nombre">{{option.nombre}}</mat-option>
         </mat-autocomplete> -->
         <mat-form-field>
-          <mat-select placeholder="Material" formControlName="idmaterial">
+          <mat-select placeholder="Material" formControlName="idmaterial" multiple>
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let option of materiales" [value]="option.idmaterial">{{option.nombre}}</mat-option>
+            <mat-option *ngFor="let option of materiales" 
+            [value]="option.idmaterial">{{material.nombre}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
   </mat-dialog-content>
