@@ -1,0 +1,84 @@
+
+  <h2 mat-dialog-title align="center">Detalle de Egreso</h2>
+  <mat-dialog-content>
+  
+        <!-- <mat-form-field>
+          <input matInput placeholder="Ingrese el nombre del tipo"
+          formControlName="idusuario">
+        </mat-form-field> -->
+      <form [formGroup]="myForm" autocomplete="off">
+        
+        <mat-form-field>
+          <input matInput placeholder="Solicitante"
+          formControlName="idsolicitante">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="fecha"
+          formControlName="fecha">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="memorando"
+          formControlName="memorando">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="observacion"
+          formControlName="observacion">
+        </mat-form-field>
+      </form>
+      <!-- tabla de detalle -->
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="ELEMENT_DATA">
+      
+          <!-- Position Column -->
+          <!-- <ng-container matColumnDef="iddetalle">
+            <th mat-header-cell *matHeaderCellDef> ID</th>
+            <td mat-cell *matCellDef="let element"> {{element.iddetalle}} </td>
+          </ng-container> -->
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Material </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="sum">
+            <th mat-header-cell *matHeaderCellDef>Cantidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.sum}} </td>
+          </ng-container>
+      
+          <!-- Symbol Column -->
+          <!-- <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha | date:'medium'}} </td>
+          </ng-container> -->
+          
+          
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+          <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+        <!-- <mat-paginator [length]="length" [pageSizeOptions]="[10, 20, 30]"  (page)="paginar($event)"></mat-paginator> -->
+      </div>
+      
+      
+
+
+  </mat-dialog-content>
+  <mat-dialog-actions  align="center">
+
+      <!-- <button (click)="crudTipo()" mat-raised-button color="primary" 
+       [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando && accion==1">  
+          Guardar</button>
+      <button (click)="crudTipo()" mat-raised-button color="primary" 
+       [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando && accion==2">  
+          Editar</button>
+      <button mat-raised-button color="primary"  *ngIf="cargando">  
+          <i class="fas fa-spinner fa-pulse"></i>Espere ...</button> -->
+  </mat-dialog-actions>
+
+

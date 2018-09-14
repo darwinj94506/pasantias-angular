@@ -11,6 +11,7 @@ import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalCrudIngresoComponent } from './modal-crud-ingreso/modal-crud-ingreso.component';
+
 // import { RouterModule, Routes } from '@angular/router';
 @NgModule({
   imports: [

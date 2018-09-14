@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.user= this.fb.group({
-        idusuario:'0',
+        idusuario:'',
         clave:''
       })}
 

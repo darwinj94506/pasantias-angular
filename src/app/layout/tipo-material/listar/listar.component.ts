@@ -14,7 +14,6 @@ import{ModalCrearComponent} from './../modal-crear/modal-crear.component';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
-  
     displayedColumns: string[] = ['nombre', 'idtipo', 'estado', 'fecha', 'star'];
     ELEMENT_DATA: any[] = [];
     length=0;

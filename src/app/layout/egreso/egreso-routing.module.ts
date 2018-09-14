@@ -11,6 +11,10 @@ const routes: Routes = [
     // },
     {
         path: '',
+        component: ListarEgresoComponent
+    },
+    {
+        path: 'crud-egreso',
         component: CrudEgresoComponent
     }
   

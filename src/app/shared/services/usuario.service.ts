@@ -61,9 +61,10 @@ export class UserService{
     //                                                         .map(res=>res.json());
     // }
 
-    //  getKeepers(){
-    //   return this._http.get(this.url+'keepers').map(res=>res.json());
-    // }
+     getUsuariosSelect(){
+      let headers = new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getUsuariosSelect',{headers:headers}).pipe(map(res=>res.json()))
+    }
 
 
 }
