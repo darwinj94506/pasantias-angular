@@ -37,7 +37,7 @@ export class ModalCrearComponent implements OnInit {
     //   opcion:'2' 
     // })
     this.myForm = this.fb.group({
-      idtipo:'',
+      idtipo:'0',
       nombre:'',
       opcion:'1' 
     })
@@ -55,7 +55,8 @@ export class ModalCrearComponent implements OnInit {
   }
     constructor(  private fb: FormBuilder,
         public dialogRef: MatDialogRef<ModalCrearComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,private _tipo:TipoMaterialService,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private _tipo:TipoMaterialService,
         public dialog: MatDialog,
     ) {
       console.log(this.data);

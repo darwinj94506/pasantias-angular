@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProgressBarComponent implements OnInit {
     color = 'primary';
     mode = 'determinate';
-    value = 50;
-    bufferValue = 75;
+    value = 0;
+    bufferValue =0;
 
     constructor() {}
 

@@ -1,6 +1,7 @@
-<!-- <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field> -->
+<mat-card-content>
+    <mat-progress-bar class="example-margin" *ngIf="!cargando" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
+    </mat-progress-bar>
+</mat-card-content>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="ELEMENT_DATA">
   
@@ -38,14 +39,6 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu4="matMenu">
-            <button mat-menu-item>
-              <mat-icon>search</mat-icon>
-              <span>Ver</span>
-            </button>
-            <!-- <button mat-menu-item [routerLink]="['editar',element.idtipo]">
-              <mat-icon>create</mat-icon>
-              <span>Editar</span>
-            </button> -->
             <button mat-menu-item (click)="abrirModalCrear(element)">
                 <mat-icon>create</mat-icon>
                 <span>Editar</span>

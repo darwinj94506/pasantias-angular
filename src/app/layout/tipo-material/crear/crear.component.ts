@@ -54,6 +54,7 @@ export class CrearComponent implements OnInit {
       console.log(error);
     })
   })
+
 }
 
 eliminarTipo(){

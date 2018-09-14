@@ -15,8 +15,16 @@ export class MaterialService{
     this.url=GLOBAL.url;
     }
     
-    getTipo(id){
-      return this._http.get(this.url+'getTipo/'+id).pipe(map(res=>res.json()));
+    getIdMaterial(nombreM){
+      
+      return this._http.get(this.url+'getIdMaterial/'+nombreM,).pipe(map(res=>res.json()));
+    }
+   
+    getListaTipos(){
+      // let params=JSON.stringify(parametros);
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getListaTipos', {headers:headers})
+      .pipe(map( res => res.json()));          
     }
 
     getMateriales(parametros){
@@ -26,11 +34,11 @@ export class MaterialService{
       .pipe(map( res => res.json()));          
     }
 
-    crudTipo(tipo) {
+    crudMaterial(tipo) {
       console.log(tipo);
        let params=JSON.stringify(tipo);
        let headers=new Headers({'Content-Type':'application/json'});
-       return this._http.post(this.url+'crudTipo',params, {headers:headers})
+       return this._http.post(this.url+'crudMaterial',params, {headers:headers})
                          .pipe(map( res => res.json()));
                          
        }

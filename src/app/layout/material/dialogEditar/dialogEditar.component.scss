@@ -1,0 +1,45 @@
+.example-h2 {
+    margin: 10px;
+}
+
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.mat-slider-horizontal {
+    width: 30px;
+}
+
+.mat-slider-vertical {
+    height: 300px;
+}
+.mat-form-field {
+    font-size: 18px;
+    width: 90%;
+}
+.mi-boton-salir{
+    align-content: center;
+     margin-top: 10px;
+     color: white;
+ }
+
+.nav-brand {
+    width: 35px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .hidden-sm {
+        display: none;
+    }
+}
+
+
+
+
+
+
+

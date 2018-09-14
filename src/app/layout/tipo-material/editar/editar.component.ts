@@ -81,7 +81,6 @@ eliminarTipo(){
       data: data
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       console.log(result);
       // this.animal = result;
       if(result=='lista-tipo'){

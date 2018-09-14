@@ -1,8 +1,20 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-row  w3-green">
+        <div class="w3-col" style="width:85%">
+            <h1 mat-card-title >Funcionarios Públicos</h1>
+                </div>
+                <div class="w3-col " style="width:10%">
+                    <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  >
+                    <mat-icon>clear</mat-icon>
+                </button>
+        </div>
+                
+    </div>
 <form [formGroup]="myForm" autocomplete="off" (ngSubmit)="crudTipo()">
   <mat-card>
       <mat-card-content>
-          <mat-card-title>Material</mat-card-title>
-          <mat-card-subtitle>Registro de nuevo material.</mat-card-subtitle>
+          <mat-card-title>Tipo de Material</mat-card-title>
+          <mat-card-subtitle>Registro tipo Material.</mat-card-subtitle>
           <!-- <mat-form-field>
               <input matInput value="Disco party!" placeholder="Message" #message> </mat-form-field> -->
           <mat-form-field>

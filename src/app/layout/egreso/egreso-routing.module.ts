@@ -5,13 +5,10 @@ import{ListarEgresoComponent} from './listar-egreso/listar-egreso.component';
 import{CrudEgresoComponent} from './crud-egreso/crud-egreso.component';
 
 const routes: Routes = [
-    // {
-    //     path: '',
-    //     component: ListarEgresoComponent
-    // },
+  
     {
         path: '',
-        component: ListarEgresoComponent
+        component: CrudEgresoComponent
     },
     {
         path: 'crud-egreso',

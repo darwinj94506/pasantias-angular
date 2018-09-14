@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { TipoMaterialComponent } from './tipo-material/tipo-material.component';
-import{ListarComponent} from './listar/listar.component';
-//import{CrearComponent} from './crear/crear.component';
+//import{ListarComponent} from './listar/listar.component';
+//import{CrearComponent} from './crearMaterial/crearMaterial.component';
+import{MaterialComponent} from './material.component';
 //import{EditarComponent} from './editar/editar.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: ListarComponent
+        component: MaterialComponent
     },
-    // {
-    //     path: 'crear',
-    //     component: CrearComponent
-    // },
-    // {
+   
+    //{
     //     path: 'editar/:id',
     //     component: EditarComponent
     // }
