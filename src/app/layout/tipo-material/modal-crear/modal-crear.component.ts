@@ -37,7 +37,7 @@ export class ModalCrearComponent implements OnInit {
     //   opcion:'2' 
     // })
     this.myForm = this.fb.group({
-      idtipo:'',
+      idtipo:'0',
       nombre:'',
       opcion:'1' 
     })

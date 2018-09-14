@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-row  w3-green">
+        <div class="w3-col" style="width:85%">
+            <h1 mat-card-title >Editar Proveedor</h1>
+                </div>
+                <div class="w3-col " style="width:10%">
+                    <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  >
+                    <mat-icon>clear</mat-icon>
+                </button>
+     </div>
+               
+  </div>
+<form [formGroup]="myForm" autocomplete="off"  #yourForm>
+        <mat-dialog-content align="center">
+        <mat-form-field  >
+                   <input  matInput placeholder="Nombre de Proveedor" 
+                     formControlName="nombre" required>
+               </mat-form-field><p>
+                 <mat-form-field  >
+                     <input  matInput placeholder="Teléfono N°1" 
+                    formControlName="telefono1" required>
+                 </mat-form-field><p>
+                 <mat-form-field  >
+                     <input  matInput placeholder="Teléfono N°2" 
+                    formControlName="telefono2" required>
+                 </mat-form-field><p>
+             <mat-form-field  >
+                     <input  matInput placeholder="Correo electrónico" 
+                    formControlName="email" required>
+                </mat-form-field><p>
+             <mat-form-field  >
+                     <input  matInput placeholder="Dirección" 
+                    formControlName="direccion" required>
+                 </mat-form-field><p>
+            <mat-form-field  >
+                     <input  matInput placeholder="Ruc" 
+                    formControlName="ruc" required>
+                 </mat-form-field><p>
+            
+        </mat-dialog-content>
+    
+         <mat-dialog-actions align="center" >
+                <button (click)="editarProveedor()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando">  
+                   Guardar</button>
+                   <button mat-raised-button color="primary"  *ngIf="cargando">  
+                    <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
+         </mat-dialog-actions>
+    
+     </form>
+    
+    
+    

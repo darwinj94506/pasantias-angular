@@ -9,11 +9,40 @@ export class UserService{
   public url:string;
   public identity;
   public token;
+  public urlUsuarios:any= 'http://actividades.puyo.gob.ec/wsinventario';
+  
 
   constructor(private _http:Http){
     this.url=GLOBAL.url;
     }
 
+    getUsuariosdb(parametros) {
+      console.log(parametros);
+      let params=JSON.stringify(parametros);
+       let headers=new Headers({'Content-Type':'application/json'});
+       return this._http.post('http://actividades.puyo.gob.ec/wsinventario',params,{headers:headers})
+                         .pipe(map( res => res.json()));
+       }
+
+    getTotalUsuarios() {
+       let headers=new Headers({'Content-Type':'application/json'});
+       return this._http.post(this.url+'getTotalUsuarios', {headers:headers})
+                         .pipe(map( res => res.json()));
+       }
+       getUsuarios(parametros){
+        let params=JSON.stringify(parametros);
+        let headers=new Headers({'Content-Type':'application/json'});
+        return this._http.post(this.url+'getUsuarios',params, {headers:headers})
+         .pipe(map( res => res.json()));          
+     }
+     crudUsuario(tipo) {
+      console.log(tipo);
+       let params=JSON.stringify(tipo);
+       let headers=new Headers({'Content-Type':'application/json'});
+       return this._http.post(this.url+'crudUsuario',params, {headers:headers})
+                         .pipe(map( res => res.json()));
+                         
+       }
 //   register(user_to_register) {
 //     let params=JSON.stringify(user_to_register);
 //     let headers=new Headers({'Content-Type':'application/json'});

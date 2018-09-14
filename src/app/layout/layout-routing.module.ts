@@ -42,12 +42,25 @@ const routes: Routes = [
                 loadChildren: './blank-page/blank-page.module#BlankPageModule'
             },
             {
+                path: 'modulo-usuario',
+                loadChildren: './usuario/usuario.module#UsuarioModule'
+            },
+
+            {
                 path: 'modulo-tipo',
                 loadChildren: './tipo-material/tipo-material.module#TipoMaterialModule'
             }, 
             {
                 path: 'modulo-material',
                 loadChildren: './material/material.module#MaterialModule'
+            },
+            {
+                path: 'modulo-proveedor',
+                loadChildren: './proveedor/proveedor.module#ProveedorModule'
+            },
+            {
+                path: 'modulo-garantia',
+                loadChildren: './garantia/garantia.module#GarantiaModule'
             },
             {
                 path: 'modulo-ingresos',

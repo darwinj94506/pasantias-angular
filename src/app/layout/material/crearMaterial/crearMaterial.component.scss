@@ -8,15 +8,31 @@
     align-items: center;
     height: 60px;
 }
+.mat-button {
+    width: 3px;
+    align-content: right;
+}
 
 .example-margin {
-    margin: 20px;
+    margin: 90px;
 }
 
 .mat-slider-horizontal {
-    width: 300px;
+    width: 30px;
 }
 
 .mat-slider-vertical {
     height: 300px;
 }
+.mat-form-field {
+    font-size: 18px;
+    width: 90%;
+}
+.mat-dialog-content{
+    margin: 20px;
+}
+.mi-boton-salir{
+    align-content: center;
+     margin-top: 10px;
+     color: white;
+ }

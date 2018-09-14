@@ -18,7 +18,11 @@ import{ CrearComponent}from '../crearMaterial/crearMaterial.component';
 })
 export class ListarComponent implements OnInit {
 
-  
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
+  bufferValue = 50;
+  cargando=false;
     displayedColumns: string[] = [ 'nombretipo', 'nombre','stock', 'fecha','star'];
     ELEMENT_DATA: any[] = [];
     length=0;
@@ -40,12 +44,12 @@ export class ListarComponent implements OnInit {
           this.length=data.data[0].count;
           console.log(data.data[0].count);
         });
-      this._material.getMateriales({"page":0,
-                                  "itemsPerPage":10})
-                                  .subscribe((data)=>{
-                                    this.ELEMENT_DATA=data.data;
-                                    console.log(this.ELEMENT_DATA);
-                                  })
+      this._material.getMateriales({"page":0,"itemsPerPage":10}).subscribe((data)=>{
+      this.ELEMENT_DATA=data.data;
+      this.mode="determinate";
+      this.cargando=true;
+      console.log(this.ELEMENT_DATA);
+      })
 
     }
 
@@ -67,8 +71,8 @@ export class ListarComponent implements OnInit {
       }
       openDialog(row): void {
         const dialogRef = this.dialog.open(DialogOverviewComponent, {
-            width: '370px',
-           height:"35%",
+            width: '30%',
+           height:"40%",
             data:row
         });
         dialogRef.afterClosed().subscribe(result => {
@@ -83,8 +87,8 @@ export class ListarComponent implements OnInit {
     openCrearDialog(data=null):void{
       const dialogRef = this.dialog.open(CrearComponent, {
         hasBackdrop:true,
-        width: '370px',
-       height:"35%",
+        width:"30%",
+        height:"50%",
        data:data
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -103,8 +107,8 @@ export class ListarComponent implements OnInit {
       dialogConfig.autoFocus = true;
       const dialogRef = this.dialog.open(ModalEliminar , {
         hasBackdrop:true,
-        width:"40%",
-        height:"25%",
+        width:"25%",
+        height:"35%",
         data: row
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -128,15 +132,26 @@ export class ListarComponent implements OnInit {
 @Component({
   selector: 'Modal-eliminar ',
   template: `
-  <h1 mat-dialog-title align="center" >¿Está seguro que desea eliminar " {{titulo}} "? </h1>
-  <mat-divider></mat-divider>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <div class="w3-row  w3-green">
+                <div class="w3-col" style="width:85%">
+                    <h1 mat-card-title >Eliminar Material</h1>
+                        </div>
+                        <div class="w3-col " style="width:10%">
+                            <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  >
+                            <mat-icon>clear</mat-icon>
+                        </button>
+             </div>
+                       
+          </div>
+ 
 <div mat-dialog-content>
+<p >¿Está seguro que desea eliminar " {{titulo}} "?</p>
 <p>Presione aceptar para confirmar</p>
 </div>
 <mat-divider></mat-divider >
 <div mat-dialog-actions align="center">
   <button mat-button   (click)="clickAceptar()" tabindex="-1">Aceptar</button>
-  <button mat-button   (click)="clickCancelar()" tabindex="-1">Cancelar</button>
 </div>
   
   `

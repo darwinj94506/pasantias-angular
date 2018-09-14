@@ -1,0 +1,53 @@
+<form [formGroup]="myForm" autocomplete="off" >
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <div class="w3-row  w3-green">
+        <div class="w3-col" style="width:85%">
+            <h1 mat-card-title >Registro de Usuarios</h1>
+                </div>
+                <div class="w3-col " style="width:10%">
+                    <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  >
+                    <mat-icon>clear</mat-icon>
+                </button>
+     </div>
+               
+        </div>
+                
+         <div  style="margin-top: 5px">
+                  <button    (click)="openBuscar(element)" mat-raised-button color="primary" >     
+               Buscar Funcionario </button>  
+         </div>
+               
+           <mat-dialog-content align="center">
+              
+            
+                <mat-form-field  >
+
+                       <input  matInput placeholder="Nombre " 
+                         formControlName="nombre" required>
+                   </mat-form-field><p>
+                     <mat-form-field  >
+                         <input  matInput placeholder="Apellido" 
+                        formControlName="apellido" required>
+                     </mat-form-field><p>
+                
+                 <mat-form-field  >
+                         <input  matInput placeholder="Clave" 
+                        formControlName="clave" required>
+                    </mat-form-field><p>
+                  <mat-form-field >
+                     <mat-select placeholder="rol" formControlName="rol" required>
+                      <mat-option>Seleccione--</mat-option>
+                         <mat-option  *ngFor="let option of roles" [value]="option.rol">{{option.nombre}}</mat-option>
+                         </mat-select>
+                </mat-form-field>
+               
+            </mat-dialog-content>
+            <mat-dialog-actions  align="center" >  
+                   <button (click)="crudUsuario()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched"
+                    *ngIf="!cargando">  
+                      Guardar</button>
+                   <button mat-raised-button color="primary"  *ngIf="cargando">  
+                       <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
+               </mat-dialog-actions>    
+     </form>
+     

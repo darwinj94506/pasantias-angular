@@ -8,6 +8,7 @@ import{CrearComponent} from './crearMaterial/crearMaterial.component'
 import{MaterialComponent} from './material.component'
 import{MaterialService} from '../../shared/services/material.service'
 import{ DialogOverviewComponent} from './dialogEditar/dialogEditar.component'
+
 //
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import {HttpModule} from '@angular/http';

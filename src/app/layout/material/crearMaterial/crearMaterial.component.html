@@ -1,23 +1,29 @@
 <form [formGroup]="myForm" autocomplete="off" >
-    
-        <mat-dialog-content>
-            <mat-card-title>Material</mat-card-title>
-            <mat-card-subtitle>Registro de nuevo material.</mat-card-subtitle>
-            <!-- <mat-form-field>
-                <input matInput value="Disco party!" placeholder="Message" #message> </mat-form-field> -->
-            
-                <mat-form-field class="example-margin">
-                    <input matInput placeholder="Nombre del material" 
-                      formControlName="nombre" required  >
-                </mat-form-field>
-                <mat-form-field class="example-margin">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <div class="w3-row  w3-green">
+                <div class="w3-col" style="width:85%">
+                    <h1 mat-card-title >Crear Material</h1>
+                        </div>
+                        <div class="w3-col " style="width:10%">
+                            <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  >
+                            <mat-icon>clear</mat-icon>
+                        </button>
+             </div>
+                       
+          </div>
+        <mat-dialog-content align="center">
+                <mat-form-field  >
+                    <input  matInput placeholder="Nombre del material" 
+                      formControlName="nombre" required>
+                </mat-form-field><p>
+                <mat-form-field >
                     <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>
                         <mat-option>Seleccione--</mat-option>
                         <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
                     </mat-select>
                 </mat-form-field>
          </mat-dialog-content>
-         <mat-dialog-actions  >  
+         <mat-dialog-actions  align="center" >  
                 <button (click)="crudMaterial()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched"
                  *ngIf="!cargando">  
                    Guardar</button>
