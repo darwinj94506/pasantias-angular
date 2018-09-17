@@ -10,7 +10,10 @@ import {EgresoService} from '../../../shared/services/egreso.service';
 })
 export class ModalVerDetalleComponent implements OnInit {
   displayedColumns: string[] = ['nombre' ,'sum'];
+  detailColumns: string[] = ['material' ,'cantidad','serie','proveedor','descripcion'];
+
   ELEMENT_DATA: any[] = [];
+  DETAIL_DATA: any[] = [];
   myForm: FormGroup; 
   length=0;
 
@@ -31,16 +34,19 @@ export class ModalVerDetalleComponent implements OnInit {
       console.log(data);
       this.ELEMENT_DATA=data.data;
     })
+    this._egreso.getDetalleEgreso(this.data.idegreso).subscribe((data)=>{
+      console.log(data);
+      this.DETAIL_DATA=data.data;
+    })
     
   }
   inicializarFormulario(){
     this.myForm = this.fb.group({
       idusuario:this.data.idusuario,
-      idsolicitante:this.data.idsolicitante,
+      idsolicitante:this.data.solicitante,
       memorando:this.data.memorando,
       fecha:this.data.fecha,
       observacion:this.data.observacion
-     
     })
   }
 

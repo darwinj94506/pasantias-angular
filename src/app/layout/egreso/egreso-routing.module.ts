@@ -8,7 +8,7 @@ const routes: Routes = [
   
     {
         path: '',
-        component: CrudEgresoComponent
+        component: ListarEgresoComponent
     },
     {
         path: 'crud-egreso',

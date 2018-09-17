@@ -22,18 +22,14 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
     public dialogRef: MatDialogRef<ModalCrudIngresoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private _ingreso:IngresoService,
     public dialog: MatDialog) {
-      // this.identity=this._ingreso.getIdentity();
-      
+       this.identity=this._ingreso.getIdentity(); 
      }
-    //  idusuario:this._ingreso.identity.idusuario,
-
-  ngOnChanges(){
-    
+  ngOnChanges(){   
   }
   inicializarFormulario(){
     this.myForm = this.fb.group({
       idingreso:0,
-      idusuario:1,
+      idusuario:this.identity.idusuario,
       idmaterial:null,
       idproveedor:null,
       idgarantia:null,

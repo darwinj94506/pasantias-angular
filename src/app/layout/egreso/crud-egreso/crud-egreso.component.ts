@@ -27,7 +27,9 @@ export class CrudEgresoComponent implements OnInit  {
   identity:any;
   proveedores:any;
   garantias:any;
-  constructor(private _egreso:EgresoService,private fb: FormBuilder){}
+  constructor(private _egreso:EgresoService,private fb: FormBuilder){
+    this.identity=this._egreso.getIdentity(); 
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -72,28 +74,19 @@ export class CrudEgresoComponent implements OnInit  {
   inicializarFormulario(){
     this.myForm = this.fb.group({
       idegreso:'0',
-      idusuario:'1',
+      idusuario:this.identity.idusuario,
       idsolicitante:'',
-      memorando:'',
-      observacion:'',
+      memorando:['',Validators.maxLength(50)],
+      observacion:['',Validators.maxLength(200)],
       opcion:'1'
     })
   }
-  
+  get idsolicitante() { return this.myForm.get('idsolicitante'); }
 
-  // aumentar(){
-  //   this.numero++;
-  //   this.dataSource.data.push( { position: this.numero, material: 'nuevo', cantidad: 0})
-  //   console.log(this.dataSource.data);
-  //   this.dataSource._updateChangeSubscription();
-  // }
-  // ngOnDestroy(){
-  //   console.log("se cerro este componente");
-  //   this.dataSource.data=[{}];
-  //   this.dataSource.disconnect();
-  // }
-
-// 
+  getErrorMessage() {
+    return this.myForm.get('idsolicitante').hasError('maxlength') ? 'Máximo 50 caracteres' :  
+      this.myForm.get('idsolicitante').hasError('required') ? 'Campo obligatorio' :''      
+  }
 }
 
 

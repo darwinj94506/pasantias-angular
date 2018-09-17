@@ -7,24 +7,30 @@
         <section class="example-section">
             <!-- formControlName="idproveedor" -->
             <mat-form-field>
-              <mat-select placeholder="Usuario" formControlName="idsolicitante">
+              <mat-select placeholder="Solicitante" formControlName="idsolicitante" required id="idsolicitante">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let usuario of usuarios" 
                 [value]="usuario.idusuario">{{usuario.nombre}}
                 </mat-option>
+
               </mat-select>
+              <!-- <mat-error *ngIf="myForm.invalid">{{getErrorMessage()}}</mat-error> -->
+
+
             </mat-form-field>
             
             <mat-form-field class="example-margin">
                 <input matInput type="text" placeholder="Memorando" formControlName="memorando">
+                <mat-error *ngIf="!myForm.get('memorando').valid">Máximo 50 caractes</mat-error>
             </mat-form-field>
             <mat-form-field class="example-margin">
               <input matInput type="text" placeholder="Observacion" formControlName="observacion">
+              <mat-error *ngIf="!myForm.get('observacion').valid">Máximo 200 caractes</mat-error>
           </mat-form-field>
             <!-- <mat-form-field class="example-margin">
               <button mat-stroked-button color="primary">Nuevo Item</button>
             </mat-form-field> -->
-            <!-- <button mat-stroked-button color="primary"  (click)="aumentar()">Nuevo</button> -->
+            <!-- <button mat-stroked-button color="primary">Nuevo</button> -->
         </section>
           
       </mat-card-content>
