@@ -17,15 +17,14 @@
     height: 300px;
 }
 .mat-form-field {
-    font-size: 18px;
-    width: 90%;
-}
+    display: block;
+    // font-size: 18px;
+  }
 .mi-boton-salir{
-    align-content: center;
-     margin-top: 10px;
-     color: white;
- }
-
+    justify-content: right;
+      margin-top: 10px;
+      
+  }
 .nav-brand {
     width: 35px;
     text-align: center;

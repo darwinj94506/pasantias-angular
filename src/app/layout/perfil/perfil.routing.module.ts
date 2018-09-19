@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { TipoMaterialComponent } from './tipo-material/tipo-material.component';
-import{ListarEgresoComponent} from './listar-egreso/listar-egreso.component';
-import{CrudEgresoComponent} from './crud-egreso/crud-egreso.component';
+import{ PerfilComponent} from './perfil.component';
+//import{CrearComponent} from './crear/crear.component';
+//import{EditarComponent} from './editar/editar.component';
 
 const routes: Routes = [
-  
     {
         path: '',
-        component: ListarEgresoComponent
+        component: PerfilComponent
     },
-    {
-        path: 'crud-egreso',
-        component: CrudEgresoComponent
-    }
   
 ];
 
@@ -21,4 +17,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class EgresoRoutingModule {}
+export class PerfilRoutingModule {}

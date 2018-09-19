@@ -24,15 +24,16 @@
 .mat-slider-vertical {
     height: 300px;
 }
+
 .mat-form-field {
-    font-size: 18px;
-    width: 90%;
-}
-.mat-dialog-content{
-    margin: 20px;
-}
+    display: block;
+    // font-size: 18px;
+  }
+// .mat-dialog-content{
+//     margin: 20px;
+// }
 .mi-boton-salir{
-    align-content: center;
+   justify-content: right;
      margin-top: 10px;
-     color: white;
+     
  }

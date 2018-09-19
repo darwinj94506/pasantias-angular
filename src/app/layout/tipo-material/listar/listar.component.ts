@@ -30,7 +30,7 @@ export class ListarComponent implements OnInit {
     ngOnInit() {
       this.paginator.pageIndex=0;
       this.cargarTabla();
-      
+     
     }
     cargarTabla(){
       this._tipo.totalTipo().
@@ -89,8 +89,8 @@ export class ListarComponent implements OnInit {
          dialogConfig.autoFocus = true;
          const dialogRef = this.dialog.open(ModalEliminar , {
            hasBackdrop:true,
-           width:"25%",
-           height:"35%",
+           width:"45%",
+           height:"40%",
            data: row
          });
          dialogRef.afterClosed().subscribe(result => {

@@ -87,7 +87,7 @@ export class ListarComponent implements OnInit {
     openCrearDialog(data=null):void{
       const dialogRef = this.dialog.open(CrearComponent, {
         hasBackdrop:true,
-        width:"30%",
+        width:"40%",
         height:"50%",
        data:data
     });
@@ -133,12 +133,12 @@ export class ListarComponent implements OnInit {
   selector: 'Modal-eliminar ',
   template: `
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <div class="w3-row  w3-green">
+        <div class="w3-row ">
                 <div class="w3-col" style="width:85%">
-                    <h1 mat-card-title >Eliminar Material</h1>
+                    <h2 mat-card-title align="center">Eliminar Material</h2>
                         </div>
                         <div class="w3-col " style="width:10%">
-                            <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  >
+                            <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  color="warn" >
                             <mat-icon>clear</mat-icon>
                         </button>
              </div>

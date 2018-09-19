@@ -47,12 +47,16 @@ export class BuscarUsuarioComponent implements OnInit {
     }
 
     buscar(){
-        
+        this.cargando=true;
         console.log(this.myForm.value);
         //this.mode="indeterminante";
         this._user.getUsuariosdb(this.myForm.value)
         .subscribe((data)=>{
             console.log(data);
+            if(data){
+                this.ELEMENT_DATA=data;
+                this.cargando=false;
+            }
           this.ELEMENT_DATA=data;
           console.log(this.ELEMENT_DATA);
         })

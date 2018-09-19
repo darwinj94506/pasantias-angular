@@ -69,7 +69,12 @@ const routes: Routes = [
              {
                 path: 'modulo-egresos',
                 loadChildren: './egreso/egreso.module#EgresoModule'
+            },
+            {
+                path: 'perfil',
+                loadChildren: './perfil/perfil.module#PerfilModule'
             }
+
         ]
     }
 ];

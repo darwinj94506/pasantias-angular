@@ -13,9 +13,8 @@
     align-content: right;
 }
 .mi-boton-salir{
-    align-content: center;
-     margin-top: 10px;
-     color: white;
+    justify-content: right;
+    margin-top: 10px;
  }
 
 .example-margin {
@@ -30,12 +29,10 @@
     height: 300px;
 }
 .mat-form-field {
-    font-size: 14px;
-    width: 30%;
+    display: block;
+    // font-size: 18px;
 }
-.mat-dialog-content{
-    margin: 20px;
-}
+
 table {
     width: 100%;
 }

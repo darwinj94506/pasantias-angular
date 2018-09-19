@@ -32,6 +32,7 @@ export class CrearUsuarioComponent implements OnInit {
       nombre:'',
       apellido:'',
       clave:'',
+      cedula:'',
       rol:'',
       opcion:'1'
      
@@ -84,6 +85,7 @@ dialogRef.afterClosed().subscribe(result => {
   nombre:result.nombre,
   apellido:result.apellido,
   clave:result.ci,
+  cedula:result.ci,
   rol:result.rol,
   opcion:'1' 
 })
