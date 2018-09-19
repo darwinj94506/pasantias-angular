@@ -23,6 +23,9 @@
                     <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Stock Mínimo"
+                        formControlName="stockminimo" required> </mat-form-field>
     </mat-dialog-content>
 
      <mat-dialog-actions align="center" >

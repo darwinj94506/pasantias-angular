@@ -1,5 +1,5 @@
 <form [formGroup]="myForm" autocomplete="off" >
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
         <div class="w3-row  w3-green">
                 <div class="w3-col" style="width:85%">
                     <h1 mat-card-title >Crear Material</h1>
@@ -34,6 +34,18 @@
                     *ngIf="myForm.get('idtipo').hasError('required')
                      && (myForm.get('idtipo').dirty || myForm.get('idtipo').touched)">
                      Campo Obligatorio</mat-error>
+                </mat-form-field>
+                <mat-form-field >
+                    <input  matInput placeholder="stockminimo" type="number" 
+                    formControlName="stockminimo" required>
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('stockminimo').hasError('required')
+                     && (myForm.get('stockminimo').dirty || myForm.get('stockminimo').touched)">
+                     Campo Obligatorio</mat-error>
+                     <mat-error class="error-message"
+                    *ngIf="myForm.get('stockminimo').hasError('min')
+                     && (myForm.get('stockminimo').dirty || myForm.get('stockminimo').touched)">
+                     Erorr en el valor del campo</mat-error>
                 </mat-form-field>
          </mat-dialog-content>
          <mat-dialog-actions  align="center" >  

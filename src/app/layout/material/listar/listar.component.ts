@@ -75,28 +75,28 @@ export class ListarComponent implements OnInit {
               console.log(this.ELEMENT_DATA);                               
             })
       }
-    //   openDialog(row): void {
-    //     const dialogRef = this.dialog.open(DialogOverviewComponent, {
-    //         width: '30%',
-    //        height:"40%",
-    //         data:row
-    //     });
-    //     dialogRef.afterClosed().subscribe(result => {
-    //       if(result){
-    //         console.log(result);
-    //         if(result[0]._info_id){
-    //          this.cargarTabla();
-    //        }
-    //         this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
-    //       }else{
-    //         alert("Ha ocurrido un error en la peticion al servidor");
-    //       }
+      openDialog(row): void {
+        const dialogRef = this.dialog.open(DialogOverviewComponent, {
+            width: '30%',
+           height:"40%",
+            data:row
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          if(result){
+            console.log(result);
+            if(result[0]._info_id){
+             this.cargarTabla();
+           }
+            this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+          }else{
+            alert("Ha ocurrido un error en la peticion al servidor");
+          }
        
-    //     },error=>{
-    //       console.log(error);
-    //       alert("Ha ocurrido un error al cerrar Modal");
-    //     })
-    // }
+        },error=>{
+          console.log(error);
+          alert("Ha ocurrido un error al cerrar Modal");
+        })
+    }
     openCrearDialog(data=null):void{
       const dialogRef = this.dialog.open(CrearComponent, {
         hasBackdrop:true,

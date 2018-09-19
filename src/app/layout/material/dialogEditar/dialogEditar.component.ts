@@ -25,10 +25,11 @@ export class DialogOverviewComponent implements OnInit {
     ngOnInit() {
         if(this.data){
             this.myForm = this.fb.group({
-                idmaterial: this.data.idmaterial,
+                idmaterial:this.data.idmaterial,
                 idtipo:this.data.idtipo,
                 nombre:this.data.nombre,
-                opcion:'2'
+                opcion:'2',
+                stockminimo:this.data.stockminimo
                
               })
         } 
