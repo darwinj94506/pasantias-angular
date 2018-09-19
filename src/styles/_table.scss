@@ -1,42 +1,3 @@
-// table {
-//     width: 100%;
-// }
-
-.mat-form-field {
-    font-size: 14px;
-    width: 100%;
-}
-
-// td,
-// th {
-//     width: 25%;
-// }
-
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-
-//   chebox
-.example-radio-group {
-    display: inline-flex;
-    flex-direction: column;
-  }
-  
-  .example-radio-button {
-    margin: 5px;
-  }
-  
-  .example-selected-value {
-    margin: 15px 0;
-  }
-
-  // tabla responsive
 
   .example-container{
     font-family: 'Covered By Your Grace', cursive;
@@ -55,7 +16,7 @@
       font-size: 1em;
     }
     
-    // Enable this to hide header
+    /*  Enable this to hide header
     .mat-table .mat-header-cell {
       
       border: 10px solid;
@@ -66,7 +27,7 @@
       position: absolute;
       width: 1px;
     }
-    
+    */
     .mat-table .mat-row {
       border-bottom: 5px solid #ddd;
       display: block;

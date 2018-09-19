@@ -62,30 +62,30 @@
 
 
  <div class="example-container mat-elevation-z8">
-  <!-- <table mat-table [dataSource]="ELEMENT_DATA" *ngIf="ELEMENT_DATA.length > 0">
+  <mat-table [dataSource]="ELEMENT_DATA" *ngIf="ELEMENT_DATA.length > 0">
     <ng-container matColumnDef="material">
-      <th mat-header-cell *matHeaderCellDef>Material</th>
-      <td mat-cell *matCellDef="let element"> {{element.material}} </td>
+      <mat-header-cell *matHeaderCellDef>Material</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="material"> {{element.material}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="serie">
-      <th mat-header-cell *matHeaderCellDef>Serie</th>
-      <td mat-cell *matCellDef="let element"> {{element.serie}} </td>
+      <mat-header-cell *matHeaderCellDef>Serie</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="serie"> {{element.serie}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="garantia">
-      <th mat-header-cell *matHeaderCellDef>Garantía</th>
-      <td mat-cell *matCellDef="let element"> {{element.garantia}} </td>
+      <mat-header-cell *matHeaderCellDef>Garantía</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="garantia"> {{element.garantia}} </mat-cell>
     </ng-container>
      <ng-container matColumnDef="proveedor">
-      <th mat-header-cell *matHeaderCellDef>Proveedor</th>
-      <td mat-cell *matCellDef="let element"> {{element.proveedor}} </td>
+      <mat-header-cell *matHeaderCellDef>Proveedor</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="proveedor"> {{element.proveedor}} </mat-cell>
     </ng-container> -
      <ng-container matColumnDef="usuario">
-      <th mat-header-cell *matHeaderCellDef>Encargado</th>
-      <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+      <mat-header-cell *matHeaderCellDef>Encargado</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="usuario"> {{element.usuario}} </mat-cell>
     </ng-container> 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
-    <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table> -->
+    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
   <mat-table [dataSource]="DETALLE_EGRESO_DATA" *ngIf="DETALLE_EGRESO_DATA.length > 0">
     <ng-container matColumnDef="solicitante">
