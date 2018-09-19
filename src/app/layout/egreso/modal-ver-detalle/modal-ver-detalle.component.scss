@@ -1,11 +1,16 @@
 table {
     width: 100%;
 }
-
 .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-}
+    display: block;
+    // font-size: 18px;
+  }
+
+.mi-boton-salir{
+   justify-content: right;
+     margin-top: 10px;
+     
+ }
 
 td,
 th {

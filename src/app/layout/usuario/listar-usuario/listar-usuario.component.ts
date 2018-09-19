@@ -38,6 +38,7 @@ export class ListarUsuarioComponent implements OnInit {
       this.cargarTabla();
     }
     cargarTabla(){
+      this.cargando=true;
       this._user.getTotalUsuarios(). subscribe((data)=>{
           this.length=data.data[0].count;
           console.log(data.data[0].count);
@@ -55,7 +56,11 @@ export class ListarUsuarioComponent implements OnInit {
       };
         this.ELEMENT_DATA=data.data;
       console.log(this.ELEMENT_DATA);
+      this.cargando=false;
       
+      },error=>{
+        this.cargando=false;
+        alert("Ha ocurrido un error");
       })
 
     }
@@ -117,7 +122,7 @@ export class ListarUsuarioComponent implements OnInit {
       const dialogRef = this.dialog.open(ModalEliminar , {
         hasBackdrop:true,
         width:"45%",
-        height:"40%",
+        height:"35%",
         data: row
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -143,18 +148,22 @@ export class ListarUsuarioComponent implements OnInit {
 @Component({
   selector: 'Modal-eliminar ',
   template: `
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <div class="w3-row ">
-          <div class="w3-col" style="width:85%">
-              <h2 mat-card-title align="center">Crear Material</h2>
-                  </div>
-                  <div class="w3-col " style="width:10%">
-                      <button class="mi-boton-salir w3-mobile" (click)="clickCancelar()" mat-icon-button  color="warn" >
-                      <mat-icon>clear</mat-icon>
-                  </button>
-       </div>
-                 
-    </div>
+                <mat-card-header style="justify-content: center">
+                <div class="w3-col" style="width:85%">
+                                <mat-card-title align="center">
+                                        <h3 class="m-0">Eliminar Usuario</h3>
+                                    </mat-card-title>
+                           
+                 </div>
+                        <div class="w3-col " style="width:10%">
+                            <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  color="warn" >
+                            <mat-icon>clear</mat-icon>
+                        </button>
+             </div>
+            </mat-card-header>
+                       
+          </div>
 <div mat-dialog-content>
 <p>¿Está seguro que desea eliminar " {{titulo}} "?</p>
 <p>Presione aceptar para confirmar</p>

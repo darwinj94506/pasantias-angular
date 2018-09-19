@@ -1,14 +1,19 @@
 <form [formGroup]="myForm" autocomplete="off" >
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+       
         <div class="w3-row ">
+                <mat-card-header style="justify-content: center">
                 <div class="w3-col" style="width:85%">
-                    <h2 mat-card-title align="center">Crear Material</h2>
-                        </div>
+                                <mat-card-title align="center">
+                                        <h3 class="m-0">Crear Material</h3>
+                                    </mat-card-title>
+                           
+                 </div>
                         <div class="w3-col " style="width:10%">
                             <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  color="warn" >
                             <mat-icon>clear</mat-icon>
                         </button>
              </div>
+            </mat-card-header>
                        
           </div>
           <!-- <div class="mb-10" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="10px">
@@ -26,16 +31,29 @@
                 <mat-form-field  >
                     <input  matInput placeholder="Nombre del material" 
                       formControlName="nombre" required>
+                    <mat-error class="error-message"
+                     *ngIf="myForm.get('nombre').hasError('required')
+                      && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                      Campo obligatorio</mat-error>
+                    <mat-error class="error-message"
+                      *ngIf="myForm.get('nombre').hasError('maxlength')
+                       && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                       Máximo 50 Caracteres</mat-error>
+                        
                 </mat-form-field><p>
                 <mat-form-field >
                     <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>
                         <mat-option>Seleccione--</mat-option>
                         <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
                     </mat-select>
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('idtipo').hasError('required')
+                     && (myForm.get('idtipo').dirty || myForm.get('idtipo').touched)">
+                     Campo Obligatorio</mat-error>
                 </mat-form-field>
          </mat-dialog-content>
          <mat-dialog-actions  align="center" >  
-                <button (click)="crudMaterial()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched"
+                <button (click)="crudMaterial()" mat-raised-button color="primary"  [disabled]="myForm.invalid"
                  *ngIf="!cargando">  
                    Guardar</button>
                 <button mat-raised-button color="primary"  *ngIf="cargando">  

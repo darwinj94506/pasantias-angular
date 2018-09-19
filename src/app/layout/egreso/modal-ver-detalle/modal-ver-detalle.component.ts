@@ -10,7 +10,10 @@ import {EgresoService} from '../../../shared/services/egreso.service';
 })
 export class ModalVerDetalleComponent implements OnInit {
   displayedColumns: string[] = ['nombre' ,'sum'];
+  detailColumns: string[] = ['material' ,'cantidad','serie','proveedor','descripcion','estado','star'];
+
   ELEMENT_DATA: any[] = [];
+  DETAIL_DATA: any[] = [];
   myForm: FormGroup; 
   length=0;
 
@@ -27,21 +30,72 @@ export class ModalVerDetalleComponent implements OnInit {
   ngOnInit() {
     this.inicializarFormulario();
     console.log(this.data);
+    this.getDetallesGlobal();
+    this.getDetalleEgreso();
+   
+    
+  }
+
+  getDetalleEgreso(){
+    this._egreso.getDetalleEgreso(this.data.idegreso).subscribe((data)=>{
+      console.log(data);
+      this.DETAIL_DATA=data.data;
+    })
+  }
+  close(data) {
+    this.dialogRef.close(data);
+  }
+  getDetallesGlobal(){
     this._egreso.getDetalles(this.data.idegreso).subscribe((data)=>{
       console.log(data);
       this.ELEMENT_DATA=data.data;
     })
-    
   }
   inicializarFormulario(){
+    //Datos de la cabecera del egreso,vienen como parametros de la tabla listar 
     this.myForm = this.fb.group({
       idusuario:this.data.idusuario,
-      idsolicitante:this.data.idsolicitante,
+      idsolicitante:this.data.solicitante,
       memorando:this.data.memorando,
       fecha:this.data.fecha,
       observacion:this.data.observacion
-     
     })
+  }
+  cambiarEstado(element){
+    // para ejecutar la funcion de la bdd en la opcion 2 (modificar) solo se necesita 
+    //el iddetalle y la opcion 2
+    console.log(element);
+    this._egreso.crudDetalle(
+      {"iddetalle":element.iddetalle,
+      "idegreso":0,
+      "idingreso":0,
+      "cantidad":0,
+      "opcion":2,
+      "idmaterial":0}).subscribe((data)=>{
+        console.log(data);
+        this.getDetalleEgreso();
+        this.getDetallesGlobal()
+
+
+      },error=>{
+        alert("Error al editar estado")
+      })
+  }
+  eliminar(element){
+    this._egreso.crudDetalle(
+      {"iddetalle":element.iddetalle,
+      "idegreso":0,
+      "idingreso":0,
+      "cantidad":0,
+      "opcion":3,
+      "idmaterial":0}).subscribe((data)=>{
+        console.log(data);
+        this.getDetalleEgreso();
+        this.getDetallesGlobal()
+
+      },error=>{
+        alert("Error al eliminar")
+      })
   }
 
 }

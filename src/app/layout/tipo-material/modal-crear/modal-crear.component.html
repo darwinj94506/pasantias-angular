@@ -1,5 +1,22 @@
 <form [formGroup]="myForm" autocomplete="off">
-  <h2 mat-dialog-title align="center">Crear nuevo tipo</h2>
+  
+  
+    <div class="w3-row ">
+        <mat-card-header style="justify-content: center">
+        <div class="w3-col" style="width:85%">
+                        <mat-card-title align="center">
+                                <h4 class="m-0">Crear Tipo de Material</h4>
+                            </mat-card-title>
+                   
+         </div>
+                <div class="w3-col " style="width:10%">
+                    <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  color="warn" >
+                    <mat-icon>clear</mat-icon>
+                </button>
+     </div>
+    </mat-card-header>
+               
+  </div>
   <mat-dialog-content>
   
         <mat-form-field>
@@ -7,7 +24,7 @@
           formControlName="nombre">
         </mat-form-field>
 
-  </mat-dialog-content>
+  </mat-dialog-content><p></p>
   <mat-dialog-actions  align="center">
 
       <button (click)="crudTipo()" mat-raised-button color="primary" 

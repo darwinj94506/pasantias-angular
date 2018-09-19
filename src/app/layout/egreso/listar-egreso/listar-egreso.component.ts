@@ -23,16 +23,19 @@ export class ListarEgresoComponent implements OnInit {
   ELEMENT_DATA: any[] = [];
   length=0;
   pageEvent: PageEvent;
+  fecha:Date;
+
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private _egreso:EgresoService,public router: Router,
     public dialog: MatDialog, public snackBar: MatSnackBar) {}
   ngOnInit() {
     this.paginator.pageIndex=0;
-    this.cargarTabla();
-    
+    this.cargarTabla();    
   }
   cargarTabla(){
+    this.cargando=true;
     this._egreso.getTotalEgreso().
       subscribe((data)=>{
         this.length=data.data[0].count;
@@ -43,7 +46,12 @@ export class ListarEgresoComponent implements OnInit {
      this.mode="determinate";
       this.cargando=true;
      console.log(this.ELEMENT_DATA);
-    })
+    },error=>{
+      this.mode="determinate";
+      this.cargando=false;
+      alert("Ha ocurrido un error");
+    }
+  )
     
   }
 
@@ -68,8 +76,8 @@ paginar(evento){
      
        const dialogRef = this.dialog.open(ModalVerDetalleComponent , {
          hasBackdrop:true,
-         width:"70%",
-         height:"80%",
+         width:"90%",
+         height:"90%",
          data:data
        });
        dialogRef.afterClosed().subscribe(result => {
@@ -82,33 +90,6 @@ paginar(evento){
        console.log(error);
      })
     }
-   
-    // eliminar(row){
-    //    const dialogConfig = new MatDialogConfig();
-    //    dialogConfig.disableClose = true;
-    //    dialogConfig.autoFocus = true;
-    //    const dialogRef = this.dialog.open(ModalEliminar , {
-    //      hasBackdrop:true,
-    //      width:"40%",
-    //      height:"35%",
-    //      data: row
-    //    });
-    //    dialogRef.afterClosed().subscribe(result => {
-    //      if(result){
-    //       this._tipo.crudTipo({idtipo:row.idtipo,
-    //         nombre:row.nombre,
-    //         opcion:'3'}).subscribe(data=>{
-    //           console.log(data);
-    //           if(data[0]._info_id){
-    //             this.cargarTabla();
-    //           }
-    //           this.openSnackBar(data[0]._info_desc,data[0]._info_titulo);            
-    //         })     
-    //      }          
-    //    },error=>{
-    //    console.log(error);
-    //  })     
-    // }   
 }
 
 

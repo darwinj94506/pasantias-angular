@@ -1,0 +1,136 @@
+
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <div [fxFlex]="25">
+        <mat-card fxFlexFill fxLayoutAlign="">
+          <mat-radio-group class="example-radio-group" [(ngModel)]="opcionBusqueda">
+              <mat-radio-button class="example-radio-button" [value]="1">Materiales    
+              </mat-radio-button>
+              <mat-radio-button class="example-radio-button" [value]="2">Ingresos    
+              </mat-radio-button>
+              <mat-radio-button class="example-radio-button" [value]="3">Egresos    
+              </mat-radio-button>
+          </mat-radio-group>
+        </mat-card>
+    </div>
+    <div [fxFlex]="25" *ngIf="opcionBusqueda!=1">
+        <mat-card fxFlexFill fxLayoutAlign="">
+            <mat-radio-group class="example-radio-group" [(ngModel)]="opcionFiltro " [disabled]="opcionBusqueda===0">
+            <mat-radio-button class="example-radio-button" [value]="1">Filtrar por fecha    
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="2">Id de usuario   
+            </mat-radio-button>
+         
+          </mat-radio-group>
+        </mat-card>
+    </div>
+    <div [fxFlex]="50" *ngIf="opcionBusqueda!=1">
+        <mat-card fxFlexFill fxLayoutAlign="center center" *ngIf="opcionFiltro===1">
+            <input matInput [matDatepicker]="picker" placeholder="Fecha 1" [(ngModel)]="fecha1">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <input matInput [matDatepicker]="picker2" placeholder="Fecha 2" [(ngModel)]="fecha2">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+              <button mat-button color="primary" (click)="consultar()"
+              [disabled]="myForm.invalid && myForm.untouched">  
+                    Buscar</button>
+        </mat-card>
+        <mat-card fxFlexFill fxLayoutAlign="center center" *ngIf="opcionFiltro===2">
+            <mat-form-field>
+              <input matInput  placeholder="IdUsuario" [(ngModel)]="idusuario">
+            </mat-form-field> 
+            <button mat-button color="primary" (click)="consultar()"
+            [disabled]="myForm.invalid && myForm.untouched">  
+                  Buscar</button>
+        </mat-card>   
+    </div>
+    <div [fxFlex]="75" *ngIf="opcionBusqueda===1">
+        <mat-card fxFlexFill fxLayoutAlign="center center">
+            <mat-form-field [fxFlex]="75">
+              <input matInput  placeholder="Serie" [(ngModel)]="serie">   
+            </mat-form-field> 
+            <div [fxFlex]="25">
+              <button mat-button color="primary" (click)="consultar()"
+              [disabled]="myForm.invalid && myForm.untouched">  
+                    Buscar</button>
+            </div>
+           
+        </mat-card>   
+    </div>
+   
+</div>
+
+
+ <div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="ELEMENT_DATA" *ngIf="ELEMENT_DATA.length > 0">
+    <ng-container matColumnDef="material">
+      <mat-header-cell *matHeaderCellDef>Material</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="material"> {{element.material}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="serie">
+      <mat-header-cell *matHeaderCellDef>Serie</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="serie"> {{element.serie}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="garantia">
+      <mat-header-cell *matHeaderCellDef>Garantía</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="garantia"> {{element.garantia}} </mat-cell>
+    </ng-container>
+     <ng-container matColumnDef="proveedor">
+      <mat-header-cell *matHeaderCellDef>Proveedor</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="proveedor"> {{element.proveedor}} </mat-cell>
+    </ng-container> -
+     <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef>Encargado</mat-header-cell>
+      <mat-cell *matCellDef="let element"  data-label="usuario"> {{element.usuario}} </mat-cell>
+    </ng-container> 
+    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-table [dataSource]="DETALLE_EGRESO_DATA" *ngIf="DETALLE_EGRESO_DATA.length > 0">
+    <ng-container matColumnDef="solicitante">
+        <mat-header-cell *matHeaderCellDef>Solicitante</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="solicitante">{{element.solicitante}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="material">
+      <mat-header-cell *matHeaderCellDef>Material</mat-header-cell>
+      <mat-cell *matCellDef="let element" data-label="material">{{element.material}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cantidad">
+      <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
+      <mat-cell *matCellDef="let element" data-label="cantidad">{{element.cantidad}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="serie">
+      <mat-header-cell *matHeaderCellDef>Serie</mat-header-cell>
+      <mat-cell *matCellDef="let element" data-label="serie">{{element.serie}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="garantia">
+      <mat-header-cell *matHeaderCellDef>Garantía</mat-header-cell>
+      <mat-cell *matCellDef="let element" data-label="garantia">{{element.garantia}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="proveedor">
+      <mat-header-cell *matHeaderCellDef>Proveedor</mat-header-cell>
+      <mat-cell *matCellDef="let element" data-label="proveedor">{{element.proveedor}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef>Encargado</mat-header-cell>
+      <mat-cell *matCellDef="let element" data-label="usuario">{{element.usuario}}</mat-cell>
+    </ng-container>
+  
+
+    <mat-header-row *matHeaderRowDef="detalleIngresoColumns" ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: detalleIngresoColumns;"></mat-row>
+  </mat-table>
+</div> 
+
+<div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" *ngIf="no_existe_registro">
+    <div fxFlex>
+        <mat-card fxFlexFill fxLayoutAlign="center center">
+          <h3>No  existen registros que coincidan con este filtro de búsqueda</h3>
+        </mat-card>
+    </div>
+</div>
+    
+
+
+  

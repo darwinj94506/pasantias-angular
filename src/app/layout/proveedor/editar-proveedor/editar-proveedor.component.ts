@@ -18,12 +18,20 @@ export class EditarProveedorComponent implements OnInit {
     cargando=false;
      active = true;
      tiposMat:any; 
+     accion=false;
     constructor(
         public dialogRef: MatDialogRef<EditarProveedorComponent>,private fb: FormBuilder,private _proveedor:ProveedorService,
         @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog,private router: Router
     ) {}
     ngOnInit() {
+        
         if(this.data){
+            if(this.data.accion==2){
+                this.accion=true
+            }else{
+                this.accion=false
+            }
+            console.log(this.accion)
             this.myForm = this.fb.group({
                 idproveedor: this.data.idproveedor,
                 nombre:this.data.nombre,

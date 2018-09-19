@@ -14,6 +14,9 @@ export class EgresoService{
   constructor(private _http:Http){
     this.url=GLOBAL.url;
     }
+    getDetalleEgreso(idegreso){
+      return this._http.get(this.url+'getDetalleEgreso/'+idegreso).pipe(map(res=>res.json()));      
+    }
     
     getTipo(id){
       return this._http.get(this.url+'getTipo/'+id).pipe(map(res=>res.json()));
@@ -66,7 +69,6 @@ export class EgresoService{
     validarDetalle(cuerpo){
       let params=JSON.stringify(cuerpo);
       let headers=new Headers({'Content-Type':'application/json'});
-      alert(this.url+'validarDetalle');
       return this._http.post(this.url+'validarDetalle',params, {headers:headers})
       .pipe(map( res => res.json()));          
     }

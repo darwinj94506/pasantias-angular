@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { ModalCrudIngresoComponent } from './modal-crud-ingreso/modal-crud-ingreso.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { ModalVerDetalleComponent } from './modal-ver-detalle/modal-ver-detalle.component';
+import { ModalAlertaComponent } from './modal-alerta/modal-alerta.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -24,11 +25,11 @@ import { ModalVerDetalleComponent } from './modal-ver-detalle/modal-ver-detalle.
     ReactiveFormsModule,
     HttpModule
   ], entryComponents: [
-    ModalVerDetalleComponent 
+    ModalVerDetalleComponent,ModalAlertaComponent
   ],
   providers:[EgresoService,{
     provide:LOCALE_ID, useValue: 'es'
   }],
-  declarations: [ListarEgresoComponent, CrudEgresoComponent,DetalleComponent, ModalVerDetalleComponent]
+  declarations: [ListarEgresoComponent, CrudEgresoComponent,DetalleComponent, ModalVerDetalleComponent, ModalAlertaComponent]
 })
 export class EgresoModule { }

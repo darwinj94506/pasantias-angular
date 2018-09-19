@@ -1,5 +1,11 @@
 table {
     width: 100%;
+    
+}
+
+td,
+th {
+    width: 25%;
 }
 
 .mat-form-field {
@@ -7,16 +13,34 @@ table {
     // font-size: 18px;
   }
 
-td,
-th {
-    width: 25%;
-}
-.mat-dialog-content{
-    margin: 20px;
-}
-
 .mi-boton-salir{
     justify-content: right;
       margin-top: 10px;
       
   }
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+//   chebox
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  .example-selected-value {
+    margin: 15px 0;
+  }
+
+  

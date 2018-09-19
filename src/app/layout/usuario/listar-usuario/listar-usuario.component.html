@@ -1,6 +1,6 @@
 
 <mat-card-content>
-    <mat-progress-bar class="example-margin" *ngIf="!cargando" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
+    <mat-progress-bar class="example-margin" *ngIf="cargando" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
     </mat-progress-bar>
 </mat-card-content>
 <div class="mat-elevation-z8">
@@ -10,7 +10,7 @@
         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
       </ng-container>
       <ng-container matColumnDef="apellido">
-          <th mat-header-cell *matHeaderCellDef>Nombres </th>
+          <th mat-header-cell *matHeaderCellDef>Apellidos </th>
           <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
         </ng-container>
         <ng-container matColumnDef="cedula">

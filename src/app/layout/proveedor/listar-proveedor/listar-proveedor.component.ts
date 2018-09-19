@@ -23,7 +23,7 @@ export class ListarProveedorComponent implements OnInit {
   value = 50;
   bufferValue = 50;
   cargando=false;
-    displayedColumns: string[] = [ 'nombre', 'telefono1','telefono2','email','direccion','ruc','star'];
+    displayedColumns: string[] = ['ruc' ,'nombre', 'telefono1','star'];
     ELEMENT_DATA: any[] = [];
     length=0;
     pageEvent: PageEvent;
@@ -39,6 +39,7 @@ export class ListarProveedorComponent implements OnInit {
       this.cargarTabla();
     }
     cargarTabla(){
+      this.cargando=true;
       this._proveedor.getTotalProveedores().
         subscribe((data)=>{
           this.length=data.data[0].count;
@@ -47,8 +48,12 @@ export class ListarProveedorComponent implements OnInit {
       this._proveedor.getProveedores({"page":0,"itemsPerPage":10}) .subscribe((data)=>{
       this.ELEMENT_DATA=data.data;
       this.mode="determinate";
-        this.cargando=true;
+        this.cargando=false;
       console.log(this.ELEMENT_DATA);
+      
+       }, error=>{
+         this.cargando=false;
+        alert("Ha ocurrido un error");
        })
 
     }
@@ -69,11 +74,14 @@ export class ListarProveedorComponent implements OnInit {
                                     console.log(this.ELEMENT_DATA);                               
                                   })
       }
-      openDialog(row): void {
+      openDialog(row, accion ): void {
+        // alert(accion);
+        row.accion=accion;
         const dialogRef = this.dialog.open( EditarProveedorComponent, {
             width: '30%',
            height:"87%",
             data:row
+
         });
         dialogRef.afterClosed().subscribe(result => {
           
@@ -88,7 +96,7 @@ export class ListarProveedorComponent implements OnInit {
     openCrearDialog(data=null):void{
       const dialogRef = this.dialog.open( CrearProveedorComponent, {
         hasBackdrop:true,
-        width:"30%",
+        width:"40%",
         height:"87%",
        data:data
     });
@@ -108,7 +116,7 @@ export class ListarProveedorComponent implements OnInit {
       dialogConfig.autoFocus = true;
       const dialogRef = this.dialog.open(ModalEliminar , {
         hasBackdrop:true,
-        width:"40%",
+        width:"30%",
         height:"35%",
         data: row
       });
@@ -134,18 +142,24 @@ export class ListarProveedorComponent implements OnInit {
 @Component({
   selector: 'Modal-eliminar ',
   template: `
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <div class="w3-row  w3-green">
-                <div class="w3-col" style="width:85%">
-                    <h1 mat-card-title >Eliminar Material</h1>
-                        </div>
-                        <div class="w3-col " style="width:10%">
-                            <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  >
-                            <mat-icon>clear</mat-icon>
-                        </button>
-             </div>
-                       
-          </div>
+  
+  <div class="w3-row ">
+  <mat-card-header style="justify-content: center">
+  <div class="w3-col" style="width:85%">
+                  <mat-card-title align="center">
+                          <h3 class="m-0">Crear Material</h3>
+                      </mat-card-title>
+             
+   </div>
+          <div class="w3-col " style="width:10%">
+              <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  color="warn" >
+              <mat-icon>clear</mat-icon>
+          </button>
+</div>
+</mat-card-header>
+         
+</div>
+
   
 <div mat-dialog-content>
 <p>¿Está seguro que desea eliminar " {{titulo}} "?</p>
@@ -154,7 +168,7 @@ export class ListarProveedorComponent implements OnInit {
 <mat-divider></mat-divider >
 <div mat-dialog-actions align="center">
   <button mat-button   (click)="clickAceptar()" tabindex="-1">Aceptar</button>
-  <button mat-button   (click)="clickCancelar()" tabindex="-1">Cancelar</button>
+ 
 </div>
   
   `

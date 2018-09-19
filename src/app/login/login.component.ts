@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       })}
 
     onLogin() {
+      console.log(this.user.value);
       this.cargando=true;
         //loguear al usurio y conseguir el objeto
       this._userService.signup(this.user.value).subscribe(
