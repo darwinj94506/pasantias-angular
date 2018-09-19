@@ -6,6 +6,9 @@ import{ComponentesAngularMaterialModule} from './../componentes-angular-material
 import{ReportesRoutingModule} from './reportes-routing.module';
 import { ReportePrincipalComponent } from './reporte-principal/reporte-principal.component';
 import{ReportesService} from './../../shared/services/reportes.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 // registerLocaleData(localeEs);
@@ -21,7 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    ReportesRoutingModule
+    ReportesRoutingModule,
+    FlexLayoutModule
+    // BrowserAnimationsModule
   ],
   declarations: [ReportePrincipalComponent],
   providers:[
@@ -31,4 +36,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     }
   ]
 })
-export class ReportesModule { }
+export class ReportesModule {
+  
+ }

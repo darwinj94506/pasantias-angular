@@ -38,16 +38,25 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   }
   ngOnChanges(){
     if(this.idDetalle){
-      this.ELEMENT_DATA.forEach(element => {
-        console.log(element);
-        element.iddetalle=0;
-        element.idegreso=this.idDetalle;
-        this._egreso.crudDetalle(element).subscribe((data)=>{
-            console.log(data);
-        },error=>{
-        })
-      });
-      console.log(this.idDetalle);
+      // this.ELEMENT_DATA.forEach(element => {
+      //   console.log(element);
+      //   element.iddetalle=0;
+      //   element.idegreso=this.idDetalle;
+      //   this._egreso.crudDetalle(element).subscribe((data)=>{
+      //       console.log(data);
+      //   },error=>{
+      //   })
+      // });
+      // console.log(this.idDetalle);
+      var i=0;
+      for (let i in this.ELEMENT_DATA){
+        this.ELEMENT_DATA[i].idegreso=this.idDetalle;
+      }
+
+      this._egreso.crudDetalle(this.ELEMENT_DATA).subscribe((data)=>{
+              console.log(data);
+          },error=>{
+          })
     }else{
       // alert("no llega nada");
     }

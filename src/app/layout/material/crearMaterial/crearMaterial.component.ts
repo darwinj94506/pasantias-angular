@@ -23,8 +23,8 @@ export class CrearComponent implements OnInit {
   ngOnInit() {
     this.myForm = this.fb.group({
       idmaterial:'0',
-      idtipo:'0',
-      nombre:'',
+      idtipo:['',Validators.required],
+      nombre:['',Validators.compose([Validators.required,Validators.maxLength(10)])],
       opcion:'1'
      
     })
@@ -32,8 +32,8 @@ export class CrearComponent implements OnInit {
       // this.myForm.reset();
       this.myForm = this.fb.group({
         idmaterial:this.data.idmaterial,
-        idtipo:this.data.idtipo,
-        nombre:this.data.nombre,
+        idtipo:[this.data.idtipo,Validators.required],
+        nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(10)])],
         opcion:'1' 
       })
     }
@@ -55,8 +55,10 @@ export class CrearComponent implements OnInit {
           this.close(data);
         },error=>{
             this.cargando=false;
+            alert("Error en la transaccion");
+            this.dialogRef.close(0);  
           })
-          this.dialogRef.close();   
+           
 }
 close(data) {
   this.dialogRef.close(data);

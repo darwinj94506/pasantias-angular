@@ -15,16 +15,29 @@
                 <mat-form-field  >
                     <input  matInput placeholder="Nombre del material" 
                       formControlName="nombre" required>
+                    <mat-error class="error-message"
+                     *ngIf="myForm.get('nombre').hasError('required')
+                      && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                      Campo obligatorio</mat-error>
+                    <mat-error class="error-message"
+                      *ngIf="myForm.get('nombre').hasError('maxlength')
+                       && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                       Máximo 50 Caracteres</mat-error>
+                        
                 </mat-form-field><p>
                 <mat-form-field >
                     <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>
                         <mat-option>Seleccione--</mat-option>
                         <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
                     </mat-select>
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('idtipo').hasError('required')
+                     && (myForm.get('idtipo').dirty || myForm.get('idtipo').touched)">
+                     Campo Obligatorio</mat-error>
                 </mat-form-field>
          </mat-dialog-content>
          <mat-dialog-actions  align="center" >  
-                <button (click)="crudMaterial()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched"
+                <button (click)="crudMaterial()" mat-raised-button color="primary"  [disabled]="myForm.invalid"
                  *ngIf="!cargando">  
                    Guardar</button>
                 <button mat-raised-button color="primary"  *ngIf="cargando">  

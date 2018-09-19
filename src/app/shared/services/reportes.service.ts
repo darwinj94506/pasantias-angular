@@ -15,27 +15,21 @@ export class ReportesService{
     this.url=GLOBAL.url;
     }
     
-    getTipo(id){
-      return this._http.get(this.url+'getTipo/'+id).pipe(map(res=>res.json()));
-    }
-    getMaterialesSelect(){
-      // let params=JSON.stringify(parametros);
-      let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getMaterialesSelect', {headers:headers})
-      .pipe(map( res => res.json()));          
-    }
-    getProveedoresSelect(){
-      // let params=JSON.stringify(parametros);
-      let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getProveedoresSelect', {headers:headers})
-      .pipe(map( res => res.json()));          
-    }
-    getGarantiasSelect(idproveedor){ 
-      let params=JSON.stringify(idproveedor);
-      let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.get(this.url+'getGarantiasSelect/'+idproveedor).pipe(map(res=>res.json()));
+   
     
+    getReporteDetalleEgreso(parametros){
+      let params=JSON.stringify(parametros);
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getReporteEgresoDetalle',params, {headers:headers})
+      .pipe(map( res => res.json()));          
     }
+    getReporteIngreso(parametros){
+      let params=JSON.stringify(parametros);
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getReporteIngreso',params, {headers:headers})
+      .pipe(map( res => res.json()));          
+    }
+   
     
     getIdentity(){
       let identity=JSON.parse(localStorage.getItem('identity'));
@@ -47,28 +41,6 @@ export class ReportesService{
       return this.identity;
     }
 
-
-    getPaginarIngresos(parametros){
-      let params=JSON.stringify(parametros);
-      let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getIngresos',params, {headers:headers})
-      .pipe(map( res => res.json()));          
-    }
-
-    crudIngreso(ingreso) {
-      console.log(ingreso);
-       let params=JSON.stringify(ingreso);
-       let headers=new Headers({'Content-Type':'application/json'});
-       return this._http.post(this.url+'crudIngreso',params, {headers:headers})
-                         .pipe(map( res => res.json()));               
-       }
-  
-    totalIngreso() {
-    // router.post('/api/getTotalTipos', db.getTotalTipos); 
-      let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getTotalIngresos', {headers:headers})
-                        .pipe(map( res => res.json()));
-    }
   }
 
 

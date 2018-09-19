@@ -39,17 +39,23 @@ export class ListarComponent implements OnInit {
       this.cargarTabla();
     }
     cargarTabla(){
+     this.cargando=true;
+
       this._material.getTotalMateriales().
         subscribe((data)=>{
           this.length=data.data[0].count;
           console.log(data.data[0].count);
         });
-      this._material.getMateriales({"page":0,"itemsPerPage":10}).subscribe((data)=>{
-      this.ELEMENT_DATA=data.data;
-      this.mode="determinate";
-      this.cargando=true;
-      console.log(this.ELEMENT_DATA);
-      })
+      this._material.getMateriales({"page":0,"itemsPerPage":10}).
+        subscribe((data)=>{
+          this.ELEMENT_DATA=data.data;
+          this.mode="determinate";
+          console.log(this.ELEMENT_DATA);
+          this.cargando=false;
+          },error=>{
+            this.cargando=false;
+            alert("Ha ocurrido un error");
+          })
 
     }
 
@@ -63,27 +69,34 @@ export class ListarComponent implements OnInit {
       console.log(this.pageEvent.pageIndex);
       console.log(this.pageEvent.pageSize);
       this._material.getMateriales({"page":this.pageEvent.pageIndex,
-                                  "itemsPerPage":this.pageEvent.pageSize})
-                                  .subscribe((data)=>{
-                                    this.ELEMENT_DATA=data.data;
-                                    console.log(this.ELEMENT_DATA);                               
-                                  })
+            "itemsPerPage":this.pageEvent.pageSize})
+            .subscribe((data)=>{
+              this.ELEMENT_DATA=data.data;
+              console.log(this.ELEMENT_DATA);                               
+            })
       }
-      openDialog(row): void {
-        const dialogRef = this.dialog.open(DialogOverviewComponent, {
-            width: '30%',
-           height:"40%",
-            data:row
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          if(result[0]._info_id){
-           this.cargarTabla();
-         }
-          this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
-        },error=>{
-          console.log(error);
-        })
-    }
+    //   openDialog(row): void {
+    //     const dialogRef = this.dialog.open(DialogOverviewComponent, {
+    //         width: '30%',
+    //        height:"40%",
+    //         data:row
+    //     });
+    //     dialogRef.afterClosed().subscribe(result => {
+    //       if(result){
+    //         console.log(result);
+    //         if(result[0]._info_id){
+    //          this.cargarTabla();
+    //        }
+    //         this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+    //       }else{
+    //         alert("Ha ocurrido un error en la peticion al servidor");
+    //       }
+       
+    //     },error=>{
+    //       console.log(error);
+    //       alert("Ha ocurrido un error al cerrar Modal");
+    //     })
+    // }
     openCrearDialog(data=null):void{
       const dialogRef = this.dialog.open(CrearComponent, {
         hasBackdrop:true,
@@ -92,12 +105,19 @@ export class ListarComponent implements OnInit {
        data:data
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result[0]._info_id){
-       this.cargarTabla();
-     }
-      this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+      if(result && result!=0){
+        console.log(result);
+        if(result[0]._info_id){
+         this.cargarTabla();
+       }
+        this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+      }else{
+        console.log("no pasa nada");
+      }
+   
     },error=>{
       console.log(error);
+      alert("Ha ocurrido un error al cerrar Modal");
     })
 
     }
