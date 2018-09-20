@@ -74,6 +74,7 @@ export class ListarProveedorComponent implements OnInit {
                                     console.log(this.ELEMENT_DATA);                               
                                   })
       }
+      //funcion para editar
       openDialog(row): void {
         const dialogRef = this.dialog.open(EditarGarantiaComponent, {
             width: '45%',
@@ -89,6 +90,7 @@ export class ListarProveedorComponent implements OnInit {
           console.log(error);
         })
     }
+    //funcion para crear una garantia
     openCrearDialog(data=null):void{
       const dialogRef = this.dialog.open(CrearGarantiaComponent, {
         hasBackdrop:true,
@@ -97,12 +99,19 @@ export class ListarProveedorComponent implements OnInit {
        data:data
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result[0]._info_id){
-       this.cargarTabla();
-     }
-      this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+      if(result && result!=0){
+        console.log(result);
+        if(result[0]._info_id){
+         this.cargarTabla();
+       }
+        this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+      }else{
+        console.log("no pasa nada");
+      }
+   
     },error=>{
       console.log(error);
+      alert("Ha ocurrido un error al cerrar Modal");
     })
 
     }
@@ -141,12 +150,12 @@ export class ListarProveedorComponent implements OnInit {
         <mat-card-header style="justify-content: center">
         <div class="w3-col" style="width:85%">
                         <mat-card-title align="center">
-                                <h4 class="m-0">Editar Garantia</h4>
+                                <h5 class="m-0">Editar Garantia</h5>
                             </mat-card-title>
                    
          </div>
                 <div class="w3-col " style="width:10%">
-                    <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  color="warn" >
+                    <button class="mi-boton-salir "  (click)="clickCancelar()" mat-icon-button  color="warn" >
                     <mat-icon>clear</mat-icon>
                 </button>
      </div>

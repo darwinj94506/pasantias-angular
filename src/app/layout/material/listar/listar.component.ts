@@ -23,7 +23,7 @@ export class ListarComponent implements OnInit {
   value = 50;
   bufferValue = 50;
   cargando=false;
-    displayedColumns: string[] = [ 'nombretipo', 'nombre','stock', 'fecha','star'];
+    displayedColumns: string[] = [ 'nombretipo', 'nombre','stock','star'];
     ELEMENT_DATA: any[] = [];
     length=0;
     pageEvent: PageEvent;
@@ -84,14 +84,14 @@ export class ListarComponent implements OnInit {
             data:row
         });
         dialogRef.afterClosed().subscribe(result => {
-          if(result){
+          if(result && result!=0){
             console.log(result);
             if(result[0]._info_id){
              this.cargarTabla();
            }
             this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
           }else{
-            alert("Ha ocurrido un error en la peticion al servidor");
+            console.log("no pasa nada");
           }
        
         },error=>{
@@ -163,7 +163,7 @@ export class ListarComponent implements OnInit {
                   
           </div>
           <div class="w3-col " style="width:10%">
-                  <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  color="warn" >
+                  <button class="mi-boton-salir "  (click)="clickCancelar()" mat-icon-button  color="warn" >
                   <mat-icon>clear</mat-icon>
           </button>
   </div>

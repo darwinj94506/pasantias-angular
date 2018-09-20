@@ -8,10 +8,22 @@ table {
   }
 td,
 th {
-    width: 18%;
+    width: 25%;
 }
 .mi-boton-salir{
     justify-content: right;
       margin-top: 10px;
       
+  }
+  @media screen and (max-width: 700px){
+    h1{
+    font-size:14px;
+   
+    }
+}
+@media screen and (max-width: 700px){
+    td,th{
+    font-size:10px;
+   
+    }
   }

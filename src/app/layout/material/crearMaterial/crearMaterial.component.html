@@ -28,6 +28,16 @@
                     
             <!-- </div> -->
         <mat-dialog-content >
+                <mat-form-field >
+                    <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>
+                        <mat-option>Seleccione--</mat-option>
+                        <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
+                    </mat-select>
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('idtipo').hasError('required')
+                        && (myForm.get('idtipo').dirty || myForm.get('idtipo').touched)">
+                        Campo Obligatorio</mat-error>
+                </mat-form-field>
                 <mat-form-field  >
                     <input  matInput placeholder="Nombre del material" 
                       formControlName="nombre" required>
@@ -41,15 +51,18 @@
                        Máximo 50 Caracteres</mat-error>
                         
                 </mat-form-field><p>
+    
                 <mat-form-field >
-                    <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>
-                        <mat-option>Seleccione--</mat-option>
-                        <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
-                    </mat-select>
+                    <input  matInput placeholder="Stock mínimo" type="number" 
+                    formControlName="stockminimo" required>
                     <mat-error class="error-message"
-                    *ngIf="myForm.get('idtipo').hasError('required')
-                     && (myForm.get('idtipo').dirty || myForm.get('idtipo').touched)">
+                    *ngIf="myForm.get('stockminimo').hasError('required')
+                     && (myForm.get('stockminimo').dirty || myForm.get('stockminimo').touched)">
                      Campo Obligatorio</mat-error>
+                     <mat-error class="error-message"
+                    *ngIf="myForm.get('stockminimo').hasError('min')
+                     && (myForm.get('stockminimo').dirty || myForm.get('stockminimo').touched)">
+                     Erorr en el valor del campo</mat-error>
                 </mat-form-field>
          </mat-dialog-content>
          <mat-dialog-actions  align="center" >  

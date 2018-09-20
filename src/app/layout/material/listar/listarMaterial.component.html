@@ -3,6 +3,7 @@
     <mat-progress-bar class="example-margin" *ngIf="cargando" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
     </mat-progress-bar>
 </mat-card-content>
+<h1 class="m-0">Materiales</h1>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="ELEMENT_DATA">
       <ng-container matColumnDef="nombretipo">
@@ -19,12 +20,6 @@
        <ng-container matColumnDef="stock">
         <th mat-header-cell *matHeaderCellDef> Stock </th>
         <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
-      </ng-container>
-  
-     
-      <ng-container matColumnDef="fecha">
-        <th mat-header-cell *matHeaderCellDef> Fechas </th>
-        <td mat-cell *matCellDef="let element"> {{element.fecha | date:'medium'}} </td>
       </ng-container>
      
       

@@ -2,42 +2,42 @@
   <mat-progress-bar class="example-margin" *ngIf="cargando" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
   </mat-progress-bar>
 </mat-card-content>
-
+<h1 class="m-0">Ingresos</h1>
 <div class="mat-elevation-z8">
-  <mat-table [dataSource]="ELEMENT_DATA">
+  <table mat-table [dataSource]="ELEMENT_DATA">
 
     <!-- Position Column -->
     <ng-container matColumnDef="nombrematerial">
-      <mat-header-cell *matHeaderCellDef>Material</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.nombrematerial}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef>Material</th>
+      <td mat-cell *matCellDef="let element"> {{element.nombrematerial}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="cantidad">
-      <mat-header-cell *matHeaderCellDef>Cantidad </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.cantidad}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef>Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="fechaingreso">
-      <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.fechaingreso | date:'medium'}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaingreso | date:'mediumDate'}} </td>
     </ng-container>
      <!-- Weight Column -->
      <ng-container matColumnDef="nombreusuario">
-      <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.nombreusuario}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreusuario}} </td>
     </ng-container>
     <ng-container matColumnDef="apellido">
-      <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.apellido}} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef> Apellido </th>
+      <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
     </ng-container>
     <ng-container matColumnDef="star" stickyEnd >
       <!-- <th mat-header-cell></th> -->
       <!-- [routerLink]="['crear']" -->
-      <mat-header-cell *matHeaderCellDef class="nuevo-pointer"  
-      (click)="abrirModalCrear()"><mat-icon class="md-48">add</mat-icon></mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef class="nuevo-pointer"  
+      (click)="abrirModalCrear()"><mat-icon class="md-48">add</mat-icon></th>
+      <td mat-cell *matCellDef="let element">
         <button mat-icon-button [matMenuTriggerFor]="menu4">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -55,12 +55,12 @@
               <span>Eliminar</span>
           </button> -->
         </mat-menu>
-      </mat-cell>  
+      </td>  
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
   <mat-paginator [length]="length" [pageSizeOptions]="[10, 20, 30]"  (page)="paginar($event)"></mat-paginator>
 </div>

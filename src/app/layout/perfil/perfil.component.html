@@ -1,26 +1,26 @@
 
 <div class="mb-20" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="20px">
         <mat-card-content>
-                <mat-progress-bar class="example-margin" *ngIf="!cargando" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
+                <mat-progress-bar class="example-margin" *ngIf="cargando" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
                 </mat-progress-bar>
             </mat-card-content>
     <form  [formGroup]="myForm" autocomplete="off" >
     <div fxFlex>
         <mat-card> 
     <mat-card-title class="text-center" >
-    <h3 class="m-0">Perfil de Usuario de:</h3>
-    <input matInput [readonly]="true" type="text" formControlName="nombre">
-    <input matInput [readonly]="true" type="text" formControlName="apellido">
+            <h3 class="m-0">Perfil de Usuario de: {{data.nombre}} {{data.apellido}}</h3><p>
     </mat-card-title>
              <mat-dialog-content align="center" >
                 
                 <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                         <mat-form-field class="w-100">
-                            <input matInput placeholder="Contraseña Actual:" type="password"  formControlName="clave">
+                            <input matInput placeholder="Contraseña Actual:"  type="password"  formControlName="clave">
                         </mat-form-field>
+                        
                     </div>
                 </div>
+                
                 <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                         <mat-form-field class="w-100">

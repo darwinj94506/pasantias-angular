@@ -25,10 +25,11 @@ export class DialogOverviewComponent implements OnInit {
     ngOnInit() {
         if(this.data){
             this.myForm = this.fb.group({
-                idmaterial: this.data.idmaterial,
+                idmaterial:this.data.idmaterial,
                 idtipo:this.data.idtipo,
                 nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(10)])],
-                opcion:'2'
+                opcion:'2',
+                stockminimo:this.data.stockminimo
                
               })
         } 
@@ -42,9 +43,9 @@ export class DialogOverviewComponent implements OnInit {
         
     }
 
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
+    // onNoClick(): void {
+    //     this.dialogRef.close(0);
+    // }
    editarMaterial() {
         this.cargando=true;
         console.log(this.myForm.value);
@@ -54,8 +55,8 @@ export class DialogOverviewComponent implements OnInit {
           this.close(data);
         },error=>{
             this.cargando=false;
+            this.dialogRef.close(0);  
           })
-        this.dialogRef.close();   
     }
     
     close(data) {

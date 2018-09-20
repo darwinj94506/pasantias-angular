@@ -55,7 +55,7 @@ export class CrudEgresoComponent implements OnInit  {
     console.log(this.myForm.value);
     this.cargando=true;
     console.log(this.myForm.value);
-    this._egreso.crudEgreso(this.myForm.value).subscribe(data=>{
+    this._egreso.crudEgreso2(this.myForm.value).subscribe(data=>{
       console.log(data[0]._pk);
       this.cargando=false;
       //accionar la accion de guardar el detalle 
@@ -76,7 +76,7 @@ export class CrudEgresoComponent implements OnInit  {
     this.myForm = this.fb.group({
       idegreso:'0',
       idusuario:this.identity.idusuario,
-      idsolicitante:'',
+      idsolicitante:['',Validators.required],
       memorando:['',Validators.maxLength(50)],
       observacion:['',Validators.maxLength(200)],
       opcion:'1'

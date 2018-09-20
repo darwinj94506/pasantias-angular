@@ -3,7 +3,7 @@
 <mat-card-header style="justify-content: center">
 <div class="w3-col" style="width:85%">
                 <mat-card-title align="center">
-                        <h3 class="m-0">Crear Material</h3>
+                        <h3 class="m-0">Editar Material</h3>
                         </mat-card-title>
                 
         </div>
@@ -37,6 +37,9 @@
                     <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Stock Mínimo"
+                        formControlName="stockminimo" required> </mat-form-field>
     </mat-dialog-content>
 
      <mat-dialog-actions align="center" >

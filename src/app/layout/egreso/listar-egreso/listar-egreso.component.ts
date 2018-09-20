@@ -19,7 +19,7 @@ export class ListarEgresoComponent implements OnInit {
   value = 50;
   bufferValue = 50;
   cargando=false;
-  displayedColumns: string[] = [ 'nombre','apellido' ,'fecha', 'star'];
+  displayedColumns: string[] = [ 'solicitante' ,'fecha', 'star'];
   ELEMENT_DATA: any[] = [];
   length=0;
   pageEvent: PageEvent;

@@ -9,6 +9,8 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 registerLocaleData(localeEs)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { ModalCrudIngresoComponent } from './modal-crud-ingreso/modal-crud-ingreso.component';
@@ -23,7 +25,8 @@ import { ModalAlertaComponent } from './modal-alerta/modal-alerta.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    FlexLayoutModule
   ], entryComponents: [
     ModalVerDetalleComponent,ModalAlertaComponent
   ],

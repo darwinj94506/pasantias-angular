@@ -19,7 +19,7 @@ export class ListarComponent implements OnInit {
   value = 50;
   bufferValue = 50;
   cargando= false;
-  displayedColumns: string[] = ['nombre', 'idtipo', 'estado', 'fecha', 'star'];
+  displayedColumns: string[] = ['nombre', 'idtipo', 'star'];
   ELEMENT_DATA: any[] = [];
   length=0;
   pageEvent: PageEvent;
@@ -69,7 +69,7 @@ export class ListarComponent implements OnInit {
                                     console.log(this.ELEMENT_DATA);                               
                                   })
       }
-
+      
       abrirModalCrear(data=null){
          const dialogRef = this.dialog.open(ModalCrearComponent , {
            hasBackdrop:true,
@@ -78,14 +78,20 @@ export class ListarComponent implements OnInit {
            data:data
          });
          dialogRef.afterClosed().subscribe(result => {
-           console.log(result);
-           if(result[0]._info_id){
-            this.cargarTabla();
+          if(result && result!=0){
+            console.log(result);
+            if(result[0]._info_id){
+             this.cargarTabla();
+           }
+            this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+          }else{
+            console.log("no pasa nada");
           }
-           this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
-         },error=>{
-         console.log(error);
-       })
+       
+        },error=>{
+          console.log(error);
+          alert("Ha ocurrido un error al cerrar Modal");
+        })
       }
      
       eliminar(row){

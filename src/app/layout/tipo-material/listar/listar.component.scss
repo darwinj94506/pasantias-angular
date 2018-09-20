@@ -9,10 +9,31 @@ table {
 
 td,
 th {
-    width: 25%;
+    width: 55%;
 }
 
+    
 .nuevo-pointer{
 cursor: pointer;
 }
+
+// @media (max-width: 200px) and (max-heigth: 160px) {
+//     .mifuente {
+//         font-size: 30px;
+//         padding: 0;
+//         margin: 0%;
+//         font-family: 'Courier New', Courier, monospace;
+//         }
+        
+//     }
+    @media screen and (max-width: 700px){
+        h1{
+        font-size:14px;
+       
+        }
+    }
+  
+
+
+
 

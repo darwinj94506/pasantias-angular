@@ -25,7 +25,8 @@ export class CrearComponent implements OnInit {
       idmaterial:'0',
       idtipo:['',Validators.required],
       nombre:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
-      opcion:'1'
+      opcion:'1',
+      stockminimo:['',Validators.compose([Validators.required,Validators.min(1)])]
      
     })
     if(this.data){
@@ -34,6 +35,7 @@ export class CrearComponent implements OnInit {
         idmaterial:this.data.idmaterial,
         idtipo:[this.data.idtipo,Validators.required],
         nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(10)])],
+        stockminimo:[this.data.stockminimo,Validators.compose([Validators.required,Validators.min(1)])],
         opcion:'1' 
       })
     }

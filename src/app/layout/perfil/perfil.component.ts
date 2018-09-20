@@ -32,13 +32,14 @@ export class PerfilComponent {
         public snackBar: MatSnackBar
     ) {}
     ngOnInit() {
+        this.cargando=true
         this.data=this._user.getIdentity()
         console.log(this.data)
         if(this.data){
-
+         
             var paso;
         this.mode="determinate";
-        this.cargando=true;
+        this.cargando=false;
             this.myForm = this.fb.group({
                 idusuario:this.data.idusuario,
                 apellido:this.data.apellido,
