@@ -18,10 +18,10 @@ export class IngresoService{
     getTipo(id){
       return this._http.get(this.url+'getTipo/'+id).pipe(map(res=>res.json()));
     }
-    getMaterialesSelect(){
-      // let params=JSON.stringify(parametros);
+    getMaterialesSelect(idtipo){
+      let params=JSON.stringify(idtipo);
       let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getMaterialesSelect', {headers:headers})
+      return this._http.post(this.url+'getMaterialesSelect',params, {headers:headers})
       .pipe(map( res => res.json()));          
     }
     getProveedoresSelect(){
@@ -35,6 +35,12 @@ export class IngresoService{
       let headers=new Headers({'Content-Type':'application/json'});
       return this._http.get(this.url+'getGarantiasSelect/'+idproveedor).pipe(map(res=>res.json()));
     
+    }
+    getListaTipos(){
+      // let params=JSON.stringify(parametros);
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getListaTipos', {headers:headers})
+      .pipe(map( res => res.json()));          
     }
     
     getIdentity(){

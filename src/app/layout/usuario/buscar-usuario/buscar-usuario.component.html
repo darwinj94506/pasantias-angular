@@ -1,41 +1,42 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div class="w3-row  w3-green">
+<div class="w3-row ">
+        <mat-card-header style="justify-content: center">
         <div class="w3-col" style="width:85%">
-            <h1 mat-card-title >Funcionarios Públicos</h1>
-                </div>
+                        <mat-card-title align="center">
+                                <h3 class="m-0">Funcionarios Públicos</h3>
+                            </mat-card-title>
+                   
+         </div>
                 <div class="w3-col " style="width:10%">
-                    <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  >
+                    <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  color="warn" >
                     <mat-icon>clear</mat-icon>
                 </button>
      </div>
+    </mat-card-header>
                
   </div>
-<div mat-dialog-content >
+<mat-dialog-content >
   <form [formGroup]="myForm" autocomplete="off" > 
     <h3>Buscar por:</h3> 
-    <mat-form-field class="example-margin" >
+    <mat-form-field  >
                        <input  matInput placeholder="Nombre " 
                          formControlName="nombre" >
    </mat-form-field>
-   <mat-form-field class="example-margin" >
+   <mat-form-field  >
                          <input  matInput placeholder="Apellido" 
                         formControlName="apellido" >
                      </mat-form-field>
-    <mat-form-field class="example-margin" >
+    <mat-form-field >
                          <input  matInput placeholder="Cédula" 
                         formControlName="ci" >
     </mat-form-field>
-     <!-- <button  (click)="buscar()"  mat-raised-button color="warn" > -->
-     <!-- <mat-icon >search</mat-icon>Buscar</button>  -->
-     <!-- <a (click)="buscar()">buscar</a> -->
      <button (click)="buscar()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched"
                 *ngIf="!cargando">  
-                  Guardar</button>
-               <button mat-raised-button color="primary"  *ngIf="cargando">  
-                   <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
+                  Buscar</button>
+    <button mat-raised-button color="primary"  *ngIf="cargando">  
+     <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
                    
    </form>
-</div>   
+</mat-dialog-content>   
 <div class="mb-20" flFlex flexLayout="row" flexLayout.lt-md="column">
     <div fxFlex>
         <table mat-table [dataSource]="ELEMENT_DATA" class="mat-elevation-z8">

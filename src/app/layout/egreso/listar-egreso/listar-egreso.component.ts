@@ -14,7 +14,12 @@ import{ModalVerDetalleComponent} from './../modal-ver-detalle/modal-ver-detalle.
   styleUrls: ['./listar-egreso.component.scss']
 })
 export class ListarEgresoComponent implements OnInit {
-  displayedColumns: string[] = ['idegreso', 'usuario','solicitante' ,'fecha', 'star'];
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
+  bufferValue = 50;
+  cargando=false;
+  displayedColumns: string[] = [ 'nombre','apellido' ,'fecha', 'star'];
   ELEMENT_DATA: any[] = [];
   length=0;
   pageEvent: PageEvent;
@@ -30,18 +35,24 @@ export class ListarEgresoComponent implements OnInit {
     this.cargarTabla();    
   }
   cargarTabla(){
+    this.cargando=true;
     this._egreso.getTotalEgreso().
       subscribe((data)=>{
         this.length=data.data[0].count;
         console.log(data.data[0].count);
       });
-    this._egreso.getPaginarEgresos({"page":0,
-                                "itemsPerPage":10})
-                                .subscribe((data)=>{
-                                  this.ELEMENT_DATA=data.data;
-                                  console.log(this.ELEMENT_DATA);
-                                })
-
+    this._egreso.getPaginarEgresos({"page":0,"itemsPerPage":10}).subscribe((data)=>{
+    this.ELEMENT_DATA=data.data;
+     this.mode="determinate";
+      this.cargando=true;
+     console.log(this.ELEMENT_DATA);
+    },error=>{
+      this.mode="determinate";
+      this.cargando=false;
+      alert("Ha ocurrido un error");
+    }
+  )
+    
   }
 
   openSnackBar(message: string, action: string) {

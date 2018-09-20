@@ -18,10 +18,11 @@ export class ReportePrincipalComponent implements OnInit {
   opcionFiltro=0;
   serie='';
   idsolicitante='';
-  cedulaSolicitante=''; //cedulaSolicitante de persona que solcito el material
+  ucedula='';
+  scedula=''; //cedulaSolicitante de persona que solcito el material
   fecha1='';
   fecha2='';
-  nregistro='';
+  nregistro=0;
   no_existe_registro=false;
 
   constructor(private fb: FormBuilder, private _reportes:ReportesService) { }
@@ -59,7 +60,7 @@ export class ReportePrincipalComponent implements OnInit {
           console.log(data);
         })
       }else if(this.opcionFiltro==2){ //reporte por id de usuario (la persona que ingresa el material)
-        this._reportes.getReporteIngreso({'cedulaSolicitante':this.cedulaSolicitante}).subscribe((data)=>{
+        this._reportes.getReporteIngreso({'ucedula':this.ucedula}).subscribe((data)=>{
           this.ELEMENT_DATA=data.data;
           if(this.ELEMENT_DATA.length==0){
             this.no_existe_registro=true;
@@ -79,7 +80,7 @@ export class ReportePrincipalComponent implements OnInit {
         })
 
       }else if(this.opcionFiltro==2){ //filtro por cedulaSolicitante
-        this._reportes.getReporteDetalleEgreso({'cedulaSolicitante':this.cedulaSolicitante}).subscribe((data)=>{
+        this._reportes.getReporteDetalleEgreso({'scedula':this.scedula}).subscribe((data)=>{
           console.log(data);
           this.DETALLE_EGRESO_DATA=data.data;
           if(this.DETALLE_EGRESO_DATA.length==0){
@@ -88,6 +89,8 @@ export class ReportePrincipalComponent implements OnInit {
         })
 
       }else if(this.opcionFiltro==3){ // egresos por numero de registro
+        alert("registro");
+        this.nregistro-=1000;
         this._reportes.getReporteDetalleEgreso({'nregistro':this.nregistro}).subscribe((data)=>{
           console.log(data);
           this.DETALLE_EGRESO_DATA=data.data;

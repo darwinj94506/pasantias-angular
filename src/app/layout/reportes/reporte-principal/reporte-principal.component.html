@@ -1,76 +1,76 @@
 <div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
-  <!-- card principal donde se muestran los reportes que ofrece el sistema -->
-    <div [fxFlex]="25"> 
-        <mat-card fxFlexFill fxLayoutAlign="">
-          <mat-radio-group class="example-radio-group" [(ngModel)]="opcionBusqueda">
-              <mat-radio-button class="example-radio-button" [value]="1">Materiales    
-              </mat-radio-button>
-              <mat-radio-button class="example-radio-button" [value]="2">Ingresos    
-              </mat-radio-button>
-              <mat-radio-button class="example-radio-button" [value]="3">Egresos    
-              </mat-radio-button>
-          </mat-radio-group>
-        </mat-card>
-    </div>
-    <!-- card donde se muestran los tipos de filtros para los reportes -->
-    <div [fxFlex]="25" *ngIf="opcionBusqueda!=1">
-        <mat-card fxFlexFill fxLayoutAlign="">
-            <mat-radio-group class="example-radio-group" [(ngModel)]="opcionFiltro " [disabled]="opcionBusqueda===0">
-            <mat-radio-button class="example-radio-button" [value]="1">Filtrar por fecha    
+<!-- card principal donde se muestran los reportes que ofrece el sistema -->
+  <div [fxFlex]="25"> 
+      <mat-card fxFlexFill fxLayoutAlign="">
+        <mat-radio-group class="example-radio-group" [(ngModel)]="opcionBusqueda">
+            <mat-radio-button class="example-radio-button" [value]="1">Materiales    
             </mat-radio-button>
-            <mat-radio-button class="example-radio-button" [value]="2">Cédula de usuario   
+            <mat-radio-button class="example-radio-button" [value]="2">Ingresos    
             </mat-radio-button>
-            <mat-radio-button class="example-radio-button" [value]="3">Número de registro   
+            <mat-radio-button class="example-radio-button" [value]="3">Egresos    
             </mat-radio-button>
-         
-          </mat-radio-group>
-        </mat-card>
-    </div>
-    <!-- cards de inputs de los filtros de busqueda,  -->
-    <div [fxFlex]="50" *ngIf="opcionBusqueda!=1">
-        <mat-card fxFlexFill fxLayoutAlign="center center" *ngIf="opcionFiltro===1">  <!--input busqueda por rango de fechas -->
-            <input matInput [matDatepicker]="picker" placeholder="Fecha 1" [(ngModel)]="fecha1">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <input matInput [matDatepicker]="picker2" placeholder="Fecha 2" [(ngModel)]="fecha2">
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2></mat-datepicker>
-              <button mat-button color="primary" (click)="consultar()"
-              [disabled]="myForm.invalid && myForm.untouched">  
-                    Buscar</button>
-        </mat-card> 
-        <mat-card fxFlexFill fxLayoutAlign="center center" *ngIf="opcionFiltro===2"> <!--input busqueda por la cedula del solicitante -->
-            <mat-form-field>
-              <input matInput  placeholder="Cédula" [(ngModel)]="cedulaSolicitante">
-            </mat-form-field> 
+        </mat-radio-group>
+      </mat-card>
+  </div>
+  <!-- card donde se muestran los tipos de filtros para los reportes -->
+  <div [fxFlex]="25" *ngIf="opcionBusqueda!=1">
+      <mat-card fxFlexFill fxLayoutAlign="">
+          <mat-radio-group class="example-radio-group" [(ngModel)]="opcionFiltro " [disabled]="opcionBusqueda===0">
+          <mat-radio-button class="example-radio-button" [value]="1">Filtrar por fecha    
+          </mat-radio-button>
+          <mat-radio-button class="example-radio-button" [value]="2">Cédula de usuario   
+          </mat-radio-button>
+          <mat-radio-button class="example-radio-button" [value]="3">Número de registro   
+          </mat-radio-button>
+        
+        </mat-radio-group>
+      </mat-card>
+  </div>
+  <!-- cards de inputs de los filtros de busqueda,  -->
+  <div [fxFlex]="50" *ngIf="opcionBusqueda!=1">
+      <mat-card fxFlexFill fxLayoutAlign="center center" *ngIf="opcionFiltro===1">  <!--input busqueda por rango de fechas -->
+          <input matInput [matDatepicker]="picker" placeholder="Fecha 1" [(ngModel)]="fecha1">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <input matInput [matDatepicker]="picker2" placeholder="Fecha 2" [(ngModel)]="fecha2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
             <button mat-button color="primary" (click)="consultar()"
             [disabled]="myForm.invalid && myForm.untouched">  
                   Buscar</button>
-        </mat-card>
-        <mat-card fxFlexFill fxLayoutAlign="center center" *ngIf="opcionFiltro===3"> <!--input busqueda numero registro -->
+      </mat-card> 
+      <mat-card fxFlexFill fxLayoutAlign="center center" *ngIf="opcionFiltro===2"> <!--input busqueda por la cedula del solicitante -->
           <mat-form-field>
-            <input matInput  placeholder="Número de registro" [(ngModel)]="nregistro">
+            <input matInput  placeholder="Cédula" [(ngModel)]="scedula">
           </mat-form-field> 
           <button mat-button color="primary" (click)="consultar()"
           [disabled]="myForm.invalid && myForm.untouched">  
                 Buscar</button>
-      </mat-card>      
-    </div>
-    <!--card para la busqueda de material por serie -->
-    <div [fxFlex]="75" *ngIf="opcionBusqueda===1"> 
-        <mat-card fxFlexFill fxLayoutAlign="center center"> 
-            <mat-form-field [fxFlex]="75">
-              <input matInput  placeholder="Serie" [(ngModel)]="serie">   
-            </mat-form-field> 
-            <div [fxFlex]="25">
-              <button mat-button color="primary" (click)="consultar()"
-              [disabled]="myForm.invalid && myForm.untouched">  
-                    Buscar</button>
-            </div>
-           
-        </mat-card>   
-    </div>
-   
+      </mat-card>
+      <mat-card fxFlexFill fxLayoutAlign="center center" *ngIf="opcionFiltro===3"> <!--input busqueda numero registro -->
+        <mat-form-field>
+          <input matInput  placeholder="Número de registro" [(ngModel)]="nregistro">
+        </mat-form-field> 
+        <button mat-button color="primary" (click)="consultar()"
+        [disabled]="myForm.invalid && myForm.untouched">  
+              Buscar</button>
+    </mat-card>      
+  </div>
+  <!--card para la busqueda de material por serie -->
+  <div [fxFlex]="75" *ngIf="opcionBusqueda===1"> 
+      <mat-card fxFlexFill fxLayoutAlign="center center"> 
+          <mat-form-field [fxFlex]="75">
+            <input matInput  placeholder="Serie" [(ngModel)]="serie">   
+          </mat-form-field> 
+          <div [fxFlex]="25">
+            <button mat-button color="primary" (click)="consultar()"
+            [disabled]="myForm.invalid && myForm.untouched">  
+                  Buscar</button>
+          </div>
+          
+      </mat-card>   
+  </div>
+  
 </div>
 
 <!-- tablas de reportes  -->

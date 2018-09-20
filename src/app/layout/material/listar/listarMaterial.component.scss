@@ -1,24 +1,46 @@
 table {
     width: 100%;
-}
-
-.mat-form-field {
-    font-size: 14px;
-    width: 160%;
+    
 }
 
 td,
 th {
     width: 25%;
 }
-.mat-dialog-content{
-    margin: 20px;
-}
-p {
-    font-size: 50px !important; 
-}
+
+.mat-form-field {
+    display: block;
+    // font-size: 18px;
+  }
+
 .mi-boton-salir{
-    align-content: center;
-     margin-top: 10px;
-     color: white;
- }
+    justify-content: right;
+      margin-top: 10px;
+      
+  }
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+//   chebox
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  .example-selected-value {
+    margin: 15px 0;
+  }
+
+  

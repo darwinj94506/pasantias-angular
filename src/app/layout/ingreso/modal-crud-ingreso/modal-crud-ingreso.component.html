@@ -1,6 +1,13 @@
 <form [formGroup]="myForm" autocomplete="off">
   <h2 mat-dialog-title align="center">Nuevo Ingreso</h2>
   <mat-dialog-content>
+      <mat-form-field >
+          <mat-select placeholder="Tipo de Material" formControlName="idtipo" required  (selectionChange)="cargarMateriales()">
+              <mat-option>Seleccione--</mat-option>
+              <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
+          </mat-select>
+          
+      </mat-form-field>
         <mat-form-field>
           <mat-select placeholder="Material" formControlName="idmaterial">
             <mat-option>None</mat-option>
@@ -27,15 +34,15 @@
         </mat-form-field>
         <mat-form-field>
           <input type="number" matInput placeholder="Ingrese la cantidad"
-          formControlName="cantidad">
+          formControlName="cantidad" required>
         </mat-form-field>
         <mat-form-field>
           <input type="text" matInput placeholder="Serie"
           formControlName="serie">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Descripción"
-          formControlName="descripcion">
+          <textarea matInput placeholder="Descripción"
+          formControlName="descripcion"> </textarea>
         </mat-form-field>
   </mat-dialog-content>
  

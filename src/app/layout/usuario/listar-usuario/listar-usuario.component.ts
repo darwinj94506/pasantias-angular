@@ -22,7 +22,7 @@ export class ListarUsuarioComponent implements OnInit {
   value = 50;
   bufferValue = 50;
   cargando=false;
-  displayedColumns: string[] = [ 'nombre','apellido','rol','star'];
+  displayedColumns: string[] = [ 'nombre','apellido','cedula', 'rol','star'];
   ELEMENT_DATA: any[] = [];
   length=0;
   pageEvent: PageEvent;
@@ -38,6 +38,7 @@ export class ListarUsuarioComponent implements OnInit {
       this.cargarTabla();
     }
     cargarTabla(){
+      this.cargando=true;
       this._user.getTotalUsuarios(). subscribe((data)=>{
           this.length=data.data[0].count;
           console.log(data.data[0].count);
@@ -55,7 +56,11 @@ export class ListarUsuarioComponent implements OnInit {
       };
         this.ELEMENT_DATA=data.data;
       console.log(this.ELEMENT_DATA);
+      this.cargando=false;
       
+      },error=>{
+        this.cargando=false;
+        alert("Ha ocurrido un error");
       })
 
     }
@@ -108,7 +113,7 @@ export class ListarUsuarioComponent implements OnInit {
     },error=>{
       console.log(error);
     })
-
+    
     }
       eliminar(row){
       const dialogConfig = new MatDialogConfig();
@@ -116,7 +121,7 @@ export class ListarUsuarioComponent implements OnInit {
       dialogConfig.autoFocus = true;
       const dialogRef = this.dialog.open(ModalEliminar , {
         hasBackdrop:true,
-        width:"40%",
+        width:"45%",
         height:"35%",
         data: row
       });
@@ -124,14 +129,15 @@ export class ListarUsuarioComponent implements OnInit {
         console.log(result);
         if(result){
           this._user.crudUsuario({idusuario:row.idusuario,
-            nombre:row.nombre,apellido:row.apellido,clave:row.clave,rol:row.rol,opcion:'3'}).subscribe(data=>{
+            nombre:row.nombre,apellido:row.apellido,clave:row.clave,cedula:row.cedula,rol:row.rol,opcion:'3'}).subscribe(data=>{
              console.log(data);
              if(data[0]._info_id){
                this.cargarTabla();
              }
              this.openSnackBar(data[0]._info_desc,data[0]._info_titulo);            
            })     
-        }          
+        } 
+
       },error=>{
       console.log(error);
     })     
@@ -142,15 +148,30 @@ export class ListarUsuarioComponent implements OnInit {
 @Component({
   selector: 'Modal-eliminar ',
   template: `
-  <h1 mat-dialog-title align="center" >¿Está seguro que desea eliminar " {{titulo}} "? </h1>
-  <mat-divider></mat-divider>
+  <div class="w3-row ">
+                <mat-card-header style="justify-content: center">
+                <div class="w3-col" style="width:85%">
+                                <mat-card-title align="center">
+                                        <h3 class="m-0">Eliminar Usuario</h3>
+                                    </mat-card-title>
+                           
+                 </div>
+                        <div class="w3-col " style="width:10%">
+                            <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  color="warn" >
+                            <mat-icon>clear</mat-icon>
+                        </button>
+             </div>
+            </mat-card-header>
+                       
+          </div>
 <div mat-dialog-content>
+<p>¿Está seguro que desea eliminar " {{titulo}} "?</p>
 <p>Presione aceptar para confirmar</p>
 </div>
 <mat-divider></mat-divider >
 <div mat-dialog-actions align="center">
   <button mat-button   (click)="clickAceptar()" tabindex="-1">Aceptar</button>
-  <button mat-button   (click)="clickCancelar()" tabindex="-1">Cancelar</button>
+ 
 </div>
   
   `

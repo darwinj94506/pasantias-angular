@@ -80,6 +80,13 @@ export class EgresoService{
       return this._http.post(this.url+'crudEgreso',params, {headers:headers})
                         .pipe(map( res => res.json()));               
     }
+    crudEgreso2(egreso) {
+      console.log(egreso);
+      let params=JSON.stringify(egreso);
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'crudEgreso2',params, {headers:headers})
+                        .pipe(map( res => res.json()));               
+    }
     crudDetalle(detalle) {
       console.log(detalle);
       let params=JSON.stringify(detalle);

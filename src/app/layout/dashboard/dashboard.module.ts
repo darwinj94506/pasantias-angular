@@ -7,6 +7,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { StatModule } from '../../shared/modules/stat/stat.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import{MaterialService} from './../../shared/services/material.service';
+
 
 @NgModule({
     imports: [
@@ -21,6 +23,7 @@ import { DashboardComponent } from './dashboard.component';
         MatButtonModule,
         MatIconModule
     ],
-    declarations: [DashboardComponent]
+    declarations: [DashboardComponent],
+    providers:[MaterialService]
 })
 export class DashboardModule {}

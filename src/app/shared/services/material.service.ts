@@ -19,6 +19,10 @@ export class MaterialService{
       
       return this._http.get(this.url+'getIdMaterial/'+nombreM,).pipe(map(res=>res.json()));
     }
+    getTiposSelect(){
+      
+      return this._http.get(this.url+'getTiposSelect',).pipe(map(res=>res.json()));
+    }
    
     getListaTipos(){
       // let params=JSON.stringify(parametros);

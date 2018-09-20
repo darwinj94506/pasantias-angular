@@ -16,6 +16,7 @@ export class ModalVerDetalleComponent implements OnInit {
   DETAIL_DATA: any[] = [];
   myForm: FormGroup; 
   length=0;
+  numeroRegistro=0;
 
 
   constructor( private fb: FormBuilder,private  _egreso:EgresoService,
@@ -32,8 +33,7 @@ export class ModalVerDetalleComponent implements OnInit {
     console.log(this.data);
     this.getDetallesGlobal();
     this.getDetalleEgreso();
-   
-    
+    this.numeroRegistro=this.data.idegreso+1000;
   }
 
   getDetalleEgreso(){
@@ -41,6 +41,9 @@ export class ModalVerDetalleComponent implements OnInit {
       console.log(data);
       this.DETAIL_DATA=data.data;
     })
+  }
+  close(data) {
+    this.dialogRef.close(data);
   }
   getDetallesGlobal(){
     this._egreso.getDetalles(this.data.idegreso).subscribe((data)=>{
@@ -58,7 +61,7 @@ export class ModalVerDetalleComponent implements OnInit {
       observacion:this.data.observacion
     })
   }
-  cambiarEstado(element){
+  cambiarEstado(element,estado){ //estado 1: en espera de retiro, estado 2: devuelto, estado 3:retirado
     // para ejecutar la funcion de la bdd en la opcion 2 (modificar) solo se necesita 
     //el iddetalle y la opcion 2
     console.log(element);
@@ -68,16 +71,17 @@ export class ModalVerDetalleComponent implements OnInit {
       "idingreso":0,
       "cantidad":0,
       "opcion":2,
-      "idmaterial":0}).subscribe((data)=>{
+      "idmaterial":0,
+      "estado":estado
+    }).subscribe((data)=>{
         console.log(data);
         this.getDetalleEgreso();
         this.getDetallesGlobal()
-
-
       },error=>{
         alert("Error al editar estado")
       })
   }
+
   eliminar(element){
     this._egreso.crudDetalle(
       {"iddetalle":element.iddetalle,
@@ -94,5 +98,7 @@ export class ModalVerDetalleComponent implements OnInit {
         alert("Error al eliminar")
       })
   }
+  
+  
 
 }

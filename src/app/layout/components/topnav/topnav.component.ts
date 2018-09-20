@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+
 @Component({
     selector: 'app-topnav',
     templateUrl: './topnav.component.html',
@@ -38,4 +39,6 @@ export class TopnavComponent implements OnInit {
     changeLang(language: string) {
         this.translate.use(language);
     }
+    
+          
 }

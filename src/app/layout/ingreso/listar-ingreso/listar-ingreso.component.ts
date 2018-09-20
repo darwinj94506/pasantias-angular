@@ -14,6 +14,11 @@ import {MatDialog, MatDialogRef,
 })
 export class ListarIngresoComponent implements OnInit {
 
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
+  bufferValue = 50;
+  cargando=false;
   displayedColumns: string[] = ['nombrematerial', 'cantidad', 'fechaingreso', 'nombreusuario', 'apellido', 'star'];
   ELEMENT_DATA: any[] = [];
   length=0;
@@ -32,12 +37,12 @@ export class ListarIngresoComponent implements OnInit {
         this.length=data.data[0].count;
         console.log(data.data[0].count);
       });
-    this._ingreso.getPaginarIngresos({"page":0,
-                                "itemsPerPage":10})
-                                .subscribe((data)=>{
-                                  this.ELEMENT_DATA=data.data;
-                                  console.log(this.ELEMENT_DATA);
-                                })
+    this._ingreso.getPaginarIngresos({"page":0, "itemsPerPage":10}) .subscribe((data)=>{
+      this.ELEMENT_DATA=data.data;
+      this.mode="determinate";
+      this.cargando=true;
+      console.log(this.ELEMENT_DATA);
+      })
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

@@ -1,15 +1,22 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div class="w3-row  w3-green">
+<div class="w3-row ">
+        <mat-card-header style="justify-content: center">
         <div class="w3-col" style="width:85%">
-            <h1 mat-card-title >Registrar Proveedor</h1>
-                </div>
+                        <mat-card-title align="center">
+                                <h3 class="m-0">Crear Proveedor</h3>
+                            </mat-card-title>
+                   
+         </div>
                 <div class="w3-col " style="width:10%">
-                    <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  >
+                    <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  color="warn" >
                     <mat-icon>clear</mat-icon>
                 </button>
      </div>
+    </mat-card-header>
                
   </div>
+
+ 
 <form [formGroup]="myForm" autocomplete="off" >
   
        <mat-dialog-content align="center">

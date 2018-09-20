@@ -3,15 +3,15 @@ table {
 }
 
 .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-}
+    display: block;
+    // font-size: 18px;
+  }
 td,
 th {
     width: 18%;
 }
 .mi-boton-salir{
-    align-content: center;
-     margin-top: 10px;
-     color: white;
- }
+    justify-content: right;
+      margin-top: 10px;
+      
+  }

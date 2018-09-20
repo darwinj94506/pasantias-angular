@@ -30,9 +30,10 @@ export class ListarComponent implements OnInit {
     ngOnInit() {
       this.paginator.pageIndex=0;
       this.cargarTabla();
-      
+     
     }
     cargarTabla(){
+      this.cargando=true
       this._tipo.totalTipo().
         subscribe((data)=>{
           this.length=data.data[0].count;
@@ -42,7 +43,12 @@ export class ListarComponent implements OnInit {
        this.ELEMENT_DATA=data.data;
       console.log(this.ELEMENT_DATA);
       this.mode="determinate";
-        this.cargando=true;
+        this.cargando=false;
+      },error=>{
+        this.mode="determinate";
+        alert("Ha ocurrido un error");
+        this.cargando=false;
+        
       })
 
     }
@@ -67,7 +73,7 @@ export class ListarComponent implements OnInit {
       abrirModalCrear(data=null){
          const dialogRef = this.dialog.open(ModalCrearComponent , {
            hasBackdrop:true,
-           width:"40%",
+           width:"50%",
            height:"35%",
            data:data
          });
@@ -89,7 +95,7 @@ export class ListarComponent implements OnInit {
          dialogConfig.autoFocus = true;
          const dialogRef = this.dialog.open(ModalEliminar , {
            hasBackdrop:true,
-           width:"25%",
+           width:"45%",
            height:"35%",
            data: row
          });
@@ -115,23 +121,27 @@ export class ListarComponent implements OnInit {
 @Component({
   selector: 'Modal-eliminar ',
   template: `
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <div class="w3-row  w3-green">
-          <div class="w3-col" style="width:85%">
-              <h1 mat-card-title >Eliminar Tipo</h1>
-                  </div>
-                  <div class="w3-col " style="width:10%">
-                      <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  >
-                      <mat-icon>clear</mat-icon>
-                  </button>
-       </div>
-                 
-    </div>
+  <div class="w3-row ">
+  <mat-card-header style="justify-content: center">
+  <div class="w3-col" style="width:85%">
+                  <mat-card-title align="center">
+                          <h4 class="m-0">Eliminar Tipo </h4>
+                      </mat-card-title>
+             
+   </div>
+          <div class="w3-col " style="width:10%">
+              <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar(element)" mat-icon-button  color="warn" >
+              <mat-icon>clear</mat-icon>
+          </button>
+</div>
+</mat-card-header>
+         
+</div>
   <div mat-dialog-content>
   <p >¿Está seguro que desea eliminar " {{titulo}} "?</p>
   <p>Presione aceptar para confirmar</p>
 </div>
-<mat-divider></mat-divider>
+<mat-divider></mat-divider><p>
 <div mat-dialog-actions align="center">
   <button mat-button (click)="clickAceptar()" tabindex="-1">Aceptar</button>
 </div>

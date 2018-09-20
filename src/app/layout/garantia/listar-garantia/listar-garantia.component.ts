@@ -39,6 +39,7 @@ export class ListarProveedorComponent implements OnInit {
       this.cargarTabla();
     }
     cargarTabla(){
+      this.cargando=true
       this._garantia.getTotalGarantias().
         subscribe((data)=>{
           this.length=data.data[0].count;
@@ -47,9 +48,14 @@ export class ListarProveedorComponent implements OnInit {
       this._garantia.getGarantias({"page":0,"itemsPerPage":10}).subscribe((data)=>{
        this.ELEMENT_DATA=data.data;
        this.mode="determinate";
-        this.cargando=true;
+        this.cargando=false;
        console.log(this.ELEMENT_DATA);
-        })
+        },error=>{
+          this.mode="determinate";
+          this.cargando=false;
+          alert("Ha ocurrido un error");
+        }
+      )
     }
 
     openSnackBar(message: string, action: string) {
@@ -70,7 +76,7 @@ export class ListarProveedorComponent implements OnInit {
       }
       openDialog(row): void {
         const dialogRef = this.dialog.open(EditarGarantiaComponent, {
-            width: '30%',
+            width: '45%',
            height:"45%",
             data:row
         });
@@ -86,7 +92,7 @@ export class ListarProveedorComponent implements OnInit {
     openCrearDialog(data=null):void{
       const dialogRef = this.dialog.open(CrearGarantiaComponent, {
         hasBackdrop:true,
-        width:"30%",
+        width:"45%",
         height:"45%",
        data:data
     });
@@ -106,8 +112,8 @@ export class ListarProveedorComponent implements OnInit {
       dialogConfig.autoFocus = true;
       const dialogRef = this.dialog.open(ModalEliminar , {
         hasBackdrop:true,
-        width:"40%",
-        height:"25%",
+        width:"45%",
+        height:"35%",
         data: row
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -131,15 +137,30 @@ export class ListarProveedorComponent implements OnInit {
 @Component({
   selector: 'Modal-eliminar ',
   template: `
-  <h1 mat-dialog-title align="center" >¿Está seguro que desea eliminar " {{titulo}} "? </h1>
-  <mat-divider></mat-divider>
+  <div class="w3-row ">
+        <mat-card-header style="justify-content: center">
+        <div class="w3-col" style="width:85%">
+                        <mat-card-title align="center">
+                                <h4 class="m-0">Editar Garantia</h4>
+                            </mat-card-title>
+                   
+         </div>
+                <div class="w3-col " style="width:10%">
+                    <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar()" mat-icon-button  color="warn" >
+                    <mat-icon>clear</mat-icon>
+                </button>
+     </div>
+    </mat-card-header>
+               
+  </div>
 <div mat-dialog-content>
+<p>¿Está seguro que desea eliminar " {{titulo}} "?</p>
 <p>Presione aceptar para confirmar</p>
 </div>
 <mat-divider></mat-divider >
 <div mat-dialog-actions align="center">
   <button mat-button   (click)="clickAceptar()" tabindex="-1">Aceptar</button>
-  <button mat-button   (click)="clickCancelar()" tabindex="-1">Cancelar</button>
+  
 </div>
   
   `
@@ -147,7 +168,7 @@ export class ListarProveedorComponent implements OnInit {
 
 export class ModalEliminar  {
   //public desc=this.data[0]._info_desc;
-  public titulo=this.data.nombre;
+  public titulo=this.data.nombreproveedor;
   //public estado=this.data[0]._info_id;
 
 

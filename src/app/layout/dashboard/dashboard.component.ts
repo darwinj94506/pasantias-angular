@@ -1,21 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import{MaterialService} from './../../shared/services/material.service'
 
 export interface PeriodicElement {
-    name: string;
-    position: number;
-    weight: number;
-    symbol: string;
+    nombre: string;
+    nombretipo: number;
+    stock: number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' }
+    { nombretipo: 1, nombre: 'Hydrogen', stock: 1.0079 },
+    { nombretipo: 2, nombre: 'Helium', stock: 4.0026 },
 ];
 
 @Component({
@@ -24,9 +19,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-    displayedColumns = ['position', 'name', 'weight', 'symbol'];
+    displayedColumns = [ 'nombretipo', 'nombre','stock'];
     dataSource = new MatTableDataSource(ELEMENT_DATA);
     places: Array<any> = [];
+    // ELEMENT_DATA: any[] = [];
+    // length=0;
 
     applyFilter(filterValue: string) {
         filterValue = filterValue.trim(); // Remove whitespace
@@ -34,7 +31,9 @@ export class DashboardComponent implements OnInit {
         this.dataSource.filter = filterValue;
     }
 
-    constructor() {
+    constructor(
+        // private _material:MaterialService 
+     ) {
         this.places = [
             {
                 imgSrc: 'assets/images/card-1.jpg',

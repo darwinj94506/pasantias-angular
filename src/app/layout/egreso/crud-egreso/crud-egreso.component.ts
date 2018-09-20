@@ -37,6 +37,7 @@ export class CrudEgresoComponent implements OnInit  {
     // this.dataSource.filter = filterValue;
   }
   ngOnInit(){
+    
     this._egreso.getUsuariosSelect().subscribe((data)=>{
       console.log(data);
       this.usuarios=data;
@@ -54,7 +55,7 @@ export class CrudEgresoComponent implements OnInit  {
     console.log(this.myForm.value);
     this.cargando=true;
     console.log(this.myForm.value);
-    this._egreso.crudEgreso(this.myForm.value).subscribe(data=>{
+    this._egreso.crudEgreso2(this.myForm.value).subscribe(data=>{
       console.log(data[0]._pk);
       this.cargando=false;
       //accionar la accion de guardar el detalle 

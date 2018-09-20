@@ -16,6 +16,7 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
   identity:any;
   proveedores:any;
   garantias:any;
+  tiposMat;
   // proveedor = new FormControl('');
 
   constructor( private fb: FormBuilder,
@@ -23,6 +24,13 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
     @Inject(MAT_DIALOG_DATA) public data: any,private _ingreso:IngresoService,
     public dialog: MatDialog) {
        this.identity=this._ingreso.getIdentity(); 
+     }
+     ngOnInit() {
+  
+      this.inicializarFormulario();
+      this.cargarProveedores();
+      this.cargarTipos();
+    
      }
   ngOnChanges(){   
   }
@@ -33,10 +41,12 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
       idmaterial:null,
       idproveedor:null,
       idgarantia:null,
-      cantidad:null,
+      cantidad:1,
       serie:'',
       descripcion:'',
-      opcion:1
+      opcion:1,
+      idtipo:null
+
     })
   }
   
@@ -54,11 +64,19 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
     },error=>{
       console.log(error);
     })
-    
-
+  }
+  cargarTipos(){
+    console.log(this.myForm.get('idproveedor').value);
+    this._ingreso.getListaTipos().subscribe((data)=>{
+      console.log(data);
+      this.tiposMat=data.data; 
+    },error=>{
+      console.log(error);
+    })
   }
   cargarMateriales(){
-    this._ingreso.getMaterialesSelect().subscribe((data)=>{
+    console.log(this.myForm.get('idtipo').value);
+    this._ingreso.getMaterialesSelect({'idtipo':this.myForm.get('idtipo').value}).subscribe((data)=>{
       console.log(data);
       this.materiales=data.data; 
     },error=>{
@@ -66,15 +84,7 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
     })
   }
   // idusuario:this.identity.idusuario,
-  ngOnInit() {
-    // if(this.identity){
-     
-    // }
-   this.inicializarFormulario();
-   this.cargarMateriales();
-   this.cargarProveedores();
- 
-  }
+  
   crudIngreso(){
     console.log(this.myForm.value);
     this.cargando=true;

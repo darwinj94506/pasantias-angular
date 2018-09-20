@@ -47,6 +47,7 @@ export class EditarUsuarioComponent implements OnInit {
                 apellido:this.data.apellido,
                 nombre:this.data.nombre,
                 clave:this.data.clave,
+                cedula:this.data.cedula,
                 rol:this.roles.rol,
                 opcion:'2'
                
