@@ -74,7 +74,7 @@
 </div>
 
 <!-- tablas de reportes  -->
- <div class="example-container mat-elevation-z8">
+ <div class="example-container mat-elevation-z8" id="contenido" #contenido>
   <mat-table [dataSource]="ELEMENT_DATA" *ngIf="ELEMENT_DATA.length > 0"> <!--Si existen Ingresos que coincidan con el filtro-->
     <ng-container matColumnDef="material">
       <mat-header-cell *matHeaderCellDef>Material</mat-header-cell>
@@ -144,6 +144,8 @@
     </div>
 </div>
     
+<button mat-button color="primary" (click)="captureScreen()">  
+      PDF</button>
 
 
   

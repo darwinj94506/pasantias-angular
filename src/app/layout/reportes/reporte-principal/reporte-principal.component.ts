@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import {FormControl, Validators,FormBuilder,FormGroup, NgForm} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig,MatSnackBar,MatSort, MatTableDataSource} from '@angular/material';
 import{ReportesService} from './../../../shared/services/reportes.service';
+import * as jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-reporte-principal',
   templateUrl: './reporte-principal.component.html',
@@ -24,6 +26,8 @@ export class ReportePrincipalComponent implements OnInit {
   fecha2='';
   nregistro=0;
   no_existe_registro=false;
+  @ViewChild('contenido') content:ElementRef;
+
 
   constructor(private fb: FormBuilder, private _reportes:ReportesService) { }
 
@@ -32,7 +36,45 @@ export class ReportePrincipalComponent implements OnInit {
       serie:'0'
     })
   }
+  
+      // //----pdf-----
+      // let doc = new jsPDF('l', 'mm', 'a4');
+      // let specialElementHandlers={
+      //   '#editor':function(element,rederer){
+      //     return true;
+      //   }
+      // };
+      // let content=this.content.nativeElement;
+      // doc.fromHTML(content.innerHTML,15,15,{
+      //   'width':150,
+      //   'elementHandlers':specialElementHandlers,
+     
+      // });
+      // doc.save('reporte');
+
+      // ---------------nuevo pdf
+      public captureScreen()  
+  {  
+    var data = document.getElementById('contenido');  
+    html2canvas(data).then(canvas => {  
+      // Few necessary setting options  
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+  
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jsPDF('l', 'mm', 'a4'); // A4 size page of PDF  
+      var position = 0;  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      pdf.save('MYPdf.pdf'); // Generated PDF   
+    });  
+  }  
+  
+//----pdf-------
+  
   consultar(){
+    
     this.ELEMENT_DATA=[];
     this.DETALLE_EGRESO_DATA=[];
     this.no_existe_registro=false;
@@ -56,6 +98,8 @@ export class ReportePrincipalComponent implements OnInit {
           this.ELEMENT_DATA=data.data;
           if(this.ELEMENT_DATA.length==0){
             this.no_existe_registro=true;
+          }else{
+          
           }
           console.log(data);
         })
