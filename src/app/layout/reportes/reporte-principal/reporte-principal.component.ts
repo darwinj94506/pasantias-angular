@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import {FormControl, Validators,FormBuilder,FormGroup, NgForm} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig,MatSnackBar,MatSort, MatTableDataSource} from '@angular/material';
 import{ReportesService} from './../../../shared/services/reportes.service';
+import * as jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import {ModalVerReporteComponent} from './../modal-ver-reporte/modal-ver-reporte.component';
 @Component({
   selector: 'app-reporte-principal',
   templateUrl: './reporte-principal.component.html',
@@ -10,7 +13,7 @@ import{ReportesService} from './../../../shared/services/reportes.service';
 export class ReportePrincipalComponent implements OnInit {
   myForm: FormGroup; 
   displayedColumns: string[] = [ 'material', 'serie','garantia','proveedor','usuario'];
-  ELEMENT_DATA: any[] = [];
+  INGRESO_DATA: any[] = [];
   detalleIngresoColumns: string[] = ['solicitante', 'material','cantidad', 'serie','garantia','proveedor','usuario'];
   DETALLE_EGRESO_DATA: any[] = [];
 
@@ -19,21 +22,62 @@ export class ReportePrincipalComponent implements OnInit {
   serie='';
   idsolicitante='';
   ucedula='';
-  scedula=''; //cedulaSolicitante de persona que solcito el material
+  scedula=''; //cedulaSolicitante de persona que solicito el material
   fecha1='';
   fecha2='';
   nregistro=0;
   no_existe_registro=false;
-
-  constructor(private fb: FormBuilder, private _reportes:ReportesService) { }
-
+  // @ViewChild('contenido') content:ElementRef;
+  constructor(private fb: FormBuilder, private _reportes:ReportesService,public dialog: MatDialog) { }
   ngOnInit() {
     this.myForm = this.fb.group({
       serie:'0'
     })
   }
+  
+      
+  //     public captureScreen()  
+  // {  
+  //   var data = document.getElementById('contenido');  
+  //   html2canvas(data).then(canvas => {  
+  //     // Few necessary setting options  
+  //     var imgWidth = 208;   
+  //     var pageHeight = 295;    
+  //     var imgHeight = canvas.height * imgWidth / canvas.width;  
+  //     var heightLeft = imgHeight;  
+  
+  //     const contentDataURL = canvas.toDataURL('image/png')  
+  //     let pdf = new jsPDF('l', 'mm', 'a4'); // A4 size page of PDF  
+  //     var position = 0;  
+  //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+  //     pdf.save('MYPdf.pdf'); // Generated PDF   
+  //   });  
+  // }  
+
+  abrirModalVerDetalle(data=null,tipo){ 
+    let array={
+      tipo:tipo,
+      data:data
+    } 
+    const dialogRef = this.dialog.open(ModalVerReporteComponent , {
+      hasBackdrop:true,
+      width:"99%",
+      height:"99%",
+      data:array
+    });
+    dialogRef.afterClosed().subscribe(result => {
+     console.log("cerros");
+    
+    },error=>{
+  
+  })
+}
+
+ 
+    
   consultar(){
-    this.ELEMENT_DATA=[];
+    
+    this.INGRESO_DATA=[];
     this.DETALLE_EGRESO_DATA=[];
     this.no_existe_registro=false;
     if(this.opcionBusqueda==1){ //reporte de materiales dada una serie de ingreso  
@@ -42,28 +86,37 @@ export class ReportePrincipalComponent implements OnInit {
         this.DETALLE_EGRESO_DATA=data.data;
         if(this.DETALLE_EGRESO_DATA.length==0){
           this._reportes.getReporteIngreso({'serie':this.serie}).subscribe((data)=>{
-            this.ELEMENT_DATA=data.data;
-            if(this.ELEMENT_DATA.length==0){
+            this.INGRESO_DATA=data.data;
+            
+            if(this.INGRESO_DATA.length==0){
               this.no_existe_registro=true;
+            }else{
+              this.abrirModalVerDetalle(this.INGRESO_DATA,1);
             }
             console.log(data);
           })
+        }else{
+          this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
         }
       })
     }else if(this.opcionBusqueda==2){ //reporte ingresos
       if(this.opcionFiltro==1){ //reporte en un rango de dos fechas
         this._reportes.getReporteIngreso({'fecha1':this.fecha1,'fecha2':this.fecha2}).subscribe((data)=>{
-          this.ELEMENT_DATA=data.data;
-          if(this.ELEMENT_DATA.length==0){
+          this.INGRESO_DATA=data.data;
+          if(this.INGRESO_DATA.length==0){
             this.no_existe_registro=true;
+          }else{
+            this.abrirModalVerDetalle(this.INGRESO_DATA,1);
           }
           console.log(data);
         })
       }else if(this.opcionFiltro==2){ //reporte por id de usuario (la persona que ingresa el material)
         this._reportes.getReporteIngreso({'ucedula':this.ucedula}).subscribe((data)=>{
-          this.ELEMENT_DATA=data.data;
-          if(this.ELEMENT_DATA.length==0){
+          this.INGRESO_DATA=data.data;
+          if(this.INGRESO_DATA.length==0){
             this.no_existe_registro=true;
+          }else{
+            this.abrirModalVerDetalle(this.INGRESO_DATA,1);
           }
           console.log(data);
         })
@@ -76,6 +129,8 @@ export class ReportePrincipalComponent implements OnInit {
           this.DETALLE_EGRESO_DATA=data.data;
           if(this.DETALLE_EGRESO_DATA.length==0){
             this.no_existe_registro=true;
+          }else{
+            this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
           }
         })
 
@@ -85,18 +140,26 @@ export class ReportePrincipalComponent implements OnInit {
           this.DETALLE_EGRESO_DATA=data.data;
           if(this.DETALLE_EGRESO_DATA.length==0){
             this.no_existe_registro=true;
+          }else{
+            this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
+
           }
         })
 
       }else if(this.opcionFiltro==3){ // egresos por numero de registro
-        alert("registro");
-        this.nregistro-=1000;
-        this._reportes.getReporteDetalleEgreso({'nregistro':this.nregistro}).subscribe((data)=>{
+        // alert("registro");
+        // this.nregistro-=1000;
+        let numre=(this.nregistro-1000);
+        alert(this.nregistro);
+        this._reportes.getReporteDetalleEgreso({'nregistro':this.nregistro-1000}).subscribe((data)=>{
           console.log(data);
           this.DETALLE_EGRESO_DATA=data.data;
           if(this.DETALLE_EGRESO_DATA.length==0){
             this.no_existe_registro=true;
             
+          }else{
+            this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
+
           }
         })
 

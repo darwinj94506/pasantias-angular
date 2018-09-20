@@ -55,14 +55,14 @@ export class CrudEgresoComponent implements OnInit  {
     console.log(this.myForm.value);
     this.cargando=true;
     console.log(this.myForm.value);
-    this._egreso.crudEgreso2(this.myForm.value).subscribe(data=>{
+    this._egreso.crudEgreso(this.myForm.value).subscribe(data=>{
       console.log(data[0]._pk);
       this.cargando=false;
       //accionar la accion de guardar el detalle 
       // this.idDetalle=this.myForm.get('iddetalle').value;
       this.idDetalle=data[0]._pk;
 
-      alert("guardado");
+      // alert("guardado");
   },error=>{
     console.log(this.myForm.value);
     //accionar la accion de guardar el detalle 

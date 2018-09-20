@@ -53,7 +53,7 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.ELEMENT_DATA[i].idegreso=this.idDetalle;
       }
 
-      this._egreso.crudDetalle(this.ELEMENT_DATA).subscribe((data)=>{
+      this._egreso.crudDetalle2(this.ELEMENT_DATA).subscribe((data)=>{
               console.log(data);
           },error=>{
           })

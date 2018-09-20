@@ -16,6 +16,7 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalVerReporteComponent } from './modal-ver-reporte/modal-ver-reporte.component';
 @NgModule({
   imports: [
     CommonModule, 
@@ -28,12 +29,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule
     // BrowserAnimationsModule
   ],
-  declarations: [ReportePrincipalComponent],
+  declarations: [ReportePrincipalComponent, ModalVerReporteComponent],
   providers:[
     ReportesService,
     {
       provide:LOCALE_ID, useValue: 'es'
     }
+  ],
+  entryComponents:[
+    ModalVerReporteComponent
   ]
 })
 export class ReportesModule {

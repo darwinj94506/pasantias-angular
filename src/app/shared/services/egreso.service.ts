@@ -30,7 +30,7 @@ export class EgresoService{
     getMaterialesSelect(){
       // let params=JSON.stringify(parametros);
       let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getMaterialesSelect', {headers:headers})
+      return this._http.post(this.url+'getMaterialesSelect2', {headers:headers})
       .pipe(map( res => res.json()));          
     }
     getProveedoresSelect(){
@@ -80,11 +80,18 @@ export class EgresoService{
       return this._http.post(this.url+'crudEgreso',params, {headers:headers})
                         .pipe(map( res => res.json()));               
     }
-    crudEgreso2(egreso) {
-      console.log(egreso);
-      let params=JSON.stringify(egreso);
+    // crudEgreso(egreso) {
+    //   console.log(egreso);
+    //   let params=JSON.stringify(egreso);
+    //   let headers=new Headers({'Content-Type':'application/json'});
+    //   return this._http.post(this.url+'crudEgreso',params, {headers:headers})
+    //                     .pipe(map( res => res.json()));               
+    // }
+    crudDetalle2(detalle) {
+      console.log(detalle);
+      let params=JSON.stringify(detalle);
       let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'crudEgreso2',params, {headers:headers})
+      return this._http.post(this.url+'crudDetalle2',params, {headers:headers})
                         .pipe(map( res => res.json()));               
     }
     crudDetalle(detalle) {
