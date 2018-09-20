@@ -20,26 +20,42 @@
         <mat-form-field  >
                    <input [readonly]="accion" matInput placeholder="Nombre de Proveedor" 
                      formControlName="nombre" required>
-               </mat-form-field><p>
+                     <mat-error class="error-message"
+                     *ngIf="myForm.get('nombre').hasError('required')
+                      && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                      Campo obligatorio</mat-error>
+                    <mat-error class="error-message"
+                      *ngIf="myForm.get('nombre').hasError('maxlength')
+                       && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                       Máximo 50 Caracteres</mat-error>
+               </mat-form-field>
                  <mat-form-field  >
                      <input   [readonly]="accion"  matInput placeholder="Teléfono N°1" 
                     formControlName="telefono1" required>
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('telefono1').hasError('required')
+                     && (myForm.get('telefono1').dirty || myForm.get('telefono1').touched)">
+                     Campo obligatorio</mat-error>
+                   <mat-error class="error-message"
+                     *ngIf="myForm.get('telefono1').hasError('maxlength')
+                      && (myForm.get('telefono1').dirty || myForm.get('telefono1').touched)">
+                      Máximo 50 Caracteres</mat-error>
                  </mat-form-field><p>
                  <mat-form-field  >
                      <input  [readonly]="accion" matInput placeholder="Teléfono N°2" 
-                    formControlName="telefono2" required>
+                    formControlName="telefono2" >
                  </mat-form-field><p>
              <mat-form-field  >
                      <input  [readonly]="accion" matInput placeholder="Correo electrónico" 
-                    formControlName="email" required>
+                    formControlName="email" >
                 </mat-form-field><p>
              <mat-form-field  >
                      <input  [readonly]="accion" matInput placeholder="Dirección" 
-                    formControlName="direccion" required>
+                    formControlName="direccion" >
                  </mat-form-field><p>
             <mat-form-field  >
                      <input  [readonly]="accion" matInput placeholder="Ruc" 
-                    formControlName="ruc" required>
+                    formControlName="ruc" >
                  </mat-form-field><p>
             
         </mat-dialog-content>

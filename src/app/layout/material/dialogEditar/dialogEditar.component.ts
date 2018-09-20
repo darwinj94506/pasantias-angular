@@ -27,7 +27,7 @@ export class DialogOverviewComponent implements OnInit {
             this.myForm = this.fb.group({
                 idmaterial: this.data.idmaterial,
                 idtipo:this.data.idtipo,
-                nombre:this.data.nombre,
+                nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(10)])],
                 opcion:'2'
                
               })

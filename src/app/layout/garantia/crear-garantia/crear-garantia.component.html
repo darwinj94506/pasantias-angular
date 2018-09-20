@@ -20,7 +20,15 @@
                    <mat-form-field  >
                        <input  matInput placeholder="Descripción" 
                          formControlName="descripcion" required>
-                   </mat-form-field><p>
+                         <mat-error class="error-message"
+                         *ngIf="myForm.get('descripcion').hasError('required')
+                          && (myForm.get('descripcion').dirty || myForm.get('descripcion').touched)">
+                          Campo obligatorio</mat-error>
+                        <mat-error class="error-message"
+                          *ngIf="myForm.get('descripcion').hasError('maxlength')
+                           && (myForm.get('descripcion').dirty || myForm.get('descripcion').touched)">
+                           Máximo 50 Caracteres</mat-error>
+                   </mat-form-field>
                    <mat-form-field >
                        <mat-select placeholder="Proveedos" formControlName="idproveedor" required>
                            <mat-option>Seleccione--</mat-option>

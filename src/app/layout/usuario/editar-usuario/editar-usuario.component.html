@@ -14,32 +14,57 @@
             </mat-card-header>
                        
           </div>
-<form [formGroup]="myForm" autocomplete="off" >
+<form [formGroup]="myForm"  [autocomplete]="off">
 
-       <mat-dialog-content align="center">
+       <mat-dialog-content align="center" >
             <mat-form-field  >
 
                    <input matInput [readonly]="true"  placeholder="Nombre " 
                      formControlName="nombre" >
-               </mat-form-field><p>
+                     <mat-error class="error-message"
+                *ngIf="myForm.get('nombre').hasError('required')
+                 && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                 Campo obligatorio</mat-error>
+               <mat-error class="error-message"
+                 *ngIf="myForm.get('nombre').hasError('maxlength')
+                  && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                  Máximo 50 Caracteres</mat-error>
+               </mat-form-field>
                  <mat-form-field  >
                      <input  matInput [readonly]="true" placeholder="Apellido" 
                     formControlName="apellido" >
                  </mat-form-field><p>
                 <mat-form-field  >
-             <input  matInput [readonly]="true" placeholder="Apellido" 
+             <input  matInput [readonly]="true" placeholder="Cedula" 
                                formControlName="cedula" >
                  </mat-form-field><p>
             
              <mat-form-field  >
-                     <input  type="password" matInput placeholder="Clave" 
+                     <input  type="password"  id="password" name="password" matInput placeholder="Clave" 
                     formControlName="clave" required>
+                    <mat-error class="error-message"
+                *ngIf="myForm.get('clave').hasError('required')
+                 && (myForm.get('clave').dirty || myForm.get('clave').touched)">
+                 Campo obligatorio</mat-error>
+               <mat-error class="error-message"
+                 *ngIf="myForm.get('clave').hasError('maxlength')
+                  && (myForm.get('clave').dirty || myForm.get('clave').touched)">
+                  Máximo 50 Caracteres</mat-error>
             </mat-form-field><p>
               <mat-form-field >
                  <mat-select placeholder="rol" formControlName="rol" required>
                   <mat-option>Seleccione--</mat-option>
                      <mat-option  *ngFor="let option of roles" [value]="option.rol">{{option.nombre}}</mat-option>
                      </mat-select>
+                     <mat-error class="error-message"
+                     *ngIf="myForm.get('rol').hasError('required')
+                      && (myForm.get('rol').dirty || myForm.get('clave').touched)">
+                      Campo obligatorio</mat-error>
+                    <mat-error class="error-message"
+                      *ngIf="myForm.get('rol').hasError('maxlength')
+                       && (myForm.get('rol').dirty || myForm.get('rol').touched)">
+                       Máximo 50 Caracteres</mat-error>
+                     
             </mat-form-field>
            
         </mat-dialog-content>

@@ -22,6 +22,14 @@
         <mat-form-field>
           <input matInput placeholder="Ingrese el nombre del tipo"
           formControlName="nombre">
+          <mat-error class="error-message"
+                     *ngIf="myForm.get('nombre').hasError('required')
+                      && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                      Campo obligatorio</mat-error>
+                    <mat-error class="error-message"
+                      *ngIf="myForm.get('nombre').hasError('maxlength')
+                       && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                       Máximo 50 Caracteres</mat-error>
         </mat-form-field>
 
   </mat-dialog-content><p></p>

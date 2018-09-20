@@ -32,6 +32,7 @@ export class ListarIngresoComponent implements OnInit {
     this.cargarTabla();  
   }
   cargarTabla(){
+    this.cargando=true;
     this._ingreso.totalIngreso().
       subscribe((data)=>{
         this.length=data.data[0].count;
@@ -40,9 +41,15 @@ export class ListarIngresoComponent implements OnInit {
     this._ingreso.getPaginarIngresos({"page":0, "itemsPerPage":10}) .subscribe((data)=>{
       this.ELEMENT_DATA=data.data;
       this.mode="determinate";
-      this.cargando=true;
+      this.cargando=false;
       console.log(this.ELEMENT_DATA);
-      })
+      },error=>{
+        this.mode="determinate";
+        this.cargando=false;
+        alert("Error en la transaccion");
+       
+      }
+    )
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

@@ -45,8 +45,8 @@ export class EditarUsuarioComponent implements OnInit {
             this.myForm = this.fb.group({
                 idusuario: this.data.idusuario,
                 apellido:this.data.apellido,
-                nombre:this.data.nombre,
-                clave:this.data.clave,
+                nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
+                clave:[this.data.clave,Validators.compose([Validators.required,Validators.maxLength(50)])],
                 cedula:this.data.cedula,
                 rol:this.roles.rol,
                 opcion:'2'

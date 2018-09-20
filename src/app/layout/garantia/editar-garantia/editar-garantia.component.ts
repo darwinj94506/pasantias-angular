@@ -28,7 +28,7 @@ export class EditarGarantiaComponent implements OnInit {
             this.myForm = this.fb.group({
                 idgarantia:this.data.idgarantia,
                 idproveedor:this.data.idproveedor,
-                descripcion:this.data.descripcion,
+                descripcion:[this.data.descripcion,Validators.compose([Validators.required,Validators.maxLength(200)])],
                 opcion:'2' 
                
               })

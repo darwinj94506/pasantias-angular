@@ -23,8 +23,8 @@ export class CrearProveedorComponent implements OnInit {
   ngOnInit() {
     this.myForm = this.fb.group({
       idproveedor:'0',
-      nombre:'',
-      telefono1:'',
+      nombre:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
+      telefono1:['',Validators.compose([Validators.required,Validators.maxLength(10)])],
       telefono2:'',
       email:'',
       direccion:'',
@@ -36,8 +36,8 @@ export class CrearProveedorComponent implements OnInit {
       // this.myForm.reset();
       this.myForm = this.fb.group({
         idproveedor:this.data.idproveedor,
-        nombre:this.data.nombre,
-        telefono1:this.data.telefono1,
+        nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
+        telefono1:[this.data.telefono1,Validators.compose([Validators.required,Validators.maxLength(10)])],
         telefono2:this.data.telefono2,
         email:this.data.email,
         direccion:this.data.direccion,

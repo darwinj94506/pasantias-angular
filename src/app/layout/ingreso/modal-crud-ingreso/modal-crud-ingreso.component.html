@@ -1,5 +1,20 @@
 <form [formGroup]="myForm" autocomplete="off">
-  <h2 mat-dialog-title align="center">Nuevo Ingreso</h2>
+  <div class="w3-row ">
+    <mat-card-header style="justify-content: center">
+    <div class="w3-col" style="width:85%">
+                    <mat-card-title align="center">
+                            <h3 class="m-0">Ingreso</h3>
+                        </mat-card-title>
+               
+     </div>
+            <div class="w3-col " style="width:10%">
+                <button class="mi-boton-salir w3-mobile"  (click)="close(element)" mat-icon-button  color="warn" >
+                <mat-icon>clear</mat-icon>
+            </button>
+ </div>
+</mat-card-header>
+           
+</div>
   <mat-dialog-content>
         <mat-form-field>
           <mat-select placeholder="Material" formControlName="idmaterial">

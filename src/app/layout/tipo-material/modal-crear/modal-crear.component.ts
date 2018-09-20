@@ -38,7 +38,7 @@ export class ModalCrearComponent implements OnInit {
     // })
     this.myForm = this.fb.group({
       idtipo:'0',
-      nombre:'',
+      nombre:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
       opcion:'1' 
     })
     console.log(this.data);
@@ -47,7 +47,7 @@ export class ModalCrearComponent implements OnInit {
       // this.myForm.reset();
       this.myForm = this.fb.group({
         idtipo:this.data.idtipo,
-        nombre:this.data.nombre,
+        nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
         opcion:'2' 
       })
     }

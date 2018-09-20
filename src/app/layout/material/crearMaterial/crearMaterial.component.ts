@@ -24,7 +24,7 @@ export class CrearComponent implements OnInit {
     this.myForm = this.fb.group({
       idmaterial:'0',
       idtipo:['',Validators.required],
-      nombre:['',Validators.compose([Validators.required,Validators.maxLength(10)])],
+      nombre:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
       opcion:'1'
      
     })

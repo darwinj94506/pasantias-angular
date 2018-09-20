@@ -29,11 +29,11 @@ export class CrearUsuarioComponent implements OnInit {
   ngOnInit() {
     this.myForm = this.fb.group({
       idusuario:'0',
-      nombre:'',
+      nombre:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
       apellido:'',
-      clave:'',
+      clave:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
       cedula:'',
-      rol:'',
+      rol:['',Validators.required],
       opcion:'1'
      
     })
@@ -82,11 +82,11 @@ dialogRef.afterClosed().subscribe(result => {
  console.log(result);
  this.myForm = this.fb.group({
   idusuario:result.usuario_id,
-  nombre:result.nombre,
+  nombre:[result.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
   apellido:result.apellido,
-  clave:result.ci,
+  clave:[result.ci,Validators.compose([Validators.required,Validators.maxLength(50)])],
   cedula:result.ci,
-  rol:result.rol,
+  rol:[result.rol,Validators.required],
   opcion:'1' 
 })
  

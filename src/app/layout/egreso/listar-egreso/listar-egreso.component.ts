@@ -44,7 +44,7 @@ export class ListarEgresoComponent implements OnInit {
     this._egreso.getPaginarEgresos({"page":0,"itemsPerPage":10}).subscribe((data)=>{
     this.ELEMENT_DATA=data.data;
      this.mode="determinate";
-      this.cargando=true;
+      this.cargando=false;
      console.log(this.ELEMENT_DATA);
     },error=>{
       this.mode="determinate";

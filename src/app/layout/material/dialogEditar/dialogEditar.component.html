@@ -20,7 +20,17 @@
     
         <mat-form-field>
                 <input matInput placeholder="Nombre del material" #material
-                formControlName="nombre" required> </mat-form-field>
+                formControlName="nombre" required> 
+                <mat-error class="error-message"
+                *ngIf="myForm.get('nombre').hasError('required')
+                 && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                 Campo obligatorio</mat-error>
+               <mat-error class="error-message"
+                 *ngIf="myForm.get('nombre').hasError('maxlength')
+                  && (myForm.get('nombre').dirty || myForm.get('nombre').touched)">
+                  Máximo 50 Caracteres</mat-error>
+        </mat-form-field>
+        
         <mat-form-field  >
             <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>
                     <mat-option>Seleccione--</mat-option>

@@ -34,8 +34,8 @@ export class EditarProveedorComponent implements OnInit {
             console.log(this.accion)
             this.myForm = this.fb.group({
                 idproveedor: this.data.idproveedor,
-                nombre:this.data.nombre,
-                telefono1:this.data.telefono1,
+                nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
+                telefono1:[this.data.telefono1,Validators.compose([Validators.required,Validators.maxLength(10)])],
                 telefono2:this.data.telefono2,
                 email:this.data.email,
                 direccion:this.data.direccion,
