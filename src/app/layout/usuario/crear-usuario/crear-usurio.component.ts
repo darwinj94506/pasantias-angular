@@ -13,10 +13,13 @@ export class CrearUsuarioComponent implements OnInit {
   active = true; 
   roles:any=[{
     "rol":1,
-    "nombre":"funcionaro"
+    "nombre":"funcionario"
 },{
     "rol":2,
     "nombre":"administrador"
+},{
+  "rol":3,
+  "nombre":"ayudante"
 }]; 
   myForm: FormGroup; 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import{RolUserGuard} from '../shared/guard/rolUser.guard';
 import { LayoutComponent } from './layout.component';
 
 const routes: Routes = [
@@ -10,40 +10,20 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'dashboard'
+                redirectTo: 'modulo-material'
             },
             {
                 path: 'dashboard',
                 loadChildren: './dashboard/dashboard.module#DashboardModule'
             },
-            // {
-            //     path: 'charts',
-            //     loadChildren: './charts/charts.module#ChartsModule'
-            // },
-            // {
-            //     path: 'components',
-            //     loadChildren:
-            //         './material-components/material-components.module#MaterialComponentsModule'
-            // },
-            // {
-            //     path: 'forms',
-            //     loadChildren: './forms/forms.module#FormsModule'
-            // },
-            // {
-            //     path: 'grid',
-            //     loadChildren: './grid/grid.module#GridModule'
-            // },
-            // {
-            //     path: 'tables',
-            //     loadChildren: './tables/tables.module#TablesModule'
-            // },
+          
             {
                 path: 'blank-page',
                 loadChildren: './blank-page/blank-page.module#BlankPageModule'
             },
             {
                 path: 'modulo-usuario',
-                loadChildren: './usuario/usuario.module#UsuarioModule'
+                loadChildren: './usuario/usuario.module#UsuarioModule',canActivate:[RolUserGuard]
             },
 
             {
@@ -85,6 +65,9 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [RolUserGuard]
+
 })
 export class LayoutRoutingModule {}
+

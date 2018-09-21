@@ -23,7 +23,7 @@ export class ListarComponent implements OnInit {
   value = 50;
   bufferValue = 50;
   cargando=false;
-    displayedColumns: string[] = [ 'nombretipo', 'nombre','stock','star'];
+    displayedColumns: string[] = ['nombre','nombretipo','stock','star'];
     ELEMENT_DATA: any[] = [];
     length=0;
     pageEvent: PageEvent;

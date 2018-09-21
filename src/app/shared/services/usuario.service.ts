@@ -43,6 +43,14 @@ export class UserService{
                          .pipe(map( res => res.json()));
                          
        }
+       cambiarClave(data) {
+         let params=JSON.stringify(data);
+         console.log(params);
+         let headers=new Headers({'Content-Type':'application/json'});
+         return this._http.post(this.url+'cambiarclave',params, {headers:headers})
+                           .pipe(map( res => res.json()));
+                           
+         }
 //   register(user_to_register) {
 //     let params=JSON.stringify(user_to_register);
 //     let headers=new Headers({'Content-Type':'application/json'});

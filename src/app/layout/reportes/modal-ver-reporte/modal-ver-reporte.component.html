@@ -1,11 +1,11 @@
 <!-- tablas de reportes  -->
 <div class="example-container mat-elevation-z8" id="contenido" #contenido>
     <mat-table [dataSource]="INGRESO_DATA" *ngIf="INGRESO_DATA.length > 0" > <!--Si existen Ingresos que coincidan con el filtro-->
+      <ng-container matColumnDef="nusuario">
+          <mat-header-cell *matHeaderCellDef>Encargado</mat-header-cell>
+          <td *matCellDef="let element"  data-label="usuario"> {{element.nusuario}} {{element.ausuario}}</td>
+        </ng-container> 
       
-      <ng-container matColumnDef="fecha">
-          <th mat-header-cell *matHeaderCellDef>fecha</th>
-          <td mat-cell *matCellDef="let element"  data-label="registro"> {{element.fecha}} </td>
-      </ng-container>
       <ng-container matColumnDef="material">
         <th mat-header-cell *matHeaderCellDef>Material</th>
         <td td *matCellDef="let element"  data-label="material"> {{element.material}} </td>
@@ -21,11 +21,12 @@
        <ng-container matColumnDef="proveedor">
         <th mat-header-cell *matHeaderCellDef>Proveedor</th>
         <td *matCellDef="let element"  data-label="proveedor"> {{element.proveedor}} </td>
-      </ng-container> -
-       <ng-container matColumnDef="nusuario">
-        <mat-header-cell *matHeaderCellDef>Encargado</mat-header-cell>
-        <td *matCellDef="let element"  data-label="usuario"> {{element.nusuario}} {{element.ausuario}</td>
       </ng-container> 
+      <ng-container matColumnDef="fecha"> 
+          <th mat-header-cell *matHeaderCellDef>fecha</th>
+          <td mat-cell *matCellDef="let element"  data-label="registro"> {{element.fecha | date:'mediumDate'}} </td>
+      </ng-container>
+      
       <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

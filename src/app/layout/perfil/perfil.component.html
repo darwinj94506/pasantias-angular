@@ -4,14 +4,17 @@
                 <mat-progress-bar class="example-margin" *ngIf="cargando" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
                 </mat-progress-bar>
             </mat-card-content>
-    <form  [formGroup]="myForm" autocomplete="off" >
+    
     <div fxFlex>
         <mat-card> 
     <mat-card-title class="text-center" >
             <h3 class="m-0">Perfil de Usuario de: {{data.nombre}} {{data.apellido}}</h3><p>
     </mat-card-title>
              <mat-dialog-content align="center" >
+                 
+
                 
+            <form  [formGroup]="myForm" autocomplete="off" >
                 <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                         <mat-form-field class="w-100">
@@ -24,23 +27,23 @@
                 <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                 <div fxFlexFill>
                         <mat-form-field class="w-100">
-                            <input matInput placeholder="Contraseña Nueva:" type="password"  formControlName="clave">
+                            <input matInput placeholder="Contraseña Nueva:" type="password"  formControlName="nuevaClave">
                         </mat-form-field>
                     </div>
                 </div>
                   
-                                <div fxFlex fxLayout="row" fxLayout.lt-md="column">
-                                        <div fxFlexFill>
-                                                <button (click)="editarUsuario()" mat-raised-button color="primary">  
-                                                        Guardar</button> 
-                                        </div>
-                                      
-                                </div>
-
+                <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                        <div fxFlexFill>
+                                <button (click)="editarUsuario()" mat-raised-button color="primary">  
+                                        Guardar</button> 
+                        </div>
+                        
+                </div>
+        </form>
             
              </mat-dialog-content>
          
              </mat-card>
         </div>
-    </form>
+    
     </div>

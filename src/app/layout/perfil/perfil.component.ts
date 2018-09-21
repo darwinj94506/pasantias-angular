@@ -30,10 +30,12 @@ export class PerfilComponent {
         private _user:UserService,
         private router: Router,
         public snackBar: MatSnackBar
-    ) {}
+    ) {
+        this.data=this._user.getIdentity()
+    }
     ngOnInit() {
         this.cargando=true
-        this.data=this._user.getIdentity()
+       
         console.log(this.data)
         if(this.data){
          
@@ -45,6 +47,7 @@ export class PerfilComponent {
                 apellido:this.data.apellido,
                 nombre:this.data.nombre,
                 clave:"",
+                nuevaClave:"",
                 rol:this.data.rol,
                 opcion:'2'})
         }
@@ -54,11 +57,14 @@ export class PerfilComponent {
 
     }
     editarUsuario() {
-        this._user.crudUsuario(this.myForm.value).subscribe(data=>{ 
+        this.cargando=true;
+        this._user.cambiarClave(this.myForm.value).subscribe(data=>{ 
           console.log(data)
           this.cargando=false;
-          this.openSnackBar(data[0]._info_desc,data[0]._info_titulo);
+          this.openSnackBar("Password actualizada","Éxito");
         },error=>{
+            
+          this.openSnackBar("Inténtelo nuevamente","Error");
             this.cargando=false;
           })  
     }

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           if(!this.identity || !this.identity.idusuario){
             console.log("el usuario no se a logueado correctamente");
           }else{
-            this.identity.password='';
+            this.identity.clave='';
             //mostrar el identity
             localStorage.setItem('identity',JSON.stringify(this.identity));
             //conseguir el token
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
                   localStorage.setItem('token',this.token);
                   this.status='success';
-                  this.router.navigate(['/modulo-tipo']);
+                  this.router.navigate(['modulo-material']);
                 }
               },
               error=>{
@@ -62,6 +62,8 @@ export class LoginComponent implements OnInit {
           }
         },
         error=>{
+          alert("Error de usuario o contraseña");
+          console.log(error);
           var errorMessage=<any>error;
           if(errorMessage!=null){
             var body=JSON.parse(error._body);

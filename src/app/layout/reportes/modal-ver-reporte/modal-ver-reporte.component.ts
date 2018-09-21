@@ -10,7 +10,7 @@ import html2canvas from 'html2canvas';
 })
 export class ModalVerReporteComponent implements OnInit {
 
-  displayedColumns: string[] = ['fecha', 'material', 'serie','garantia','proveedor','nusuario'];
+  displayedColumns: string[] = ['nusuario', 'material', 'serie','garantia','proveedor','fecha'];
   INGRESO_DATA: any[] = [];
   detalleIngresoColumns: string[] = ['idegreso','nsolicitante', 'material','cantidad', 'serie','garantia','proveedor'];
   DETALLE_EGRESO_DATA: any[] = [];
