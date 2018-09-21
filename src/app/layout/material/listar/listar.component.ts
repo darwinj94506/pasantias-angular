@@ -158,7 +158,7 @@ export class ListarComponent implements OnInit {
   <mat-card-header style="justify-content: center">
   <div class="w3-col" style="width:85%">
                   <mat-card-title align="center">
-                          <h3 class="m-0">Eliminar Material</h3>
+                          <h5 class="m-0">Eliminar Material</h5>
                           </mat-card-title>
                   
           </div>

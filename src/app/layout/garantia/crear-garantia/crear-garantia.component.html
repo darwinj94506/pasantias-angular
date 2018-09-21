@@ -27,13 +27,17 @@
                         <mat-error class="error-message"
                           *ngIf="myForm.get('descripcion').hasError('maxlength')
                            && (myForm.get('descripcion').dirty || myForm.get('descripcion').touched)">
-                           Máximo 50 Caracteres</mat-error>
+                           Máximo 200 Caracteres</mat-error>
                    </mat-form-field>
                    <mat-form-field >
                        <mat-select placeholder="Proveedos" formControlName="idproveedor" required>
                            <mat-option>Seleccione--</mat-option>
                            <mat-option  *ngFor="let option of proveedores" [value]="option.idproveedor">{{option.nombre}}</mat-option>
                        </mat-select>
+                       <mat-error class="error-message"
+                       *ngIf="myForm.get('idproveedor').hasError('required')
+                        && (myForm.get('idproveedor').dirty || myForm.get('idproveedor').touched)">
+                        Campo obligatorio</mat-error>
                    </mat-form-field>
             </mat-dialog-content>
             <mat-dialog-actions  align="center" >  

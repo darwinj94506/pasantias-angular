@@ -23,7 +23,7 @@ export class CrearGarantiaComponent implements OnInit {
   ngOnInit() {
     this.myForm = this.fb.group({
       idgarantia:'0',
-      idproveedor:'0',
+      idproveedor:['0',Validators.required],
       descripcion:['',Validators.compose([Validators.required,Validators.maxLength(200)])],
       opcion:'1'
      
@@ -32,7 +32,7 @@ export class CrearGarantiaComponent implements OnInit {
       // this.myForm.reset();
       this.myForm = this.fb.group({
         idgarantia:this.data.idgarantia,
-        idproveedor:this.data.idproveedor,
+        idproveedor:[this.data.idproveedor,Validators.required],
         descripcion:[this.data.descripcion,Validators.compose([Validators.required,Validators.maxLength(200)])],
         opcion:'1' 
       })
