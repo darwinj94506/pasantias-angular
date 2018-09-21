@@ -35,18 +35,18 @@
                  <mat-form-field  >
                      <input  matInput placeholder="Teléfono N°1" 
                     formControlName="telefono1" required>
-                    <mat-error class="error-message"
-                *ngIf="myForm.get('telefono1').hasError('required')
-                 && (myForm.get('telefono1').dirty || myForm.get('telefono1').touched)">
-                 Campo obligatorio</mat-error>
                <mat-error class="error-message"
                  *ngIf="myForm.get('telefono1').hasError('maxlength')
                   && (myForm.get('telefono1').dirty || myForm.get('telefono1').touched)">
-                  Máximo 50 Caracteres</mat-error>
+                  Máximo 10 Caracteres</mat-error>
                  </mat-form-field><p>
                  <mat-form-field  >
                      <input  matInput placeholder="Teléfono N°2" 
                     formControlName="telefono2" >
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('telefono2').hasError('maxlength')
+                     && (myForm.get('telefono2').dirty || myForm.get('telefono2').touched)">
+                     Máximo 10 Caracteres</mat-error>
                  </mat-form-field><p>
              <mat-form-field  >
                      <input  matInput placeholder="Correo electrónico" 

@@ -24,8 +24,8 @@ export class CrearProveedorComponent implements OnInit {
     this.myForm = this.fb.group({
       idproveedor:'0',
       nombre:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
-      telefono1:['',Validators.compose([Validators.required,Validators.maxLength(10)])],
-      telefono2:'',
+      telefono1:['',Validators.maxLength(10)],
+      telefono2:['',Validators.maxLength(10)],
       email:'',
       direccion:'',
       ruc:'',
@@ -37,8 +37,8 @@ export class CrearProveedorComponent implements OnInit {
       this.myForm = this.fb.group({
         idproveedor:this.data.idproveedor,
         nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
-        telefono1:[this.data.telefono1,Validators.compose([Validators.required,Validators.maxLength(10)])],
-        telefono2:this.data.telefono2,
+        telefono1:[this.data.telefono1,Validators.maxLength(10)],
+        telefono2:[this.data.telefono2,Validators.maxLength(10)],
         email:this.data.email,
         direccion:this.data.direccion,
         ruc:this.data.ruc,

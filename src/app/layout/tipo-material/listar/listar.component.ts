@@ -136,7 +136,7 @@ export class ListarComponent implements OnInit {
              
    </div>
           <div class="w3-col " style="width:10%">
-              <button class="mi-boton-salir w3-mobile"  (click)="clickCancelar(element)" mat-icon-button  color="warn" >
+              <button class="mi-boton-salir"  (click)="clickCancelar(element)" mat-icon-button  color="warn" >
               <mat-icon>clear</mat-icon>
           </button>
 </div>

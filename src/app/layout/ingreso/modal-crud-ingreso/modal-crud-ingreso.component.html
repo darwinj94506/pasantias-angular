@@ -52,17 +52,13 @@
               Campo Obligatorio</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Garantia" formControlName="idgarantia" required>
+          <mat-select placeholder="Garantia" formControlName="idgarantia" >
             <mat-option>None</mat-option>
             <mat-option *ngFor="let garantia of garantias" 
             [value]="garantia.idgarantia">{{garantia.descripcion}}
             </mat-option>
           </mat-select>
           
-          <mat-error class="error-message"
-          *ngIf="myForm.get('idgarantia').hasError('required')
-              && (myForm.get('idgarantia').dirty || myForm.get('idgarantia').touched)">
-              Campo Obligatorio</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input type="number" matInput placeholder="Ingrese la cantidad"
