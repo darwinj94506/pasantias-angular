@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
     showMenu: string = '';
+    rol=null;
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.rol=JSON.parse(localStorage.getItem('identity')).rol;
+    }
+
 
     addExpandClass(element: any) {
         if (element === this.showMenu) {

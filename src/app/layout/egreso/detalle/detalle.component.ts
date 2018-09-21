@@ -5,6 +5,7 @@ import {FormBuilder, Validators, FormGroup,FormControl } from "@angular/forms";
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import{ModalAlertaComponent} from './../modal-alerta/modal-alerta.component';
 import {MatDialog} from '@angular/material';
+import { Router,ActivatedRoute,Params } from '@angular/router';
 
 @Component({
   selector: 'app-detalle',
@@ -28,7 +29,8 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   materiales:any[]=[];
   myFormDetalle: FormGroup;
  
-  constructor(private _egreso:EgresoService,private fb: FormBuilder,public dialog: MatDialog){}
+  constructor(private _egreso:EgresoService,private fb: FormBuilder,private _route:ActivatedRoute, private router:Router,
+    public dialog: MatDialog){}
   ngOnInit() {
     this._egreso.getMaterialesSelect().subscribe((data)=>{
       console.log(data);
@@ -36,29 +38,20 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     },error=>{
     })
   }
-  ngOnChanges(){
-    if(this.idDetalle){
-      // this.ELEMENT_DATA.forEach(element => {
-      //   console.log(element);
-      //   element.iddetalle=0;
-      //   element.idegreso=this.idDetalle;
-      //   this._egreso.crudDetalle(element).subscribe((data)=>{
-      //       console.log(data);
-      //   },error=>{
-      //   })
-      // });
-      // console.log(this.idDetalle);
+  ngOnChanges(){ 
+    if(this.idDetalle!=null && this.idDetalle!=0){ //es el id del egreso creado
+      alert("llega el inut a detalle");
       var i=0;
       for (let i in this.ELEMENT_DATA){
         this.ELEMENT_DATA[i].idegreso=this.idDetalle;
       }
 
-      this._egreso.crudDetalle2(this.ELEMENT_DATA).subscribe((data)=>{
+      this._egreso.crudDetalle2(this.ELEMENT_DATA).subscribe((data)=>{ //guarda el detalle del egreso
               console.log(data);
+              this.router.navigate(['/modulo-egresos']);
           },error=>{
+            alert("Error");
           })
-    }else{
-      // alert("no llega nada");
     }
   }
   
@@ -67,15 +60,7 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     let verif=0;
     var hazAlgo=new Promise((resolve,reject)=>{
       for (let i in this.ELEMENT_DATA){
-        //para alterar el estado de un material y desabilitarlo en el select cuando este ya haya sido elegido
-        // if(this.ELEMENT_DATA[i].idmaterial!=''&&this.ELEMENT_DATA[i].idmaterial!=null){
-        //   for (let j in this.materiales){
-        //     if(this.materiales[j].idmaterial===this.ELEMENT_DATA[i].idmaterial){
-        //       this.materiales[j].estado=3;
-        //     }
-        //   }
-        // }
-        //para verificar que cuando se agregue un nuevo item el anterior no este en blanco 
+        
         if(this.ELEMENT_DATA[i].cantidad!='' && this.ELEMENT_DATA[i].cantidad >0 && this.ELEMENT_DATA[i].idmaterial!=''){
           console.log("cumple");
          }else{
@@ -101,17 +86,26 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     this.dataSource.data=this.ELEMENT_DATA;
   }
   lanzarAccionGuardar(){
-    console.log(this.ELEMENT_DATA);
-    this._egreso.validarDetalle(this.ELEMENT_DATA).subscribe((data)=>{
+    alert(this.ELEMENT_DATA[this.ELEMENT_DATA.length-1].cantidad);
+    alert(this.ELEMENT_DATA[this.ELEMENT_DATA.length-1].idmaterial);
+
+    if(this.ELEMENT_DATA[this.ELEMENT_DATA.length-1].cantidad ==null || this.ELEMENT_DATA[this.ELEMENT_DATA.length-1].idmaterial ==null){
+      alert("No pueden haber espacios en blanco");
+      // alert("no llega aqui");
+      
+    }else{
+      console.log(this.ELEMENT_DATA);
+      this._egreso.validarDetalle(this.ELEMENT_DATA).subscribe((data)=>{
       console.log(data);
       if(data._info_id){
+        alert(data._info_id);
         this.enviarAccionGuardar.emit({accionGuardar:true});
 
       }else{
         this.abrirModal(data);
-        // alert(data._info_desc);
       }
     });
+    }
   }
   materialCambiado;
   abrirSelect($event,i){
@@ -137,6 +131,8 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.ELEMENT_DATA.push({posicion:this.contador,iddetalle: null, idegreso: null,idmaterial:null,idingreso:1,cantidad:null,opcion:1});
         this.dataSource.data=this.ELEMENT_DATA;
         console.log(this.dataSource.data);
+       
+
       }else{
         this.abrirModal('No pueden haber espacios en blanco para agregar un nuevo item');
       }

@@ -10,7 +10,6 @@ import {FormControl, Validators,FormBuilder,FormGroup, NgForm} from '@angular/fo
 export class LoginComponent implements OnInit {
   cargando=false;
   active = true; 
-    // public user:any;
     public identity;
     public token;
     public status:string;
@@ -25,12 +24,10 @@ export class LoginComponent implements OnInit {
       })}
 
     onLogin() {
-      console.log(this.user.value);
       this.cargando=true;
         //loguear al usurio y conseguir el objeto
       this._userService.signup(this.user.value).subscribe(
         response=>{
-          console.log(response);
           this.identity=response.user;
           if(!this.identity || !this.identity.idusuario){
             console.log("el usuario no se a logueado correctamente");
@@ -63,7 +60,6 @@ export class LoginComponent implements OnInit {
         },
         error=>{
           alert("Error de usuario o contraseña");
-          console.log(error);
           var errorMessage=<any>error;
           if(errorMessage!=null){
             var body=JSON.parse(error._body);

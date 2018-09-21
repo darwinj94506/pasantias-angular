@@ -27,32 +27,13 @@ export class ReportePrincipalComponent implements OnInit {
   fecha2='';
   nregistro=0;
   no_existe_registro=false;
-  // @ViewChild('contenido') content:ElementRef;
+  
   constructor(private fb: FormBuilder, private _reportes:ReportesService,public dialog: MatDialog) { }
   ngOnInit() {
     this.myForm = this.fb.group({
       serie:'0'
     })
   }
-  
-      
-  //     public captureScreen()  
-  // {  
-  //   var data = document.getElementById('contenido');  
-  //   html2canvas(data).then(canvas => {  
-  //     // Few necessary setting options  
-  //     var imgWidth = 208;   
-  //     var pageHeight = 295;    
-  //     var imgHeight = canvas.height * imgWidth / canvas.width;  
-  //     var heightLeft = imgHeight;  
-  
-  //     const contentDataURL = canvas.toDataURL('image/png')  
-  //     let pdf = new jsPDF('l', 'mm', 'a4'); // A4 size page of PDF  
-  //     var position = 0;  
-  //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-  //     pdf.save('MYPdf.pdf'); // Generated PDF   
-  //   });  
-  // }  
 
   abrirModalVerDetalle(data=null,tipo){ 
     let array={
@@ -72,11 +53,7 @@ export class ReportePrincipalComponent implements OnInit {
   
   })
 }
-
- 
-    
   consultar(){
-    
     this.INGRESO_DATA=[];
     this.DETALLE_EGRESO_DATA=[];
     this.no_existe_registro=false;
@@ -93,7 +70,6 @@ export class ReportePrincipalComponent implements OnInit {
             }else{
               this.abrirModalVerDetalle(this.INGRESO_DATA,1);
             }
-            console.log(data);
           })
         }else{
           this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
@@ -108,7 +84,6 @@ export class ReportePrincipalComponent implements OnInit {
           }else{
             this.abrirModalVerDetalle(this.INGRESO_DATA,1);
           }
-          console.log(data);
         })
       }else if(this.opcionFiltro==2){ //reporte por id de usuario (la persona que ingresa el material)
         this._reportes.getReporteIngreso({'ucedula':this.ucedula}).subscribe((data)=>{
@@ -118,14 +93,12 @@ export class ReportePrincipalComponent implements OnInit {
           }else{
             this.abrirModalVerDetalle(this.INGRESO_DATA,1);
           }
-          console.log(data);
         })
 
       }
     }else if(this.opcionBusqueda==3){ //reportes de egresos
       if(this.opcionFiltro==1){ //filtro por fechas
         this._reportes.getReporteDetalleEgreso({'fecha1':this.fecha1,'fecha2':this.fecha2}).subscribe((data)=>{
-          console.log(data);
           this.DETALLE_EGRESO_DATA=data.data;
           if(this.DETALLE_EGRESO_DATA.length==0){
             this.no_existe_registro=true;
@@ -136,7 +109,6 @@ export class ReportePrincipalComponent implements OnInit {
 
       }else if(this.opcionFiltro==2){ //filtro por cedulaSolicitante
         this._reportes.getReporteDetalleEgreso({'scedula':this.scedula}).subscribe((data)=>{
-          console.log(data);
           this.DETALLE_EGRESO_DATA=data.data;
           if(this.DETALLE_EGRESO_DATA.length==0){
             this.no_existe_registro=true;
@@ -147,12 +119,10 @@ export class ReportePrincipalComponent implements OnInit {
         })
 
       }else if(this.opcionFiltro==3){ // egresos por numero de registro
-        // alert("registro");
-        // this.nregistro-=1000;
+        
         let numre=(this.nregistro-1000);
         alert(this.nregistro);
         this._reportes.getReporteDetalleEgreso({'nregistro':this.nregistro-1000}).subscribe((data)=>{
-          console.log(data);
           this.DETALLE_EGRESO_DATA=data.data;
           if(this.DETALLE_EGRESO_DATA.length==0){
             this.no_existe_registro=true;

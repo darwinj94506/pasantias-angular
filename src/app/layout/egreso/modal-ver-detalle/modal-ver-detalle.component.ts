@@ -55,6 +55,8 @@ export class ModalVerDetalleComponent implements OnInit {
     //Datos de la cabecera del egreso,vienen como parametros de la tabla listar 
     this.myForm = this.fb.group({
       idusuario:this.data.idusuario,
+      apellido:this.data.apellido,
+      nombre:this.data.nombre,
       idsolicitante:this.data.solicitante,
       memorando:this.data.memorando,
       fecha:this.data.fecha,

@@ -60,20 +60,27 @@ export class IngresoService{
       return this._http.post(this.url+'getIngresos',params, {headers:headers})
       .pipe(map( res => res.json()));          
     }
-
     crudIngreso(ingreso) {
       console.log(ingreso);
        let params=JSON.stringify(ingreso);
-       let headers=new Headers({'Content-Type':'application/json'});
+       let headers=new Headers({'Content-Type':'application/json','Authorization':this.getToken()});
        return this._http.post(this.url+'crudIngreso',params, {headers:headers})
                          .pipe(map( res => res.json()));               
        }
   
     totalIngreso() {
-    // router.post('/api/getTotalTipos', db.getTotalTipos); 
       let headers=new Headers({'Content-Type':'application/json'});
       return this._http.post(this.url+'getTotalIngresos', {headers:headers})
                         .pipe(map( res => res.json()));
+    }
+    getToken(){
+      let token=localStorage.getItem('token');
+      if(token!="undefined"){
+        this.token=token;
+      }else{
+        this.token=null;
+      }
+      return this.token;
     }
   }
 

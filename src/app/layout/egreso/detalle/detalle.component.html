@@ -11,7 +11,7 @@
               <mat-header-cell *matHeaderCellDef> Material</mat-header-cell>
               <mat-cell *matCellDef="let element; let i=index;">
                 <mat-form-field floatLabel="never">
-                    <mat-select placeholder="Material" (openedChange)="abrirSelect($event,i)"
+                    <mat-select placeholder="Material" (openedChange)="abrirSelect($event,i)"  name="nombre"
                       (selectionChange)="verificarCambio($event,i)" [(ngModel)]="element.idmaterial" required #nombre="ngModel">
                         <mat-option *ngFor="let material of materiales" [disabled]="material.estado===3"
                         [value]="material.idmaterial">{{material.nombre}}
@@ -27,7 +27,7 @@
                 <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   <mat-form-field floatLabel="never">
-                    <input matInput type="number"  placeholder="Cantidad" 
+                    <input matInput type="number"  placeholder="Cantidad" name="cantidad"
                     [(ngModel)]="element.cantidad" required #cantidad="ngModel" min="1">
                     <mat-error *ngIf="cantidad.invalid && cantidad.errors.required">Campo obligatorio</mat-error>     
                     <!-- <mat-error *ngIf="cantidad.min">Debe ser mayor a cero</mat-error>               -->
