@@ -40,7 +40,6 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   }
   ngOnChanges(){ 
     if(this.idDetalle!=null && this.idDetalle!=0){ //es el id del egreso creado
-      alert("llega el inut a detalle");
       var i=0;
       for (let i in this.ELEMENT_DATA){
         this.ELEMENT_DATA[i].idegreso=this.idDetalle;
@@ -86,8 +85,7 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
     this.dataSource.data=this.ELEMENT_DATA;
   }
   lanzarAccionGuardar(){
-    alert(this.ELEMENT_DATA[this.ELEMENT_DATA.length-1].cantidad);
-    alert(this.ELEMENT_DATA[this.ELEMENT_DATA.length-1].idmaterial);
+    
 
     if(this.ELEMENT_DATA[this.ELEMENT_DATA.length-1].cantidad ==null || this.ELEMENT_DATA[this.ELEMENT_DATA.length-1].idmaterial ==null){
       alert("No pueden haber espacios en blanco");
@@ -98,7 +96,7 @@ dataSource = new MatTableDataSource(this.ELEMENT_DATA);
       this._egreso.validarDetalle(this.ELEMENT_DATA).subscribe((data)=>{
       console.log(data);
       if(data._info_id){
-        alert(data._info_id);
+        
         this.enviarAccionGuardar.emit({accionGuardar:true});
 
       }else{

@@ -34,7 +34,6 @@ export class CrudEgresoComponent implements OnInit  {
   ngOnInit(){
     
     this._egreso.getUsuariosSelect().subscribe((data)=>{
-      console.log(data);
       this.usuarios=data;
     },error=>{
 
@@ -45,7 +44,6 @@ export class CrudEgresoComponent implements OnInit  {
     this.enviarEstado.emit({estado:this.estadoEgreso});
   }
   crudEgreso($even){
-    alert(this.myForm.get('idsolicitante').value);
     if(this.myForm.get('idsolicitante').value===null){
       alert('No pueden haber espacios en blanco');
     }else{
