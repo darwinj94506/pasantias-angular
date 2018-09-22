@@ -1,7 +1,6 @@
 
 import { CommonModule } from '@angular/common';
 import { ListarUsuarioComponent, ModalEliminar } from './listar-usuario/listar-usuario.component';
-import { ModalCrudUsuarioComponent } from './modal-crud-usuario/modal-crud-usuario.component';
 import{UsuarioRoutingModule} from './usuario-routing.module';
 import{UserService} from '../../shared/services/usuario.service'
 import{ UsuarioComponent} from './usuario.component'

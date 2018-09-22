@@ -1,32 +1,22 @@
 <form [formGroup]="myForm" autocomplete="off" >
        
-        <div class="w3-row ">
-                <mat-card-header style="justify-content: center">
-                <div class="w3-col" style="width:85%">
-                                <mat-card-title align="center">
-                                        <h3 class="m-0">Crear Material</h3>
-                                    </mat-card-title>
-                           
-                 </div>
-                        <div class="w3-col " style="width:10%">
-                            <button class="mi-boton-salir "  (click)="close(element)" mat-icon-button  color="warn" >
-                            <mat-icon>clear</mat-icon>
-                        </button>
-             </div>
-            </mat-card-header>
-                       
-          </div>
-          <!-- <div class="mb-10" fxLayout="row" fxLayout.lt-md="column" fxFlex fxLayoutGap="10px">
-                <div fxFlex  >
-                    <h1 mat-card-title >Crear Material</h1>  
-                    <button class="mi-boton-salir"  (click)="close(element)" mat-icon-button  >
-                            <mat-icon>clear</mat-icon>
-                        </button>   
-                </div> -->
-                
-                       
+    <div class="w3-row">
+        <mat-card-header style="justify-content: center">
+        <div class="w3-col" style="width:85%">
+            <mat-card-title align="center">
+                <h3 class="m-0">Crear Material</h3>
+            </mat-card-title>
                     
-            <!-- </div> -->
+            </div>
+            <div class="w3-col " style="width:10%">
+                <button class="mi-boton-salir "  (click)="close('element')" mat-icon-button  color="warn" >
+                <mat-icon>clear</mat-icon>
+            </button>
+    </div>
+        </mat-card-header>
+                    
+        </div>
+    
         <mat-dialog-content >
                 <mat-form-field >
                     <mat-select placeholder="Tipo de Material" formControlName="idtipo" required>

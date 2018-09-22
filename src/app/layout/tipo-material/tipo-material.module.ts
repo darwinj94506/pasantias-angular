@@ -13,8 +13,7 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { RouterModule, Routes } from '@angular/router';
-import{ComponentesPersonalizadosModule} from './../componentes-personalizados/componentes-personalizados.module';
+
 import { ModalCrearComponent } from './modal-crear/modal-crear.component';
 import { ModalEditarTipoComponent } from './modal-editar-tipo/modal-editar-tipo.component';
 
@@ -26,7 +25,7 @@ import { ModalEditarTipoComponent } from './modal-editar-tipo/modal-editar-tipo.
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    ComponentesPersonalizadosModule
+    
     // RouterModule
   ],
   entryComponents: [

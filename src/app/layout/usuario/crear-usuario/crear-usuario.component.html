@@ -8,7 +8,7 @@
                            
                  </div>
                         <div class="w3-col " style="width:10%">
-                            <button class="mi-boton-salir "  (click)="close(element)" mat-icon-button  color="warn" >
+                            <button class="mi-boton-salir "  (click)="close('element')" mat-icon-button  color="warn" >
                             <mat-icon>clear</mat-icon>
                         </button>
              </div>
@@ -18,7 +18,7 @@
                 
                 <div fxFlex fxLayout="row" fxLayout.lt-md="column">
                         <div fxFlexFill>
-                                <button (click)="openBuscar(element)" mat-raised-button color="primary">
+                                <button (click)="openBuscar('element')" mat-raised-button color="primary">
                                         <mat-icon>arrow_forward_ios</mat-icon>      
                                         Funcionario</button> 
 
