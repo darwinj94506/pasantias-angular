@@ -1,0 +1,51 @@
+<form [formGroup]="myForm" autocomplete="off">
+    <div class="w3-row ">
+      <mat-card-header style="justify-content: center">
+      <div class="w3-col" style="width:85%">
+          <mat-card-title align="center">
+           <h3 class="m-0">Ingreso</h3>
+          </mat-card-title>
+       </div>
+      <div class="w3-col " style="width:10%">
+        <button class="mi-boton-salir"  (click)="close(null)" mat-icon-button  color="warn" >
+        <mat-icon>clear</mat-icon>
+      </button>
+   </div>
+  </mat-card-header>
+             
+  </div>
+    <mat-dialog-content>
+    <mat-form-field >
+        <input type="text" matInput placeholder="Tipo de material"
+        formControlName="idtipo">
+  
+    </mat-form-field>
+      <mat-form-field>
+          <input type="text" matInput placeholder="Material"
+          formControlName="idmaterial">
+      </mat-form-field>
+      <mat-form-field>
+          <input type="text" matInput placeholder="Proveedor"
+          formControlName="idproveedor">
+      </mat-form-field>
+      <mat-form-field>
+          <input type="text" matInput placeholder="Garantía"
+          formControlName="idgarantia">  
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" matInput placeholder="Ingrese la cantidad"
+        formControlName="cantidad" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Serie"
+        formControlName="serie">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Descripción"
+        formControlName="descripcion"> </textarea>
+      
+      </mat-form-field>
+    </mat-dialog-content>
+
+  </form>
+  

@@ -7,7 +7,7 @@
         </mat-card-title>      
         </div>
         <div class="w3-col " style="width:10%">
-            <button class="mi-boton-salir "  (click)="close('element')" mat-icon-button  color="warn" >
+            <button class="mi-boton-salir "  (click)="close(null)" mat-icon-button  color="warn" >
             <mat-icon>clear</mat-icon>
         </button>
     </div>
@@ -33,7 +33,7 @@
                </mat-form-field>
                  <mat-form-field  >
                      <input  matInput placeholder="Teléfono N°1" 
-                    formControlName="telefono1" required>
+                    formControlName="telefono1">
                <mat-error class="error-message"
                  *ngIf="myForm.get('telefono1').hasError('maxlength')
                   && (myForm.get('telefono1').dirty || myForm.get('telefono1').touched)">
@@ -50,18 +50,30 @@
              <mat-form-field  >
                      <input  matInput placeholder="Correo electrónico" 
                     formControlName="email" >
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('email').hasError('maxlength')
+                     && (myForm.get('email').dirty || myForm.get('email').touched)">
+                     Máximo 50 Caracteres</mat-error>
                 </mat-form-field><p>
              <mat-form-field  >
                      <input  matInput placeholder="Dirección" 
                     formControlName="direccion" >
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('direccion').hasError('maxlength')
+                     && (myForm.get('direccion').dirty || myForm.get('direccion').touched)">
+                     Máximo 50 Caracteres</mat-error>
                  </mat-form-field><p>
             <mat-form-field  >
                      <input  matInput placeholder="Ruc" 
-                    formControlName="ruc" required>
+                    formControlName="ruc">
+                    <mat-error class="error-message"
+                    *ngIf="myForm.get('ruc').hasError('maxlength')
+                     && (myForm.get('ruc').dirty || myForm.get('ruc').touched)">
+                     Máximo 13 Caracteres</mat-error>
                  </mat-form-field><p>
         </mat-dialog-content>
         <mat-dialog-actions  align="center" >  
-               <button (click)="crudProveedor()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched"
+               <button (click)="crudProveedor()" mat-raised-button color="primary"  [disabled]="myForm.invalid"
                 *ngIf="!cargando">  
                   Guardar</button>
                <button mat-raised-button color="primary"  *ngIf="cargando">  

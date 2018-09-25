@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     onLogin() {
       this.cargando=true;
         //loguear al usurio y conseguir el objeto
+        console.log(this.user.value);
       this._userService.signup(this.user.value).subscribe(
         response=>{
           this.identity=response.user;
@@ -59,12 +60,12 @@ export class LoginComponent implements OnInit {
           }
         },
         error=>{
-          alert("Error de usuario o contraseña");
-          var errorMessage=<any>error;
-          if(errorMessage!=null){
-            var body=JSON.parse(error._body);
-            this.status='error';
-          }
+          alert("Error en la solcititud");
+          // var errorMessage=<any>error;
+          // if(errorMessage!=null){
+          //   var body=JSON.parse(error._body);
+          //   this.status='error';
+          // }
           this.cargando=false;
 
         }

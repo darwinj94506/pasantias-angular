@@ -12,10 +12,7 @@ const routes: Routes = [
                 path: '',
                 redirectTo: 'modulo-material'
             },
-            {
-                path: 'blank-page',
-                loadChildren: './blank-page/blank-page.module#BlankPageModule'
-            },
+            
             {
                 path: 'modulo-usuario',
                 loadChildren: './usuario/usuario.module#UsuarioModule',canActivate:[RolUserGuard]

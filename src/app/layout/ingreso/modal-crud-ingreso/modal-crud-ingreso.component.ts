@@ -38,28 +38,25 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
     this.myForm = this.fb.group({
       idingreso:0,
       idusuario:this.identity.idusuario,
-      idmaterial:null,
+      idmaterial:[null,Validators.required],
       idproveedor:null,
       idgarantia:null,
-      cantidad:1,
-      serie:'',
-      descripcion:'',
+      cantidad:[1,Validators.compose([Validators.required,Validators.min(1)])],
+      serie:['',Validators.maxLength(50)],
+      descripcion:['',Validators.maxLength(200)],
       opcion:1,
-      idtipo:null
+      idtipo:[null,Validators.required]
 
     })
   }
   
   cargarProveedores(){
     this._ingreso.getProveedoresSelect().subscribe((data)=>{
-      console.log(data);
       this.proveedores=data.data; 
     })
   }
   cargarGarantias(){
-    console.log(this.myForm.get('idproveedor').value);
     this._ingreso.getGarantiasSelect(this.myForm.get('idproveedor').value).subscribe((data)=>{
-      console.log(data);
       this.garantias=data.data; 
     },error=>{
       console.log(error);
@@ -68,7 +65,6 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
   cargarTipos(){
     console.log(this.myForm.get('idproveedor').value);
     this._ingreso.getListaTipos().subscribe((data)=>{
-      console.log(data);
       this.tiposMat=data.data; 
     },error=>{
       console.log(error);
@@ -77,7 +73,6 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
   cargarMateriales(){
     console.log(this.myForm.get('idtipo').value);
     this._ingreso.getMaterialesSelect({'idtipo':this.myForm.get('idtipo').value}).subscribe((data)=>{
-      console.log(data);
       this.materiales=data.data; 
     },error=>{
       console.log(error);
@@ -86,11 +81,8 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
   // idusuario:this.identity.idusuario,
   
   crudIngreso(){
-    console.log(this.myForm.value);
     this.cargando=true;
-    console.log(this.myForm.value);
     this._ingreso.crudIngreso(this.myForm.value).subscribe(data=>{
-      console.log(data)
       this.cargando=false;
       this.close(data);
   },error=>{
@@ -99,7 +91,6 @@ export class ModalCrudIngresoComponent implements OnInit,OnChanges {
 }
 
 close(data=null) {
-  console.log(this.myForm.value);
     this.dialogRef.close(data);
     // this.dialogRef.close();
 }

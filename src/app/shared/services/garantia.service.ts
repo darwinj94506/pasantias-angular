@@ -25,6 +25,7 @@ export class GarantiaService{
     }
 
     getGarantias(parametros){
+      console.log(parametros);
       let params=JSON.stringify(parametros);
       let headers=new Headers({'Content-Type':'application/json'});
       return this._http.post(this.url+'getGarantias',params, {headers:headers})

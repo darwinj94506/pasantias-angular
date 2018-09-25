@@ -81,11 +81,13 @@ paginar(evento){
          data:data
        });
        dialogRef.afterClosed().subscribe(result => {
-         console.log(result);
-         if(result[0]._info_id){
-          this.cargarTabla();
-        }
-         this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+         if(result){
+            console.log(result);
+            if(result[0]._info_id){
+             this.cargarTabla();
+           }
+           this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+         }     
        },error=>{
        console.log(error);
      })

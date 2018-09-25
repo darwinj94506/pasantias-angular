@@ -17,7 +17,6 @@ export class UserService{
     }
 
     getUsuariosdb(parametros) {
-      console.log(parametros);
       let params=JSON.stringify(parametros);
        let headers=new Headers({'Content-Type':'application/json'});
        return this._http.post('http://actividades.puyo.gob.ec/wsinventario',params,{headers:headers})
@@ -45,18 +44,11 @@ export class UserService{
        }
        cambiarClave(data) {
          let params=JSON.stringify(data);
-         console.log(params);
          let headers=new Headers({'Content-Type':'application/json'});
          return this._http.post(this.url+'cambiarclave',params, {headers:headers})
                            .pipe(map( res => res.json()));
                            
          }
-//   register(user_to_register) {
-//     let params=JSON.stringify(user_to_register);
-//     let headers=new Headers({'Content-Type':'application/json'});
-//     return this._http.post(this.url+'register',params, {headers:headers})
-//                       .map( res => res.json());
-//     }
 
     signup(user_to_login,gettoken=null){
       if(gettoken !=null){
@@ -70,10 +62,8 @@ export class UserService{
 
     getIdentity(){
       let identity=JSON.parse(localStorage.getItem('identity'));
-      console.log(identity);
       if(identity!="undefined"){
         this.identity=identity;
-        console.log(this.identity);
       }else{
         this.identity=null;
       }
@@ -89,17 +79,7 @@ export class UserService{
       }
       return this.token;
     }
-    // updateUser(user_to_update){
-    //   console.log("este toquen:"+this.getToken());
-    //   let params=JSON.stringify(user_to_update);
-    //   let headers= new Headers({
-    //     'Content-Type':'application/json',
-    //     'Authorization':this.getToken()
-    //   });
-    //   return this._http.put(this.url+'update-user/'+user_to_update._id, params, {headers:headers})
-    //                                                         .map(res=>res.json());
-    // }
-
+ 
      getUsuariosSelect(){
       let headers = new Headers({'Content-Type':'application/json'});
       return this._http.post(this.url+'getUsuariosSelect',{headers:headers}).pipe(map(res=>res.json()))

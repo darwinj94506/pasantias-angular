@@ -11,6 +11,7 @@ import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs)
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalCrudIngresoComponent } from './modal-crud-ingreso/modal-crud-ingreso.component';
+import { ModalVerDetalleComponent } from './modal-ver-detalle/modal-ver-detalle.component';
 
 // import { RouterModule, Routes } from '@angular/router';
 @NgModule({
@@ -24,11 +25,11 @@ import { ModalCrudIngresoComponent } from './modal-crud-ingreso/modal-crud-ingre
     HttpModule
   ],
   entryComponents: [
-    ModalCrudIngresoComponent
+    ModalCrudIngresoComponent,ModalVerDetalleComponent
   ],
   providers:[IngresoService,{
     provide:LOCALE_ID, useValue: 'es'
   }],
-  declarations: [ListarIngresoComponent, ModalCrudIngresoComponent]
+  declarations: [ListarIngresoComponent, ModalCrudIngresoComponent, ModalVerDetalleComponent]
 })
 export class IngresoModule { }

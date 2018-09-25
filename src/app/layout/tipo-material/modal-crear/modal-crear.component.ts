@@ -16,35 +16,14 @@ export class ModalCrearComponent implements OnInit {
   accion:number=1;
 
   ngOnInit() {
-    // if(this.data.length >1){
-    //   this.myForm = this.fb.group({
-    //     idtipo:this.data[0].idtipo,
-    //     nombre:this.data[0].nombre,
-    //     opcion:'2' 
-    //   })
-    //   this.accion=2;
-
-    // }else{
-    //   this.myForm = this.fb.group({
-    //     idtipo:'0',
-    //     nombre:'',
-    //     opcion:'1' 
-    //   })
-    // }
-    // this.myForm = this.fb.group({
-    //   idtipo:this.data.idtipo,
-    //   nombre:this.data.nombre,
-    //   opcion:'2' 
-    // })
+    
     this.myForm = this.fb.group({
       idtipo:'0',
       nombre:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
       opcion:'1' 
     })
-    console.log(this.data);
 
     if(this.data){
-      // this.myForm.reset();
       this.myForm = this.fb.group({
         idtipo:this.data.idtipo,
         nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
@@ -64,11 +43,8 @@ export class ModalCrearComponent implements OnInit {
     }
 
     crudTipo(){
-      // this.myForm.patchValue({ 
-      //                        opcion:opcion
-      //                     });
-      console.log(this.myForm.value);
 
+      console.log(this.myForm.value);
       this.cargando=true;
       console.log(this.myForm.value);
       this._tipo.crudTipo(this.myForm.value).subscribe(data=>{

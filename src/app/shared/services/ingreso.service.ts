@@ -37,9 +37,8 @@ export class IngresoService{
     
     }
     getListaTipos(){
-      // let params=JSON.stringify(parametros);
       let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getListaTipos', {headers:headers})
+      return this._http.get(this.url+'getTiposSelect', {headers:headers})
       .pipe(map( res => res.json()));          
     }
     

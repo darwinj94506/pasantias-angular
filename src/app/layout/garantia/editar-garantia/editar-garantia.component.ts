@@ -4,10 +4,6 @@ import { MatDialog,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import{GarantiaService} from './../../../shared/services/garantia.service';
 import{ActivatedRoute} from '@angular/router';
-
-
-
-
 @Component({
     selector: 'app-editar-garantia',
     templateUrl: './editar-garantia.component.html',
@@ -27,7 +23,7 @@ export class EditarGarantiaComponent implements OnInit {
         if(this.data){
             this.myForm = this.fb.group({
                 idgarantia:this.data.idgarantia,
-                idproveedor:this.data.idproveedor,
+                idproveedor:[this.data.idproveedor,Validators.required],
                 descripcion:[this.data.descripcion,Validators.compose([Validators.required,Validators.maxLength(200)])],
                 opcion:'2' 
                
@@ -44,7 +40,7 @@ export class EditarGarantiaComponent implements OnInit {
     }
 
     onNoClick(): void {
-        this.dialogRef.close();
+        this.dialogRef.close(null);
     }
    editarGarantia() {
         this.cargando=true;
@@ -54,9 +50,9 @@ export class EditarGarantiaComponent implements OnInit {
           this.cargando=false;
           this.close(data);
         },error=>{
+            alert("Error al editar")
             this.cargando=false;
           })
-        this.dialogRef.close();   
     }
     
     close(data) {

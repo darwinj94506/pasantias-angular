@@ -47,13 +47,15 @@ export class ListarUsuarioComponent implements OnInit {
         var paso;
         this.mode="determinate";
         this.cargando=true;
-      for (paso = 0; paso < this.length; paso++) {
-        if(data.data[paso].rol==1){
-          data.data[paso].rol="Funcionario";
-        }else{
-          data.data[paso].rol="Administrador"
-        }
-      };
+      // for (paso = 0; paso < this.length; paso++) {
+      //   if(data.data[paso].rol==1){
+      //     data.data[paso].rol="Funcionario";
+      //   }else if(data.data[paso].rol==2){
+      //     data.data[paso].rol="Administrador"
+      //   }else{
+      //     data.data[paso].rol="Ayudante"
+      //   }
+      // };
         this.ELEMENT_DATA=data.data;
       console.log(this.ELEMENT_DATA);
       this.cargando=false;
@@ -142,6 +144,7 @@ export class ListarUsuarioComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log(result);
         if(result){
+          
           this._user.crudUsuario({idusuario:row.idusuario,
             nombre:row.nombre,apellido:row.apellido,clave:row.clave,cedula:row.cedula,rol:row.rol,opcion:'3'}).subscribe(data=>{
              console.log(data);

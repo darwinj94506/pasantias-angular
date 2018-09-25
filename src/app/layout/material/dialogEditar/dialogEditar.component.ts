@@ -34,10 +34,9 @@ export class DialogOverviewComponent implements OnInit {
               })
         } 
         this._material.getListaTipos().subscribe((data)=>{
-            console.log(data);
             this.tiposMat=data.data; 
           },error=>{
-            console.log(error);
+              alert("Error!");
           })
 
         

@@ -26,9 +26,9 @@ export class CrearProveedorComponent implements OnInit {
       nombre:['',Validators.compose([Validators.required,Validators.maxLength(50)])],
       telefono1:['',Validators.maxLength(10)],
       telefono2:['',Validators.maxLength(10)],
-      email:'',
-      direccion:'',
-      ruc:'',
+      email:['',Validators.maxLength(50)],
+      direccion:['',Validators.maxLength(50)],
+      ruc:['',Validators.maxLength(13)],
       opcion:'1'
      
     })
@@ -39,9 +39,9 @@ export class CrearProveedorComponent implements OnInit {
         nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
         telefono1:[this.data.telefono1,Validators.maxLength(10)],
         telefono2:[this.data.telefono2,Validators.maxLength(10)],
-        email:this.data.email,
-        direccion:this.data.direccion,
-        ruc:this.data.ruc,
+        email:[this.data.email,Validators.maxLength(50)],
+        direccion:[this.data.direccion,Validators.maxLength(50)],
+        ruc:[this.data.ruc,Validators.maxLength(13)],
         opcion:'1'
       })
     }
@@ -49,9 +49,7 @@ export class CrearProveedorComponent implements OnInit {
 
   crudProveedor(){
     this.cargando=true;
-        console.log(this.myForm.value);
         this._proveedor.crudProveedor(this.myForm.value).subscribe(data=>{
-          console.log(data)
           this.cargando=false;
           this.close(data);
         },error=>{

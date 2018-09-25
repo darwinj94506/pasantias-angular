@@ -44,14 +44,12 @@ export class ListarComponent implements OnInit {
       this._material.getTotalMateriales().
         subscribe((data)=>{
           this.length=data.data[0].count;
-          console.log(data.data[0].count);
         });
       this._material.getMateriales({"page":0,"itemsPerPage":10}).
         subscribe((data)=>{
           this.ELEMENT_DATA=data.data;
           this.mode="determinate";
 
-          console.log(this.ELEMENT_DATA);
           this.cargando=false;
           },error=>{
             this.mode="determinate";
@@ -68,13 +66,11 @@ export class ListarComponent implements OnInit {
     }
     paginar(evento){
       this.pageEvent = evento;
-      console.log(this.pageEvent.pageIndex);
-      console.log(this.pageEvent.pageSize);
+     
       this._material.getMateriales({"page":this.pageEvent.pageIndex,
             "itemsPerPage":this.pageEvent.pageSize})
             .subscribe((data)=>{
               this.ELEMENT_DATA=data.data;
-              console.log(this.ELEMENT_DATA);                               
             })
       }
       openDialog(row): void {
@@ -85,13 +81,12 @@ export class ListarComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
           if(result && result!=0){
-            console.log(result);
             if(result[0]._info_id){
              this.cargarTabla();
            }
             this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
           }else{
-            console.log("no pasa nada");
+            console.log("ninguna accion");
           }
        
         },error=>{
@@ -114,7 +109,7 @@ export class ListarComponent implements OnInit {
        }
         this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
       }else{
-        console.log("no pasa nada");
+        console.log("ninguna accion");
       }
    
     },error=>{
@@ -137,7 +132,6 @@ export class ListarComponent implements OnInit {
         if(result){
           this._material.crudMaterial ({idmaterial:row.idmaterial,
             nombre:row.nombre,opcion:'3'}).subscribe(data=>{
-             console.log(data);
              if(data[0]._info_id){
                this.cargarTabla();
              }
@@ -193,11 +187,9 @@ export class ModalEliminar  {
     public dialogRef: MatDialogRef<ModalEliminar>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   clickAceptar(): void { 
-    console.log(this.data);
     this.dialogRef.close(true);
   }
   clickCancelar(): void { 
-    console.log(this.data);
     this.dialogRef.close(false);
   }
   

@@ -2,87 +2,94 @@
   <div class="w3-row ">
     <mat-card-header style="justify-content: center">
     <div class="w3-col" style="width:85%">
-                    <mat-card-title align="center">
-                            <h3 class="m-0">Ingreso</h3>
-                        </mat-card-title>
-               
+        <mat-card-title align="center">
+         <h3 class="m-0">Ingreso</h3>
+        </mat-card-title>
      </div>
-            <div class="w3-col " style="width:10%">
-                <button class="mi-boton-salir"  (click)="close('element')" mat-icon-button  color="warn" >
-                <mat-icon>clear</mat-icon>
-            </button>
+    <div class="w3-col " style="width:10%">
+      <button class="mi-boton-salir"  (click)="close(null)" mat-icon-button  color="warn" >
+      <mat-icon>clear</mat-icon>
+    </button>
  </div>
 </mat-card-header>
            
 </div>
   <mat-dialog-content>
-      <mat-form-field >
-          <mat-select placeholder="Tipo de Material" formControlName="idtipo" required  (selectionChange)="cargarMateriales()">
-              <mat-option>Seleccione--</mat-option>
-              <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
-          </mat-select>
-          <mat-error class="error-message"
-          *ngIf="myForm.get('idtipo').hasError('required')
-              && (myForm.get('idtipo').dirty || myForm.get('idtipo').touched)">
-              Campo Obligatorio</mat-error>
+  <mat-form-field >
+      <mat-select placeholder="Tipo de Material" formControlName="idtipo" required  (selectionChange)="cargarMateriales()">
+          <mat-option>Seleccione--</mat-option>
+          <mat-option  *ngFor="let option of tiposMat" [value]="option.idtipo">{{option.nombre}}</mat-option>
+      </mat-select>
+      <mat-error class="error-message"
+      *ngIf="myForm.get('idtipo').hasError('required')
+          && (myForm.get('idtipo').dirty || myForm.get('idtipo').touched)">
+          Campo Obligatorio</mat-error>
 
-      </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Material" formControlName="idmaterial" required>
-            <mat-option>None</mat-option>
-            <mat-option *ngFor="let material of materiales" 
-            [value]="material.idmaterial">{{material.nombre}}
-            </mat-option>
-          </mat-select>
-          <mat-error class="error-message"
-                    *ngIf="myForm.get('idmaterial').hasError('required')
-                        && (myForm.get('idmaterial').dirty || myForm.get('idmaterial').touched)">
-                        Campo Obligatorio</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Proveedor" formControlName="idproveedor" (selectionChange)="cargarGarantias()" required>
-            <mat-option>None</mat-option>
-            <mat-option *ngFor="let proveedor of proveedores" 
-            [value]="proveedor.idproveedor">{{proveedor.nombre}}
-            </mat-option>
-          </mat-select>
-          <mat-error class="error-message"
-          *ngIf="myForm.get('idproveedor').hasError('required')
-              && (myForm.get('idproveedor').dirty || myForm.get('idproveedor').touched)">
-              Campo Obligatorio</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Garantia" formControlName="idgarantia" >
-            <mat-option>None</mat-option>
-            <mat-option *ngFor="let garantia of garantias" 
-            [value]="garantia.idgarantia">{{garantia.descripcion}}
-            </mat-option>
-          </mat-select>
-          
-        </mat-form-field>
-        <mat-form-field>
-          <input type="number" matInput placeholder="Ingrese la cantidad"
-          formControlName="cantidad" required>
-        </mat-form-field>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Serie"
-          formControlName="serie">
-        </mat-form-field>
-        <mat-form-field>
-          <textarea matInput placeholder="Descripción"
-          formControlName="descripcion"> </textarea>
-        </mat-form-field>
+  </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Material" formControlName="idmaterial" required>
+        <mat-option>Ninguno</mat-option>
+        <mat-option *ngFor="let material of materiales" 
+        [value]="material.idmaterial">{{material.nombre}}
+        </mat-option>
+      </mat-select>
+      <mat-error class="error-message"
+        *ngIf="myForm.get('idmaterial').hasError('required')
+            && (myForm.get('idmaterial').dirty || myForm.get('idmaterial').touched)">
+            Campo Obligatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Proveedor" formControlName="idproveedor" (selectionChange)="cargarGarantias()">
+        <mat-option>Ninguno</mat-option>
+        <mat-option *ngFor="let proveedor of proveedores" 
+        [value]="proveedor.idproveedor">{{proveedor.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Garantia" formControlName="idgarantia" >
+        <mat-option>Ninguno</mat-option>
+        <mat-option *ngFor="let garantia of garantias" 
+        [value]="garantia.idgarantia">{{garantia.descripcion}}
+        </mat-option>
+      </mat-select>  
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Ingrese la cantidad"
+      formControlName="cantidad" required>
+      <mat-error class="error-message"
+      *ngIf="myForm.get('cantidad').hasError('required')
+          && (myForm.get('cantidad').dirty || myForm.get('cantidad').touched)">
+          Campo Obligatorio</mat-error>
+      <mat-error class="error-message"
+      *ngIf="myForm.get('cantidad').hasError('min')
+          && (myForm.get('cantidad').dirty || myForm.get('cantidad').touched)">
+          Error de campo</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Serie"
+      formControlName="serie">
+      <mat-error class="error-message"
+      *ngIf="myForm.get('serie').hasError('maxlength')
+          && (myForm.get('serie').dirty || myForm.get('serie').touched)">
+          Máximo 50 caracteres</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Descripción"
+      formControlName="descripcion"> </textarea>
+      <mat-error class="error-message"
+      *ngIf="myForm.get('descripcion').hasError('maxlength')
+          && (myForm.get('descripcion').dirty || myForm.get('descripcion').touched)">
+          Máximo 200 caracteres</mat-error>
+    </mat-form-field>
   </mat-dialog-content>
  
 
   <mat-dialog-actions  align="center">
 
       <button (click)="crudIngreso()" mat-raised-button color="primary" 
-       [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando && accion==1">  
+       [disabled]="myForm.invalid" *ngIf="!cargando && accion==1">  
           Guardar</button>
-      <!-- <button (click)="crudTipo()" mat-raised-button color="primary" 
-       [disabled]="myForm.invalid && myForm.untouched" *ngIf="!cargando && accion==2">  
-          Editar</button> -->
       <button mat-raised-button color="primary"  *ngIf="cargando">  
           <i class="fas fa-spinner fa-pulse"></i>Espere ...</button>
   </mat-dialog-actions>

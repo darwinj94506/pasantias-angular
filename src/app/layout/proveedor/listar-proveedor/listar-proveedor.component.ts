@@ -43,14 +43,11 @@ export class ListarProveedorComponent implements OnInit {
       this._proveedor.getTotalProveedores().
         subscribe((data)=>{
           this.length=data.data[0].count;
-          console.log(data.data[0].count);
         });
       this._proveedor.getProveedores({"page":0,"itemsPerPage":10}) .subscribe((data)=>{
       this.ELEMENT_DATA=data.data;
       this.mode="determinate";
-        this.cargando=false;
-      console.log(this.ELEMENT_DATA);
-      
+        this.cargando=false;      
        }, error=>{
          this.cargando=false;
         alert("Ha ocurrido un error");
@@ -65,13 +62,11 @@ export class ListarProveedorComponent implements OnInit {
     }
     paginar(evento){
       this.pageEvent = evento;
-      console.log(this.pageEvent.pageIndex);
-      console.log(this.pageEvent.pageSize);
+
       this._proveedor.getProveedores({"page":this.pageEvent.pageIndex,
                                   "itemsPerPage":this.pageEvent.pageSize})
                                   .subscribe((data)=>{
                                     this.ELEMENT_DATA=data.data;
-                                    console.log(this.ELEMENT_DATA);                               
                                   })
       }
       //funcion para Editar prooveedor
@@ -87,7 +82,6 @@ export class ListarProveedorComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
           
           if(result && result!=0){
-            console.log(result);
             if(result[0]._info_id){
              this.cargarTabla();
            }
@@ -141,7 +135,6 @@ export class ListarProveedorComponent implements OnInit {
           this._proveedor.crudProveedor ({idproveedor:row.idproveedor,
             nombre:row.nombre,telefono1:row.telefono1,telefono2:row.telefono2,email:row.email
             ,direccion:row.direccion,ruc:row.ruc,opcion:'3'}).subscribe(data=>{
-             console.log(data);
              if(data[0]._info_id){
                this.cargarTabla();
              }
@@ -200,11 +193,9 @@ export class ModalEliminar  {
     public dialogRef: MatDialogRef<ModalEliminar>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   clickAceptar(): void { 
-    console.log(this.data);
     this.dialogRef.close(true);
   }
   clickCancelar(): void { 
-    console.log(this.data);
     this.dialogRef.close(false);
   }
   

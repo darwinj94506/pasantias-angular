@@ -8,37 +8,35 @@
     <div fxFlex>
         <mat-card> 
     <mat-card-title class="text-center" >
-            <h3 class="m-0">Perfil de Usuario de: {{data.nombre}} {{data.apellido}}</h3><p>
+            <h3 class="m-0"> {{data.nombre}} {{data.apellido}}</h3><p>
     </mat-card-title>
              <mat-dialog-content align="center" >
-                 
-
+            
+        <form  [formGroup]="myForm" autocomplete="off" >
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Contraseña Actual:"  type="password"  formControlName="clave">
+                    </mat-form-field>
+                    
+                </div>
+            </div>
+            
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Contraseña Nueva:" type="password"  formControlName="nuevaClave">
+                    </mat-form-field>
+                </div>
+            </div>
                 
-            <form  [formGroup]="myForm" autocomplete="off" >
-                <div fxFlex fxLayout="row" fxLayout.lt-md="column">
-                <div fxFlexFill>
-                        <mat-form-field class="w-100">
-                            <input matInput placeholder="Contraseña Actual:"  type="password"  formControlName="clave">
-                        </mat-form-field>
-                        
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                    <div fxFlexFill>
+                            <button (click)="editarUsuario()" [disabled]="myForm.invalid" mat-raised-button color="primary">  
+                                    Guardar</button> 
                     </div>
-                </div>
-                
-                <div fxFlex fxLayout="row" fxLayout.lt-md="column">
-                <div fxFlexFill>
-                        <mat-form-field class="w-100">
-                            <input matInput placeholder="Contraseña Nueva:" type="password"  formControlName="nuevaClave">
-                        </mat-form-field>
-                    </div>
-                </div>
-                  
-                <div fxFlex fxLayout="row" fxLayout.lt-md="column">
-                        <div fxFlexFill>
-                                <button (click)="editarUsuario()" mat-raised-button color="primary">  
-                                        Guardar</button> 
-                        </div>
-                        
-                </div>
+                    
+            </div>
         </form>
             
              </mat-dialog-content>

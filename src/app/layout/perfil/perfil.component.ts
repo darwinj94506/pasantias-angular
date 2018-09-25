@@ -35,8 +35,6 @@ export class PerfilComponent {
     }
     ngOnInit() {
         this.cargando=true
-       
-        console.log(this.data)
         if(this.data){
          
             var paso;
@@ -46,8 +44,8 @@ export class PerfilComponent {
                 idusuario:this.data.idusuario,
                 apellido:this.data.apellido,
                 nombre:this.data.nombre,
-                clave:"",
-                nuevaClave:"",
+                clave:['',Validators.required],
+                nuevaClave:['',Validators.required],
                 rol:this.data.rol,
                 opcion:'2'})
         }
@@ -59,7 +57,6 @@ export class PerfilComponent {
     editarUsuario() {
         this.cargando=true;
         this._user.cambiarClave(this.myForm.value).subscribe(data=>{ 
-          console.log(data)
           this.cargando=false;
           this.openSnackBar("Password actualizada","Éxito");
         },error=>{

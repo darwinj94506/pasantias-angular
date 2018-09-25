@@ -1,13 +1,13 @@
 <div class="w3-row ">
         <mat-card-header style="justify-content: center">
         <div class="w3-col" style="width:85%">
-                        <mat-card-title align="center">
-                                <h3 class="m-0">Editar Garantia</h3>
-                            </mat-card-title>
-                   
+            <mat-card-title align="center">
+                    <h3 class="m-0">Editar Garantia</h3>
+                </mat-card-title>
+        
          </div>
                 <div class="w3-col " style="width:10%">
-                    <button class="mi-boton-salir "  (click)="close('element')" mat-icon-button  color="warn" >
+                    <button class="mi-boton-salir "  (click)="close(null)" mat-icon-button  color="warn" >
                     <mat-icon>clear</mat-icon>
                 </button>
      </div>
@@ -29,14 +29,18 @@
                            Máximo 50 Caracteres</mat-error>
                    </mat-form-field><p>
                    <mat-form-field >
-                       <mat-select placeholder="Proveedos" formControlName="idproveedor" required>
+                       <mat-select placeholder="Proveedor" formControlName="idproveedor" required>
                            <mat-option>Seleccione--</mat-option>
                            <mat-option  *ngFor="let option of proveedores" [value]="option.idproveedor">{{option.nombre}}</mat-option>
                        </mat-select>
+                       <mat-error class="error-message"
+                       *ngIf="myForm.get('idproveedor').hasError('required')
+                        && (myForm.get('idproveedor').dirty || myForm.get('idproveedor').touched)">
+                        Campo obligatorio</mat-error>
                    </mat-form-field>
             </mat-dialog-content>
             <mat-dialog-actions  align="center" >  
-                   <button (click)="editarGarantia()" mat-raised-button color="primary"  [disabled]="myForm.invalid && myForm.untouched"
+                   <button (click)="editarGarantia()" mat-raised-button color="primary"  [disabled]="myForm.invalid"
                     *ngIf="!cargando">  
                       Guardar</button>
                    <button mat-raised-button color="primary"  *ngIf="cargando">  

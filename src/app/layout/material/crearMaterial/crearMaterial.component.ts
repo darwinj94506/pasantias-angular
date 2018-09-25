@@ -41,7 +41,6 @@ export class CrearComponent implements OnInit {
     }
 
     this._material.getListaTipos().subscribe((data)=>{
-      console.log(data);
       this.tiposMat=data.data; 
     },error=>{
       console.log(error);
@@ -50,11 +49,8 @@ export class CrearComponent implements OnInit {
 
   crudMaterial(){
     this.cargando=true;
-        console.log(this.myForm.value);
         this._material.crudMaterial(this.myForm.value).subscribe(data=>{
-          console.log(data)
           this.cargando=false;
-          this.close(data);
         },error=>{
             this.cargando=false;
             alert("Error en la transaccion");

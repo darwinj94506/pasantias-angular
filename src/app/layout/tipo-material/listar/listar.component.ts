@@ -37,11 +37,9 @@ export class ListarComponent implements OnInit {
       this._tipo.totalTipo().
         subscribe((data)=>{
           this.length=data.data[0].count;
-          console.log(data.data[0].count);
         });
       this._tipo.getPaginarTipos({"page":0, "itemsPerPage":10}) .subscribe((data)=>{
        this.ELEMENT_DATA=data.data;
-      console.log(this.ELEMENT_DATA);
       this.mode="determinate";
         this.cargando=false;
       },error=>{
@@ -60,13 +58,10 @@ export class ListarComponent implements OnInit {
     }
     paginar(evento){
       this.pageEvent = evento;
-      console.log(this.pageEvent.pageIndex);
-      console.log(this.pageEvent.pageSize);
       this._tipo.getPaginarTipos({"page":this.pageEvent.pageIndex,
                                   "itemsPerPage":this.pageEvent.pageSize})
                                   .subscribe((data)=>{
                                     this.ELEMENT_DATA=data.data;
-                                    console.log(this.ELEMENT_DATA);                               
                                   })
       }
       
@@ -79,13 +74,12 @@ export class ListarComponent implements OnInit {
          });
          dialogRef.afterClosed().subscribe(result => {
           if(result && result!=0){
-            console.log(result);
             if(result[0]._info_id){
              this.cargarTabla();
            }
             this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
           }else{
-            console.log("no pasa nada");
+            console.log("sin accion");
           }
        
         },error=>{
@@ -110,7 +104,6 @@ export class ListarComponent implements OnInit {
             this._tipo.crudTipo({idtipo:row.idtipo,
               nombre:row.nombre,
               opcion:'3'}).subscribe(data=>{
-                console.log(data);
                 if(data[0]._info_id){
                   this.cargarTabla();
                 }
@@ -136,7 +129,7 @@ export class ListarComponent implements OnInit {
              
    </div>
           <div class="w3-col " style="width:10%">
-              <button class="mi-boton-salir"  (click)="clickCancelar(element)" mat-icon-button  color="warn" >
+              <button class="mi-boton-salir"  (click)="clickCancelar()" mat-icon-button  color="warn" >
               <mat-icon>clear</mat-icon>
           </button>
 </div>
@@ -162,11 +155,9 @@ export class ModalEliminar  {
   constructor(
     public dialogRef: MatDialogRef<ModalEliminar>, @Inject(MAT_DIALOG_DATA) public data: any) { }
   clickAceptar(): void { 
-    console.log(this.data);
     this.dialogRef.close(true);
   }
   clickCancelar(): void { 
-    console.log(this.data);
     this.dialogRef.close(false);
   }
 }

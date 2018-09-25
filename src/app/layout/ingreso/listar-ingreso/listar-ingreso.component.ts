@@ -6,7 +6,7 @@ import{IngresoService} from './../../../shared/services/ingreso.service';
 import {MatDialog, MatDialogRef, 
   MAT_DIALOG_DATA, MatDialogConfig,MatSnackBar} from '@angular/material';
   import{ModalCrudIngresoComponent} from './../modal-crud-ingreso/modal-crud-ingreso.component';
-
+import{ModalVerDetalleComponent} from './../modal-ver-detalle/modal-ver-detalle.component';
   @Component({
   selector: 'app-listar-ingreso',
   templateUrl: './listar-ingreso.component.html',
@@ -19,7 +19,7 @@ export class ListarIngresoComponent implements OnInit {
   value = 50;
   bufferValue = 50;
   cargando=false;
-  displayedColumns: string[] = ['nombrematerial', 'cantidad', 'fechaingreso', 'nombreusuario', 'apellido', 'star'];
+  displayedColumns: string[] = ['nombrematerial', 'cantidad', 'fechaingreso', 'nombreusuario','star'];
   ELEMENT_DATA: any[] = [];
   length=0;
   pageEvent: PageEvent;
@@ -36,13 +36,12 @@ export class ListarIngresoComponent implements OnInit {
     this._ingreso.totalIngreso().
       subscribe((data)=>{
         this.length=data.data[0].count;
-        console.log(data.data[0].count);
+      
       });
     this._ingreso.getPaginarIngresos({"page":0, "itemsPerPage":10}) .subscribe((data)=>{
       this.ELEMENT_DATA=data.data;
       this.mode="determinate";
       this.cargando=false;
-      console.log(this.ELEMENT_DATA);
       },error=>{
         this.mode="determinate";
         this.cargando=false;
@@ -58,13 +57,11 @@ export class ListarIngresoComponent implements OnInit {
   }
   paginar(evento){
     this.pageEvent = evento;
-    console.log(this.pageEvent.pageIndex);
-    console.log(this.pageEvent.pageSize);
+  
     this._ingreso.getPaginarIngresos({"page":this.pageEvent.pageIndex,
                                 "itemsPerPage":this.pageEvent.pageSize})
                                 .subscribe((data)=>{
                                   this.ELEMENT_DATA=data.data;
-                                  console.log(this.ELEMENT_DATA);                               
                                 })
     }
 
@@ -76,13 +73,25 @@ export class ListarIngresoComponent implements OnInit {
          data:data
        });
        dialogRef.afterClosed().subscribe(result => {
-         console.log(result);
-         if(result[0]._info_id){
-          this.cargarTabla();
-        }
-         this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+         if(result){
+          if(result[0]._info_id){
+            this.cargarTabla();
+          }
+           this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+
+         }
+        
        },error=>{
        console.log(error);
      })
+    }
+    abrirModalVerDetalle(i=null){
+      let data=this.ELEMENT_DATA[i];
+      const dialogRef = this.dialog.open(ModalVerDetalleComponent , {
+        hasBackdrop:true,
+        width:"50%",
+        height:"90%",
+        data:data
+      });
     }
 }

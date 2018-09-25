@@ -19,15 +19,15 @@ export class MaterialService{
       
       return this._http.get(this.url+'getIdMaterial/'+nombreM,).pipe(map(res=>res.json()));
     }
-    getTiposSelect(){
+    // getTiposSelect(){
       
-      return this._http.get(this.url+'getTiposSelect',).pipe(map(res=>res.json()));
-    }
+    //   return this._http.get(this.url+'getTiposSelect',).pipe(map(res=>res.json()));
+    // }
    
     getListaTipos(){
       // let params=JSON.stringify(parametros);
       let headers=new Headers({'Content-Type':'application/json'});
-      return this._http.post(this.url+'getListaTipos', {headers:headers})
+      return this._http.get(this.url+'getTiposSelect',{headers:headers})
       .pipe(map( res => res.json()));          
     }
 

@@ -35,6 +35,9 @@ export class ModalVerDetalleComponent implements OnInit {
     this.getDetalleEgreso();
     this.numeroRegistro=this.data.idegreso+1000;
   }
+    onNoClick(): void {
+        this.dialogRef.close(null);
+    }
 
   getDetalleEgreso(){
     this._egreso.getDetalleEgreso(this.data.idegreso).subscribe((data)=>{

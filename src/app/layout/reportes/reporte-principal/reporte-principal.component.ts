@@ -57,7 +57,7 @@ export class ReportePrincipalComponent implements OnInit {
     this.INGRESO_DATA=[];
     this.DETALLE_EGRESO_DATA=[];
     this.no_existe_registro=false;
-    if(this.opcionBusqueda==1){ //reporte de materiales dada una serie de ingreso  
+    if(this.opcionBusqueda==1){ //reporte de materiales dada una serie, se busca primero en los egresos y si no existe esa serie ahi, se busca en los ingresos
       this._reportes.getReporteDetalleEgreso({'serie':this.serie}).subscribe((data)=>{
         console.log(data);
         this.DETALLE_EGRESO_DATA=data.data;
@@ -107,7 +107,7 @@ export class ReportePrincipalComponent implements OnInit {
           }
         })
 
-      }else if(this.opcionFiltro==2){ //filtro por cedulaSolicitante
+      }else if(this.opcionFiltro==4){ //filtro por cedulaSolicitante
         this._reportes.getReporteDetalleEgreso({'scedula':this.scedula}).subscribe((data)=>{
           this.DETALLE_EGRESO_DATA=data.data;
           if(this.DETALLE_EGRESO_DATA.length==0){

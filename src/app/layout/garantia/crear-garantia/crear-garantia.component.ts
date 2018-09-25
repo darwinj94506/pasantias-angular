@@ -23,7 +23,7 @@ export class CrearGarantiaComponent implements OnInit {
   ngOnInit() {
     this.myForm = this.fb.group({
       idgarantia:'0',
-      idproveedor:['0',Validators.required],
+      idproveedor:[null,Validators.required],
       descripcion:['',Validators.compose([Validators.required,Validators.maxLength(200)])],
       opcion:'1'
      

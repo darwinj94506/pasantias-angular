@@ -8,10 +8,20 @@ const routes: Routes = [
         loadChildren: './layout/layout.module#LayoutModule',
         canActivate: [AuthGuard]
     },
-    {
-        path: 'login',
+    
+     {  path: 'login',
         loadChildren: './login/login.module#LoginModule'
-    }
+     },
+    {
+        path: '**',
+        redirectTo: 'login'
+    },
+    // {
+    //     path: 'login',
+    //     loadChildren: './login/login.module#LoginModule'
+    // }
+   
+   
 ];
 
 @NgModule({

@@ -31,15 +31,14 @@ export class EditarProveedorComponent implements OnInit {
             }else{
                 this.accion=false
             }
-            console.log(this.accion)
             this.myForm = this.fb.group({
                 idproveedor: this.data.idproveedor,
                 nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
                 telefono1:[this.data.telefono1,Validators.compose([Validators.required,Validators.maxLength(10)])],
-                telefono2:this.data.telefono2,
-                email:this.data.email,
-                direccion:this.data.direccion,
-                ruc:this.data.ruc,
+                telefono2:[this.data.telefono2,Validators.maxLength(10)],
+                email:[this.data.email,Validators.maxLength(50)],
+                direccion:[this.data.direccion,Validators.maxLength(50)],
+                ruc:[this.data.ruc,Validators.maxLength(13)],
                 opcion:'2'
                
               })
@@ -51,9 +50,7 @@ export class EditarProveedorComponent implements OnInit {
     }
    editarProveedor() {
         this.cargando=true;
-        console.log(this.myForm.value);
         this._proveedor.crudProveedor(this.myForm.value).subscribe(data=>{
-          console.log(data)
           this.cargando=false;
           this.close(data);
         },error=>{

@@ -23,7 +23,10 @@ export class EditarUsuarioComponent implements OnInit {
      },{
          "rol":2,
          "nombre":"Administrador"
-     }]; 
+     },{
+        "rol":3,
+        "nombre":"Ayudante"
+    }]; 
      
     constructor(
         public dialogRef: MatDialogRef<EditarUsuarioComponent>,private fb: FormBuilder,
@@ -33,22 +36,13 @@ export class EditarUsuarioComponent implements OnInit {
     ) {}
     ngOnInit() {
         if(this.data){
-            if(this.data.rol=="Funcionario"){
-                this.roles.rol=1;
-                this.data.rol=this.data.rol
-            }else{
-                this.roles.rol=2;
-                this.data.rol=this.data.rol
-            }
-            console.log(this.roles.rol);
-            console.log(this.data.rol);
             this.myForm = this.fb.group({
                 idusuario: this.data.idusuario,
                 apellido:this.data.apellido,
                 nombre:[this.data.nombre,Validators.compose([Validators.required,Validators.maxLength(50)])],
                 clave:[this.data.clave,Validators.compose([Validators.required,Validators.maxLength(50)])],
                 cedula:this.data.cedula,
-                rol:this.roles.rol,
+                rol:this.data.rol,
                 opcion:'2'
                
               })
@@ -62,10 +56,8 @@ export class EditarUsuarioComponent implements OnInit {
     }
    editarUsuario() {
         this.cargando=true;
-        console.log(this.myForm.value);
         
         this._user.crudUsuario(this.myForm.value).subscribe(data=>{ 
-          console.log(data)
           this.cargando=false;
           this.close(data);
         },error=>{

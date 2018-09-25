@@ -35,6 +35,7 @@ export class CrudEgresoComponent implements OnInit  {
     
     this._egreso.getUsuariosSelect().subscribe((data)=>{
       this.usuarios=data;
+      console.log(this.usuarios);
     },error=>{
 
     });

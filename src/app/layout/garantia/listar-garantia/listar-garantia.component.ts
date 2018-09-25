@@ -65,8 +65,6 @@ export class ListarProveedorComponent implements OnInit {
     }
     paginar(evento){
       this.pageEvent = evento;
-      console.log(this.pageEvent.pageIndex);
-      console.log(this.pageEvent.pageSize);
       this._garantia.getGarantias({"page":this.pageEvent.pageIndex,
                                   "itemsPerPage":this.pageEvent.pageSize})
                                   .subscribe((data)=>{
@@ -82,10 +80,13 @@ export class ListarProveedorComponent implements OnInit {
             data:row
         });
         dialogRef.afterClosed().subscribe(result => {
-          if(result[0]._info_id){
-           this.cargarTabla();
+          if(result){
+            if(result[0]._info_id){
+              this.cargarTabla();
+              this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
+
+          }    
          }
-          this.openSnackBar(result[0]._info_desc,result[0]._info_titulo);
         },error=>{
           console.log(error);
         })
