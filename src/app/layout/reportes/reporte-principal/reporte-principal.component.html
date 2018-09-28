@@ -61,17 +61,16 @@
         <mat-form-field>
           <input matInput  placeholder="Número de registro" [(ngModel)]="nregistro">
         </mat-form-field> 
-        <button mat-button color="primary" (click)="consultar()"
-        [disabled]="myForm.invalid && myForm.untouched">  
+        <button mat-button color="primary" (click)="consultar()" [disabled]="myForm.invalid && myForm.untouched">  
               Buscar</button>
     </mat-card>      
   </div>
   <!--card para la busqueda de material por serie -->
   <div [fxFlex]="75" *ngIf="opcionBusqueda===1"> 
       <mat-card fxFlexFill fxLayoutAlign="center center"> 
-          <mat-form-field [fxFlex]="75">
+          <!-- <mat-form-field [fxFlex]="75">
             <input matInput  placeholder="Serie" [(ngModel)]="serie">   
-          </mat-form-field> 
+          </mat-form-field>  -->
           <div [fxFlex]="25">
             <button mat-button color="primary" (click)="consultar()"
             [disabled]="myForm.invalid && myForm.untouched">  

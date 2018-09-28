@@ -16,7 +16,6 @@ export class ReportePrincipalComponent implements OnInit {
   INGRESO_DATA: any[] = [];
   detalleIngresoColumns: string[] = ['solicitante', 'material','cantidad', 'serie','garantia','proveedor','usuario'];
   DETALLE_EGRESO_DATA: any[] = [];
-
   opcionBusqueda=0;
   opcionFiltro=0;
   serie='';
@@ -34,7 +33,6 @@ export class ReportePrincipalComponent implements OnInit {
       serie:'0'
     })
   }
-
   abrirModalVerDetalle(data=null,tipo){ 
     let array={
       tipo:tipo,
@@ -48,9 +46,7 @@ export class ReportePrincipalComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
      console.log("cerros");
-    
     },error=>{
-  
   })
 }
   consultar(){
@@ -58,22 +54,10 @@ export class ReportePrincipalComponent implements OnInit {
     this.DETALLE_EGRESO_DATA=[];
     this.no_existe_registro=false;
     if(this.opcionBusqueda==1){ //reporte de materiales dada una serie, se busca primero en los egresos y si no existe esa serie ahi, se busca en los ingresos
-      this._reportes.getReporteDetalleEgreso({'serie':this.serie}).subscribe((data)=>{
-        console.log(data);
-        this.DETALLE_EGRESO_DATA=data.data;
-        if(this.DETALLE_EGRESO_DATA.length==0){
-          this._reportes.getReporteIngreso({'serie':this.serie}).subscribe((data)=>{
-            this.INGRESO_DATA=data.data;
-            if(this.INGRESO_DATA.length==0){
-              this.no_existe_registro=true;
-            }else{
-              this.abrirModalVerDetalle(this.INGRESO_DATA,1);
-            }
-          })
-        }else{
-          this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
-        }
-      })
+      this._reportes.getReporteMateriales().subscribe((data)=>{
+      console.log(data.data);
+      this.abrirModalVerDetalle(data.data,3);
+     })
     }else if(this.opcionBusqueda==2){ //reporte ingresos
       if(this.opcionFiltro==1){ //reporte en un rango de dos fechas
         this._reportes.getReporteIngreso({'fecha1':this.fecha1,'fecha2':this.fecha2}).subscribe((data)=>{
@@ -93,7 +77,6 @@ export class ReportePrincipalComponent implements OnInit {
             this.abrirModalVerDetalle(this.INGRESO_DATA,1);
           }
         })
-
       }
     }else if(this.opcionBusqueda==3){ //reportes de egresos
       if(this.opcionFiltro==1){ //filtro por fechas
@@ -105,7 +88,6 @@ export class ReportePrincipalComponent implements OnInit {
             this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
           }
         })
-
       }else if(this.opcionFiltro==4){ //filtro por cedulaSolicitante
         this._reportes.getReporteDetalleEgreso({'scedula':this.scedula}).subscribe((data)=>{
           this.DETALLE_EGRESO_DATA=data.data;
@@ -113,7 +95,6 @@ export class ReportePrincipalComponent implements OnInit {
             this.no_existe_registro=true;
           }else{
             this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
-
           }
         })
 
@@ -128,14 +109,9 @@ export class ReportePrincipalComponent implements OnInit {
             
           }else{
             this.abrirModalVerDetalle(this.DETALLE_EGRESO_DATA,2);
-
           }
         })
-
       }
+  }  
   }
-    
-   
-  }
-
 }
