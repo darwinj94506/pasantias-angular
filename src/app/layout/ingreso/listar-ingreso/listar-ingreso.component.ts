@@ -42,6 +42,7 @@ export class ListarIngresoComponent implements OnInit {
       this.ELEMENT_DATA=data.data;
       this.mode="determinate";
       this.cargando=false;
+      console.log(this.ELEMENT_DATA)
       },error=>{
         this.mode="determinate";
         this.cargando=false;
@@ -73,6 +74,8 @@ export class ListarIngresoComponent implements OnInit {
          data:data
        });
        dialogRef.afterClosed().subscribe(result => {
+         console.log(result);
+
          if(result){
           if(result[0]._info_id){
             this.cargarTabla();
@@ -87,7 +90,8 @@ export class ListarIngresoComponent implements OnInit {
     }
     abrirModalVerDetalle(i=null){
       let data=this.ELEMENT_DATA[i];
-      const dialogRef = this.dialog.open(ModalVerDetalleComponent , {
+      console.log(data);
+        const dialogRef = this.dialog.open(ModalVerDetalleComponent , {
         hasBackdrop:true,
         width:"50%",
         height:"90%",

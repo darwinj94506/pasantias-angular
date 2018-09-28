@@ -64,7 +64,6 @@ export class ReportePrincipalComponent implements OnInit {
         if(this.DETALLE_EGRESO_DATA.length==0){
           this._reportes.getReporteIngreso({'serie':this.serie}).subscribe((data)=>{
             this.INGRESO_DATA=data.data;
-            
             if(this.INGRESO_DATA.length==0){
               this.no_existe_registro=true;
             }else{

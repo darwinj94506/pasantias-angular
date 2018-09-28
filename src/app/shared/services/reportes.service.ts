@@ -23,6 +23,12 @@ export class ReportesService{
       return this._http.post(this.url+'getReporteEgresoDetalle',params, {headers:headers})
       .pipe(map( res => res.json()));          
     }
+    getReporteMateriales(){
+      // let params=JSON.stringify(parametros);
+      let headers=new Headers({'Content-Type':'application/json'});
+      return this._http.post(this.url+'getReporteMaterial',{headers:headers})
+      .pipe(map( res => res.json()));          
+    }
     getReporteIngreso(parametros){
       let params=JSON.stringify(parametros);
       let headers=new Headers({'Content-Type':'application/json'});

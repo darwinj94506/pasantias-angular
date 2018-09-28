@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TopnavComponent implements OnInit {
     pushRightClass: string = 'push-right';
-
+    rol:any=null;
     constructor(public router: Router, private translate: TranslateService) {
         this.router.events.subscribe(val => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
@@ -19,7 +19,9 @@ export class TopnavComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.rol=JSON.parse(localStorage.getItem('identity')).rol;
+    }
 
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');

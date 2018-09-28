@@ -14,6 +14,9 @@ export class ModalVerReporteComponent implements OnInit {
   INGRESO_DATA: any[] = [];
   detalleIngresoColumns: string[] = ['idegreso','nsolicitante', 'material','cantidad', 'serie','garantia','proveedor'];
   DETALLE_EGRESO_DATA: any[] = [];
+
+  materialColumns: string[] = ['nombre','nombretipo', 'stock'];
+  MATERIAL_DATA: any[] = [];
   @ViewChild('contenido') content:ElementRef;
   constructor( private fb: FormBuilder,
     public dialogRef: MatDialogRef<ModalVerReporteComponent>,
@@ -47,8 +50,10 @@ export class ModalVerReporteComponent implements OnInit {
     if(this.data.tipo==1){
       this.INGRESO_DATA=this.data.data;
 
-    }else{
+    }else if(this.data.tipo==2){
       this.DETALLE_EGRESO_DATA=this.data.data;
+    }else{
+      this.MATERIAL_DATA=this.data.data;
     }
   }
 

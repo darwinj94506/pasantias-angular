@@ -7,8 +7,16 @@
     </div>
     
     <span class="nav-spacer"></span>
+    
+    <button mat-icon-button [routerLink]="['/modulo-usuario']" *ngIf="rol===2">
+        <mat-icon>person_add</mat-icon>
+    </button>
+    <!-- <a mat-list-item [routerLinkActive]="'active'" >
+        <mat-icon class="sidenav-icon">person_add</mat-icon> {{'Usuarios'}}
+    </a> -->
+
   
-    <button class="hidden-sm" mat-icon-button [routerLink]="['/perfil']">
+    <button mat-icon-button [routerLink]="['/perfil']">
         <mat-icon>account_circle</mat-icon>
     </button>
   

@@ -51,6 +51,7 @@ export class CrearComponent implements OnInit {
     this.cargando=true;
         this._material.crudMaterial(this.myForm.value).subscribe(data=>{
           this.cargando=false;
+          this.dialogRef.close(data);  
         },error=>{
             this.cargando=false;
             alert("Error en la transaccion");
